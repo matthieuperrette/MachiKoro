@@ -1,0 +1,1 @@
+Ce répertoire contiendra toutes les ressources images, textuelles, etc pour le projet minivilles

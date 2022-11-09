@@ -1,0 +1,1 @@
+On est ici à la racine du projet minivilles. Seul le main y est stocké.

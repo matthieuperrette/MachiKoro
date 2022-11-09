@@ -1,0 +1,1 @@
+Ce répertoire contiendra l'intégralité des fichiers sources nécessaires au fonctionnement de minivilles.
