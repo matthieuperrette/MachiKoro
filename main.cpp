@@ -1,13 +1,4 @@
-#include <iostream>
-
-int main() {
-    std::cout << "Bienvenue sur Minivilles les amis !" << std::endl;
-    return 0;
-}
-
-/*
-//main de test de la classe Carte
-#include "Carte.h" //je sais pas trop comment faire pour réussir a l'inclure
+#include "./src/Carte.h"
 
 using namespace std;
 
@@ -41,4 +32,3 @@ int main() {
 
 
 
-*/
