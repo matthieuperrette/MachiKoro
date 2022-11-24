@@ -1,4 +1,5 @@
 #include "./src/Carte.h"
+#include "./src/Paquet.h"
 
 using namespace std;
 
