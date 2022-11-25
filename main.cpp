@@ -1,13 +1,5 @@
-#include <iostream>
-
-int main() {
-    std::cout << "Bienvenue sur Minivilles les amis !" << std::endl;
-    return 0;
-}
-
-/*
-//main de test de la classe Carte
-#include "Carte.h" //je sais pas trop comment faire pour réussir a l'inclure
+#include "./src/Carte.h"
+#include "./src/Paquet.h"
 
 using namespace std;
 
@@ -31,14 +23,22 @@ int main() {
 	for (auto n : cartes) {
 		cout << *n << "\n";
 	}
-	for (auto n : cartes) {
-		delete n;
-	}
-	return 0;
+
+    Paquet paquet;
+    /*or (auto n : cartes) {
+        paquet.ajouterCarte(n);
+    }*/
+    cout << paquet;
+
+
+
+    for (auto n : cartes) {
+        delete n;
+    }
+    return 0;
 }
 
 
 
 
 
-*/
