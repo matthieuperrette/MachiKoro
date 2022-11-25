@@ -23,10 +23,19 @@ int main() {
 	for (auto n : cartes) {
 		cout << *n << "\n";
 	}
-	for (auto n : cartes) {
-		delete n;
-	}
-	return 0;
+
+    Paquet paquet;
+    /*or (auto n : cartes) {
+        paquet.ajouterCarte(n);
+    }*/
+    cout << paquet;
+
+
+
+    for (auto n : cartes) {
+        delete n;
+    }
+    return 0;
 }
 
 
