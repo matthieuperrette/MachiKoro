@@ -58,9 +58,11 @@ ostream& operator<<(ostream& f, const Carte& c) {
 		"Couleur : " << c.getCouleur() << "\n"
 		<< "Type : " << c.getType() << "\n"
 		<< "Prix : " << c.getPrix() << "\n"
-		<< "Effet : " << c.getEffet().getDescription() << "\n"
-		<< "S'acctive avec les des : ";
-	for (int n : c.getActivation()) f << n << " ";
+		<< "Effet : " << c.getEffet().getDescription() << "\n";
+	if (c.getActivation().size() != 0) {
+		f << "S'acctive avec les des : ";
+		for (int n : c.getActivation()) f << n << " ";
+	}
 	f << "\n";
 	return f;
 }
