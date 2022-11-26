@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-
+/*
 	//vector<int> vect = { 1, 3 };
 	//cout << vect[1] << "\n";
 	try {
@@ -24,17 +24,26 @@ int main() {
 		cout << *n << "\n";
 	}
 
-	Paquet paquet;
-	/*or (auto n : cartes) {
-		paquet.ajouterCarte(n);
-	}*/
-	cout << paquet;
+    Paquet paquet;
+    for (auto n : cartes) {
+        paquet.ajouterCarte(n);
+    }
 
+    vector<Carte*> cartas;
+    try {
+        cartas=paquet.getCarteActive(9);
+    }
+    catch (PaquetException& e) {
+        cout << e.getInfo() << "\n";
+    }
+    for (auto n : cartas) {
+        cout << *n << "\n";
+    }
 
-
-	for (auto n : cartes) {
-		delete n;
-	}
-	return 0;
+    for (auto n : cartes) {
+        delete n;
+    }
+*/
+    return 0;
 }
 

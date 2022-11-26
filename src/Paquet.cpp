@@ -15,7 +15,7 @@ void Paquet::retirerCarte(Carte* c){
 }
 
 vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const{
-    if (cartes.empty())
+    if (!cartes.empty())
     {
         vector<Carte*> result;
         for (auto c : cartes)
@@ -29,7 +29,7 @@ vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const{
         throw PaquetException("Ce paquet ne contient aucune carte");
 }
 vector<Carte*> Paquet::getCarteType(Type type) const {
-    if (cartes.empty())
+    if (!cartes.empty())
     {
         vector<Carte*> result;
         for (auto c : cartes)
@@ -41,6 +41,30 @@ vector<Carte*> Paquet::getCarteType(Type type) const {
     }
     else
         throw PaquetException("Ce paquet ne contient aucune carte");
+}
+
+vector<Carte*> Paquet::getCarteActive(int activateur) {
+    if (activateur==0)
+    {
+        throw PaquetException("Activateur 0 non existant");
+    }
+    else
+    {
+        if (!cartes.empty())
+        {
+            vector<Carte*> result;
+            for (auto c : cartes)
+                for (auto a : c->getActivation())
+                    if (a==activateur)
+                    {
+                        result.push_back(c);
+                        break;
+                    }
+            return result;
+        }
+        else
+            throw PaquetException("Ce paquet ne contient aucune carte");
+    }
 }
 //****************class Paquet*******************//
 
