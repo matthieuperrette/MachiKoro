@@ -33,8 +33,10 @@ public :
     vector<Carte*> getContener() const {return cartes;} //retourne le conteneur entier de cartes
     vector<Carte*> getCarteCouleur(Couleur couleur) const;
     vector<Carte*> getCarteType(Type type) const;
+    vector<Carte*> getCarteActive(int activateur);
 };
 //****************class Paquet*******************//
+
 
 
 //****************Fonctions supplémentaires******************//

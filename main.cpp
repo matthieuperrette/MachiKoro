@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-
+/*
 	//vector<int> vect = { 1, 3 };
 	//cout << vect[1] << "\n";
 	try {
@@ -25,16 +25,18 @@ int main() {
 	}
 
     Paquet paquet;
-    /*or (auto n : cartes) {
+    for (auto n : cartes) {
         paquet.ajouterCarte(n);
-    }*/
-    cout << paquet;
-
-
+    }
+    vector<Carte*> cartas=paquet.getCarteCouleur(Couleur::rouge);
+    for (auto n : cartas) {
+        cout << *n << "\n";
+    }
 
     for (auto n : cartes) {
         delete n;
     }
+*/
     return 0;
 }
 
