@@ -28,7 +28,14 @@ int main() {
     for (auto n : cartes) {
         paquet.ajouterCarte(n);
     }
-    vector<Carte*> cartas=paquet.getCarteCouleur(Couleur::rouge);
+
+    vector<Carte*> cartas;
+    try {
+        cartas=paquet.getCarteActive(9);
+    }
+    catch (PaquetException& e) {
+        cout << e.getInfo() << "\n";
+    }
     for (auto n : cartas) {
         cout << *n << "\n";
     }

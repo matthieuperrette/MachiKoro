@@ -44,18 +44,28 @@ vector<Carte*> Paquet::getCarteType(Type type) const {
 }
 
 vector<Carte*> Paquet::getCarteActive(int activateur) {
-    if (!cartes.empty())
+    if (activateur==0)
     {
-        vector<Carte*> result;
-        for (auto c : cartes)
-            if (count(c->getActivation().begin(), c->getActivation().end(), activateur))
-                result.push_back(c);
-        return result;
+        throw PaquetException("Activateur 0 non existant");
     }
     else
-        throw PaquetException("Ce paquet ne contient aucune carte");
+    {
+        if (!cartes.empty())
+        {
+            vector<Carte*> result;
+            for (auto c : cartes)
+                for (auto a : c->getActivation())
+                    if (a==activateur)
+                    {
+                        result.push_back(c);
+                        break;
+                    }
+            return result;
+        }
+        else
+            throw PaquetException("Ce paquet ne contient aucune carte");
+    }
 }
-
 //****************class Paquet*******************//
 
 
