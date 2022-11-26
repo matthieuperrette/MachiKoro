@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-/*
+
 	//vector<int> vect = { 1, 3 };
 	//cout << vect[1] << "\n";
 	try {
@@ -43,7 +43,7 @@ int main() {
     for (auto n : cartes) {
         delete n;
     }
-*/
+
     return 0;
 }
 
