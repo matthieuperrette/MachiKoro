@@ -14,6 +14,13 @@ void Paquet::retirerCarte(Carte* c) {
     }
 }
 
+Carte* Paquet::retirerCarte(){
+    Carte* carte=cartes.back();
+    cartes.pop_back();
+    return carte;
+}
+
+
 vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
     if (!cartes.empty())
     {

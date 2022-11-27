@@ -51,6 +51,7 @@ Plateau::~Plateau(){
     for (auto p : cartes)
         delete p;
 }
+
 //**************Structure***************//
 
 
@@ -76,13 +77,20 @@ unsigned int Plateau::getNbPaquets(){
     return cartes.size();
 }
 
-Carte* Plateau::retirerCarte(string nom){
-
+Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir à retirer des cartes par nom
+    //Si l'utilisateur choisit de récupérer une carte depuis le paquet nommé
+    //Alors on enleve la carte (method retirerCarte())
+    //On la retourne
+    //Si le paquet dans lequel on pioche devient vide -> on le supprime puis :
+    //Si on a remplir = true alors on rerempli en utilisant la pioche de départ
+    //Sinon on ne fait rien
 }
 
-Carte* ajouterCarte(Carte*){
-
+void Plateau::remplirPlateau() { //Cette fonction est appelée lorsque retirerCarte se retrouve avec un paquetvide et la necéssité de remplir
+   //On va piocher et créer des paquets jusqu'à ce que cartes.size==10;
 }
+
+
 //Espace de définition des get et autres méthodes d'utilisation//
 
 
@@ -93,5 +101,7 @@ Carte* ajouterCarte(Carte*){
 
 
 ostream& operator<<(ostream& f, const Plateau& p){
-
+    //On rentre dansn une boucle sur p.getAllPaquets
+    //On affiche chaque paquet
+    //Si on veut afficher peu de choses, on règle l'affichage de manière à ce qu'il soit minimal
 }

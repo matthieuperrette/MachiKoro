@@ -41,8 +41,8 @@ public :
     Paquet& getPaquetByNom(string& nom);
     vector<Paquet*> getAllPaquets();
     unsigned int getNbPaquets();
-    Carte* retirerCarte(string nom);
-    Carte* ajouterCarte(Carte*){}
+    Carte* retirerCarte(string& nom);
+    void remplirPlateau();
     //Espace de définition des get et autres méthodes d'utilisation//
 
 

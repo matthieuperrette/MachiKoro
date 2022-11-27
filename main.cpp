@@ -42,6 +42,7 @@ int main() {
 
     Plateau plateau(cartes);
     string str="Ferme";
+    cout << *plateau.getPaquetByNom(str).retirerCarte();
     cout << plateau.getPaquetByNom(str);
 
 
