@@ -71,13 +71,11 @@ ostream& operator<<(ostream& f, const Carte& c) {
 
 //fonction qui renvoie un vecteur avec un pointeur sur chaque carte de l'edition classique
 // ATTENTION IL FAUT DELETE TOUTES LES CARTES CAR L'ALLOCATION EST DYNAMIQUE
-<<<<<<< HEAD
 //a terme a integrer � jeu
-vector<Carte*> cartesEditionClassique() { //Créer des cartes dynamiquement donc il faudra l'appeler et delete dans le destructeur de Jeu
-=======
-//a terme a integrer � jeu
+//vector<Carte*> cartesEditionClassique() créer des cartes dynamiquement donc il faudra l'appeler et delete dans le destructeur de Jeu
+//a terme a integrer � jeu
+
 vector<Carte*> cartesEditionClassique() {
->>>>>>> 811eab7 (Classe Carte fonctionnel + fonction de construction des cartes)
 
 	Effet effet;
 	vector<int> v1 = { 1 };

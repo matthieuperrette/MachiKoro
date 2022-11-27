@@ -6,6 +6,8 @@
 #define MINIVILLES_PLATEAU_H
 
 #include "Paquet.h"
+#include "Pioche.h"
+
 
 //********************Structures et variables nécessaires*****************//
 class PlateauException {
@@ -21,12 +23,13 @@ public:
 //****************class Plateau*******************//
 class Plateau {
 private :
-    vector<Paquet> cartes;
+    vector<Paquet*> cartes;
+    bool remplir;
 public :
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
-    Plateau(vector<Carte> cartesJeu); //cartesJeu=toutes les cartes de l'édition ne nécessitant pas de pioche et de distribution spéciale
+    explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'édition ne nécessitant pas de pioche et de distribution spéciale
     //Constructeur avec un dispatch anormal : on utilise la pioche pour faire des tirages
-    Plateau(vector<Carte> cartesJeu, Pioche p);
+    Plateau(vector<Carte*> cartesJeu, Pioche p);
     Plateau(const Plateau&) = delete;
     Plateau operator=(const Plateau&) = delete;
     ~Plateau();
@@ -35,9 +38,8 @@ public :
 
 
     //Espace de définition des get et autres méthodes d'utilisation//
-    Paquet& getPaquet(string nom);
-    vector<Paquet> getPaquets();
-    vector<Paquet> getPaquetsNonVides();
+    Paquet& getPaquetByNom(string& nom);
+    vector<Paquet*> getAllPaquets();
     unsigned int getNbPaquets();
     Carte* retirerCarte(string nom);
     Carte* ajouterCarte(Carte*){}
