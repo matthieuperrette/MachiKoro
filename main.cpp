@@ -29,21 +29,12 @@ int main() {
         paquet.ajouterCarte(n);
     }
 
-    vector<Carte*> cartas;
-    try {
-        cartas=paquet.getCarteActive(9);
-    }
-    catch (PaquetException& e) {
-        cout << e.getInfo() << "\n";
-    }
-    for (auto n : cartas) {
-        cout << *n << "\n";
-    }
+
+
 
     Plateau plateau(cartes);
     string str="Ferme";
-    cout << *plateau.getPaquetByNom(str).retirerCarte();
-    cout << plateau.getPaquetByNom(str);
+
 
 
 
