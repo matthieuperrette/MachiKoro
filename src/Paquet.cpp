@@ -1,7 +1,13 @@
 #include "Paquet.h"
 
 //****************class Paquet*******************//
-void Paquet::retirerCarte(Carte* c) {
+
+bool Paquet::is_In(Carte* c){
+    return (find(cartes.begin(),cartes.end(), c)!=cartes.end());
+}
+
+
+Carte* Paquet::retirerCarte(Carte* c) {
     if (cartes.empty())
     {
         throw PaquetException("Ce paquet ne contient aucune carte");
@@ -9,10 +15,23 @@ void Paquet::retirerCarte(Carte* c) {
     else {
         vector<Carte*>::iterator it; //on créer un itérateur fait pour travailler dans un vecteur de pointeurs de Carte
         it = find(cartes.begin(), cartes.end(), c); //on lui affecte l'index de la carte
+
+        Carte* result= nullptr;
         if (it != cartes.end()) //si la carte a été trouvée, on l'efface
+        {
+            result = (*it);
             cartes.erase(it);
+        }
+        return result;
     }
 }
+
+Carte* Paquet::retirerCarte(){
+    Carte* carte=cartes.back();
+    cartes.pop_back();
+    return carte;
+}
+
 
 vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
     if (!cartes.empty())
