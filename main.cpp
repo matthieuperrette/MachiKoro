@@ -26,22 +26,11 @@ int main() {
 
     try {
         Plateau plateau(cartes,pioche);
-        cout << plateau.getNbPaquets() << "\n";
-        vector<Paquet*> test=plateau.getAllPaquets();
-        for (auto p:test)
-            cout << *p;
+        plateau.afficherPlateau();
     }
     catch (PaquetException& e) {
         cout << e.getInfo() << "\n";
     }
-
-
-
-
-
-
-
-
 
     for (auto n : cartes) {
         delete n;

@@ -39,12 +39,13 @@ public :
 
 
     //Espace de définition des get et autres méthodes d'utilisation//
-    Paquet& getPaquetByNom(string& nom);
-    vector<Paquet*> getAllPaquets();
-    unsigned int getNbPaquets();
+    Paquet& getPaquetByNom(string& nom) const;
+    vector<Paquet*> getAllPaquets() const;
+    unsigned int getNbPaquets() const;
 
     Carte* retirerCarte(string& nom);
-    void remplirPlateau();
+    void remplirPlateau(bool firstCall);
+    void afficherPlateau() const ;
     //Espace de définition des get et autres méthodes d'utilisation//
 
 

@@ -8,6 +8,12 @@
 
 //****************class Plateau*******************//
 
+
+
+
+
+
+
 //**************Structure***************//
 Plateau::Plateau(vector<Carte*> cartesJeu) {
     /*Regle :
@@ -45,7 +51,7 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
 
 Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p){
     remplir=true;
-    remplirPlateau(); //remplir plateau ne gère que le maintient des paquets de cartes achetables mais pas les monuments
+    remplirPlateau(true); //remplir plateau ne gère que le maintient des paquets de cartes achetables mais pas les monuments
     //on doit donc ajouter les monuments avec cartesJeu
     int nbJoueurs=4; //ATTENTION ! A MODIFIER
 
@@ -68,7 +74,6 @@ Plateau::~Plateau(){
     for (auto p : cartes)
         delete p;
 }
-
 //**************Structure***************//
 
 
@@ -77,8 +82,7 @@ Plateau::~Plateau(){
 
 
 //Espace de définition des get et autres méthodes d'utilisation//
-
-Paquet& Plateau::getPaquetByNom(string& nom){
+Paquet& Plateau::getPaquetByNom(string& nom) const{
     for (auto p: cartes)
         if (p->getCarte(0).getNom()==nom) //Si la première carte du paquet a le nom "nom"
         {
@@ -86,11 +90,11 @@ Paquet& Plateau::getPaquetByNom(string& nom){
         }
 }
 
-vector<Paquet*> Plateau::getAllPaquets(){
+vector<Paquet*> Plateau::getAllPaquets() const{
     return cartes;
 }
 
-unsigned int Plateau::getNbPaquets(){
+unsigned int Plateau::getNbPaquets() const {
     return cartes.size();
 }
 
@@ -98,23 +102,29 @@ Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir à retirer d
     //Si l'utilisateur choisit de récupérer une carte depuis le paquet nommé
     //Alors on enleve la carte (method retirerCarte())
     //Si le paquet dans lequel on pioche devient vide -> on le supprime puis :
-    //Si on a remplir = true alors on rerempli en utilisant la pioche de départ
+    //Si on a remplir = true alors on rerempli
     //Sinon on ne fait rien
     //On la retourne
 
-
-    Paquet* paquet= &getPaquetByNom(nom); //ici réflechir à comment envisager le cas ou le paquet n'existe pas
+    //Ici on saisie une carte à prendre
+    Paquet* paquet= &getPaquetByNom(nom); //ici on imagine que cette fonction est appelée après que l'on ait affiché les paquets du plateau et saisi une carte sur le plateau
     Carte* carte= paquet->retirerCarte();
-    //suivre instructions du dessus
-
-
+    if (paquet->getNbCartes()==0){
+        vector<Paquet*>::iterator it;
+        it=find(cartes.begin(),cartes.end(),paquet);
+        if (it!=cartes.end())
+            cartes.erase(it); //On enlève le paquet vide de notre plateau
+        delete paquet;
+    }
+    if (remplir) remplirPlateau(false);
+    return carte;
 }
 
 
-void Plateau::remplirPlateau() { //Cette fonction est appelée lorsque retirerCarte se retrouve avec un paquetvide et la necéssité de remplir
+void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelée lorsque retirerCarte se retrouve avec un paquetvide et la necéssité de remplir
    //On va piocher et créer des paquets jusqu'à ce que cartes.size==10;
    //A noter : une pioche est un paquet dans lequel on met 6 cartes de chaque + nbJoueurs cartes violettes : on ne met pas les monuments
-    while (cartes.size()!=10){
+   while (cartes.size()!=10 && firstCall || cartes.size()!=14 && !firstCall){
         Carte* carte=pioche.piocher();
         bool added= false;
        //Si il existe un paquet déjà crée pour l'accueillir -> on l'insère
@@ -132,21 +142,26 @@ void Plateau::remplirPlateau() { //Cette fonction est appelée lorsque retirerCa
            cartes.push_back(newPaquet); //push dans le contener de paquets du plateau
        }
    }
-   //En sortie, on a un plateau avec une size==10
+   //En sortie, on a un plateau avec une size==10 ou size==14 selon l'appel
 }
 
 
+void Plateau::afficherPlateau() const{
+    for (auto p : cartes)
+        cout << *p;
+}
+
 //Espace de définition des get et autres méthodes d'utilisation//
+
+
+
+
 
 
 //****************class Plateau*******************//
 
 
-
-
-
 ostream& operator<<(ostream& f, const Plateau& p){
-    //On rentre dansn une boucle sur p.getAllPaquets
-    //On affiche chaque paquet
-    //Si on veut afficher peu de choses, on règle l'affichage de manière à ce qu'il soit minimal
+    p.afficherPlateau();
+    return f;
 }
