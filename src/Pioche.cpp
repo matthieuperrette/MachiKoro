@@ -4,13 +4,13 @@
 //****************class Pioche*******************//
 
 Carte* Pioche::piocher() {
-	int nb_cartes = getNbCartes();
+	unsigned int nb_cartes = getNbCartes();
 	//random entre 0 et le nombre de carte - 1
-	int random = rand() % (nb_cartes);
+	unsigned int random = rand() % (nb_cartes);
 	Carte& c = getCarte(random);
-	retirerCarte(&c);
-	return &c;
-};
+	return retirerCarte(&c);
+
+}
 
 Pioche::Pioche(vector<Carte*> cartes, int nb_joueurs) {
 	Paquet();
@@ -27,7 +27,7 @@ Pioche::Pioche(vector<Carte*> cartes, int nb_joueurs) {
 //****************class Pioche*******************//
 
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//
 
 ostream& operator<<(ostream& f, const Pioche& p)
 {
@@ -44,4 +44,4 @@ ostream& operator<<(ostream& f, const Pioche& p)
 	return f;
 }
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//

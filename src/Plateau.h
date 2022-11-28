@@ -24,12 +24,13 @@ public:
 class Plateau {
 private :
     vector<Paquet*> cartes;
+    Pioche pioche;
     bool remplir;
 public :
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
     explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'édition ne nécessitant pas de pioche et de distribution spéciale
     //Constructeur avec un dispatch anormal : on utilise la pioche pour faire des tirages
-    Plateau(vector<Carte*> cartesJeu, Pioche p);
+    Plateau(vector<Carte*>& cartesJeu, Pioche& p);
     Plateau(const Plateau&) = delete;
     Plateau operator=(const Plateau&) = delete;
     ~Plateau();
@@ -41,6 +42,7 @@ public :
     Paquet& getPaquetByNom(string& nom);
     vector<Paquet*> getAllPaquets();
     unsigned int getNbPaquets();
+
     Carte* retirerCarte(string& nom);
     void remplirPlateau();
     //Espace de définition des get et autres méthodes d'utilisation//

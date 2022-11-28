@@ -2,6 +2,7 @@
 #include "./src/Paquet.h"
 #include "./src/Plateau.h"
 
+
 using namespace std;
 
 int main() {
@@ -20,20 +21,19 @@ int main() {
 	//cout << c1;
 
 	vector<Carte*> cartes = cartesEditionClassique();
-	for (auto n : cartes) {
-		cout << *n << "\n";
-	}
 
-    Paquet paquet;
-    for (auto n : cartes) {
-        paquet.ajouterCarte(n);
+    Pioche pioche(cartes, 4);
+
+    try {
+        Plateau plateau(cartes,pioche);
+        cout << plateau.getNbPaquets() << "\n";
+        vector<Paquet*> test=plateau.getAllPaquets();
+        for (auto p:test)
+            cout << *p;
     }
-
-
-
-
-    Plateau plateau(cartes);
-    string str="Ferme";
+    catch (PaquetException& e) {
+        cout << e.getInfo() << "\n";
+    }
 
 
 

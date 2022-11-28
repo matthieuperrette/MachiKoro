@@ -43,8 +43,25 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
 
 
 
-Plateau::Plateau(vector<Carte*> cartesJeu, Pioche p){
+Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p){
+    remplir=true;
+    remplirPlateau(); //remplir plateau ne gère que le maintient des paquets de cartes achetables mais pas les monuments
+    //on doit donc ajouter les monuments avec cartesJeu
+    int nbJoueurs=4; //ATTENTION ! A MODIFIER
 
+    int i=0;
+    for(auto c : cartesJeu)
+    {
+        if (c->getCouleur()==Couleur::monument)
+        {
+            Paquet* newPaquet=new Paquet;
+            for (i=0; i<nbJoueurs; i++)
+            {
+                newPaquet->ajouterCarte(c);
+            }
+            cartes.push_back(newPaquet);
+        }
+    }
 }
 
 Plateau::~Plateau(){
@@ -80,14 +97,42 @@ unsigned int Plateau::getNbPaquets(){
 Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir à retirer des cartes par nom
     //Si l'utilisateur choisit de récupérer une carte depuis le paquet nommé
     //Alors on enleve la carte (method retirerCarte())
-    //On la retourne
     //Si le paquet dans lequel on pioche devient vide -> on le supprime puis :
     //Si on a remplir = true alors on rerempli en utilisant la pioche de départ
     //Sinon on ne fait rien
+    //On la retourne
+
+
+    Paquet* paquet= &getPaquetByNom(nom); //ici réflechir à comment envisager le cas ou le paquet n'existe pas
+    Carte* carte= paquet->retirerCarte();
+    //suivre instructions du dessus
+
+
 }
+
 
 void Plateau::remplirPlateau() { //Cette fonction est appelée lorsque retirerCarte se retrouve avec un paquetvide et la necéssité de remplir
    //On va piocher et créer des paquets jusqu'à ce que cartes.size==10;
+   //A noter : une pioche est un paquet dans lequel on met 6 cartes de chaque + nbJoueurs cartes violettes : on ne met pas les monuments
+    while (cartes.size()!=10){
+        Carte* carte=pioche.piocher();
+        bool added= false;
+       //Si il existe un paquet déjà crée pour l'accueillir -> on l'insère
+       //Sinon on créer un paquet puis on l'insère
+       for (auto p : cartes){
+           if(p->is_In(carte)){
+               p->ajouterCarte(carte);
+               added= true;
+               break;
+           }
+       }
+       if(!added){//Si on a pas trouvé un paquet dans lequel insérer la carte, on le créer et on l'insère
+           Paquet* newPaquet=new Paquet; //création
+           newPaquet->ajouterCarte(carte); //ajout de la carte
+           cartes.push_back(newPaquet); //push dans le contener de paquets du plateau
+       }
+   }
+   //En sortie, on a un plateau avec une size==10
 }
 
 

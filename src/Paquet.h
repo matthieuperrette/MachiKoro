@@ -23,13 +23,14 @@ private:
 public:
     Paquet() = default;
     ~Paquet() = default;
-    Paquet(const Paquet& p) = delete; //On ne doit pas pouvoir créer un paquet par recopie d'un autre
+    Paquet(const Paquet& p)=default; //On ne doit pas pouvoir créer un paquet par recopie d'un autre
     Paquet& operator=(const Paquet&) = delete; //On ne doit pas pouvoir créer un paquet par affectation
 
     unsigned int getNbCartes() const { return cartes.size(); }
+    bool is_In(Carte*);
     void ajouterCarte(Carte* c) { cartes.push_back(c); }
-    void retirerCarte(Carte* c);
-    Carte* retirerCarte();
+    Carte* retirerCarte(Carte* c); //retirer la carte passé en paramètre
+    Carte* retirerCarte(); //retirer la dernière carte (sur le paquet)
     Carte& getCarte(size_t i) const { if (!cartes.empty())return *(cartes[i]); else throw PaquetException("Aucune carte contenue dans ce paquet"); } //à voir si on garde/change
     vector<Carte*> getContener() const { return cartes; } //retourne le conteneur entier de cartes
     vector<Carte*> getCarteCouleur(Couleur couleur) const;
