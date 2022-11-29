@@ -22,7 +22,7 @@ private:
     vector<Carte*> cartes;
 public:
     Paquet() = default;
-    ~Paquet() = default;
+    virtual ~Paquet() = default;
     Paquet(const Paquet& p)=default; //On ne doit pas pouvoir créer un paquet par recopie d'un autre
     Paquet& operator=(const Paquet&) = delete; //On ne doit pas pouvoir créer un paquet par affectation
 
