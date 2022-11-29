@@ -27,14 +27,17 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
      * */
     //Dans l'absence de nbJoueurs on utilise pour le moment :
     int nbJoueurs=4; //ATTENTION ! A MODIFIER
-    remplir=false; //car nous n'aurons pas à remplir le plateau par la suite quand des paquets seront supprimés car vides
-
+    nb_monuments=0;
     int i=0;
     for(auto c : cartesJeu)
     {
         Paquet* newPaquet=new Paquet;
         if (c->getCouleur()==Couleur::monument || c->getCouleur()==Couleur::violet)
         {
+            if(c->getCouleur()==Couleur::monument)
+            {
+                nb_monuments++;
+            }
            for (i=0; i<nbJoueurs; i++)
            {
                newPaquet->ajouterCarte(c);
@@ -62,16 +65,17 @@ Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p){
     {
         throw PlateauException("Création de Plateau impossible, aucune carte n'est fournie dans la pioche");
     }
-    remplir=true;
     remplirPlateau(true); //remplir plateau ne gère que le maintient des paquets de cartes achetables mais pas les monuments
+
     //on doit donc ajouter les monuments avec cartesJeu
     int nbJoueurs=4; //ATTENTION ! A MODIFIER
-
+    nb_monuments=0;
     int i=0;
     for(auto c : cartesJeu)
     {
         if (c->getCouleur()==Couleur::monument)
         {
+            nb_monuments++;
             Paquet* newPaquet=new Paquet;
             for (i=0; i<nbJoueurs; i++)
             {
@@ -144,7 +148,7 @@ Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir à retirer d
             cartes.erase(it); //On enlève le paquet vide de notre plateau
         delete paquet;
     }
-    if (remplir) remplirPlateau(false);
+    remplirPlateau(false);
     return carte;
 }
 
@@ -154,7 +158,10 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelée lor
    //A noter : une pioche est un paquet dans lequel on met 6 cartes de chaque + nbJoueurs cartes violettes : on ne met pas les monuments
    if (pioche.getNbCartes()>0) // si il reste des cartes dans la pioche
    {
-       while (cartes.size()!=10 && firstCall || cartes.size()!=14 && !firstCall){
+
+
+       /////////////////////////ATTTTTENTTTTIOONNNNNN :CHANGER 14 EN 10+NB_MONUMENT
+       while (cartes.size()!=10 && firstCall || cartes.size()!=(10+nb_monuments) && !firstCall){
            Carte* carte=pioche.piocher();
            bool added= false;
            //Si il existe un paquet déjà crée pour l'accueillir -> on l'insère
@@ -178,8 +185,12 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelée lor
 
 
 void Plateau::afficherPlateau() const{
-    for (auto p : cartes)
-        cout << *p;
+    size_t compt=1;
+    for (auto p:cartes)
+    {
+        cout << "Carte n°"<< compt<< ((compt/10!=0) ? "                   " : "                    ") <<p->getNbCartes()<<"-"<<p->getCarte(0).getNom()<<"\n";
+        compt++;
+    }
 }
 
 //Espace de définition des get et autres méthodes d'utilisation//

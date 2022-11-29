@@ -7,6 +7,32 @@ bool Paquet::is_In(Carte* c){
 }
 
 
+
+Carte* Paquet::retirerCarte(string& nom){
+    if (cartes.empty())
+    {
+        throw PaquetException("Ce paquet ne contient aucune carte");
+    }
+    else {
+        vector<Carte*>::iterator it;
+        //On retrouve la carte dont le nom est "nom"
+        it=find_if(cartes.begin(),cartes.end(), [&nom](Carte* c){return c->getNom()==nom;});
+
+
+        Carte* result= nullptr;
+        if (it != cartes.end()) //si la carte a été trouvée, on l'efface
+        {
+            result = (*it);
+            cartes.erase(it);
+        }
+        else
+        {
+            throw PaquetException("Cette carte n'est pas dans le paquet !");
+        }
+        return result;
+    }
+}
+
 Carte* Paquet::retirerCarte(Carte* c) {
     if (cartes.empty())
     {

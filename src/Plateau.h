@@ -25,7 +25,7 @@ class Plateau {
 private :
     vector<Paquet*> cartes;
     Pioche pioche;
-    bool remplir;
+    unsigned int nb_monuments;
 public :
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
     explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'édition ne nécessitant pas de pioche et de distribution spéciale
