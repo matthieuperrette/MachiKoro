@@ -42,7 +42,7 @@ public :
     Paquet& getPaquetByNom(string& nom) const;
     vector<Paquet*> getAllPaquets() const;
     unsigned int getNbPaquets() const;
-
+    vector<Paquet*> getPaquetsNonVides() const;
     Carte* retirerCarte(string& nom);
     void remplirPlateau(bool firstCall);
     void afficherPlateau() const ;
