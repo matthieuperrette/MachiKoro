@@ -11,9 +11,9 @@ unsigned int De::lancerDe() const {
 //****************class De*******************//
 
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//
 ostream& operator<<(ostream& f, const De& d) {
 	f << "De allant de " << d.getMin() << " a " << d.getMax() << "\n";
 	return f;
 }
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//

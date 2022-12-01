@@ -1,8 +1,8 @@
 #pragma once
-#include "Carte.h"*
+#include "Carte.h"
 
 
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables nï¿½cessaires*****************//
 class DeException {
 private:
     string info;
@@ -10,7 +10,7 @@ public:
     DeException(const string& i) :info(i) {}
     string getInfo() const { return info; }
 };
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables nï¿½cessaires*****************//
 
 //****************class De*******************//
 class De {
@@ -25,6 +25,6 @@ public:
 };
 //****************class De*******************//
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//
 ostream& operator<<(ostream& f, const De& d);
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplï¿½mentaires******************//
