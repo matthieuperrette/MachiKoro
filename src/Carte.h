@@ -31,15 +31,15 @@ enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, march
 string toString(Couleur c);
 string toString(Type t);
 
-// écriture d'une caractéristique sur un flux ostream
+// ï¿½criture d'une caractï¿½ristique sur un flux ostream
 ostream& operator<<(ostream& f, Couleur c);
 ostream& operator<<(ostream& f, Type t);
 
-// listes contenant les valeurs possibles pour chacune des caractéristiques
+// listes contenant les valeurs possibles pour chacune des caractï¿½ristiques
 extern std::initializer_list<Couleur> Couleurs;
 extern std::initializer_list<Type> Types;
 
-// affichage des valeurs possibles pour chaque caractéristiques
+// affichage des valeurs possibles pour chaque caractï¿½ristiques
 void printCouleurs(std::ostream& f = cout);
 void printTypes(std::ostream& f = cout);
 
@@ -75,5 +75,5 @@ ostream& operator<<(ostream& f, const Carte& c);
 
 //fonction qui renvoie un vecteur avec un pointeur sur chaque carte de l'edition classique
 // ATTENTION IL FAUT DELETE TOUTES LES CARTES CAR L'ALLOCATION EST DYNAMIQUE
-//a terme a integrer à jeu
+//a terme a integrer ï¿½ jeu
 vector<Carte*> cartesEditionClassique();
