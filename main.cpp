@@ -24,10 +24,11 @@ int main() {
 		cout << *n << "\n";
 	}
 
-    Paquet paquet;
-    for (auto n : cartes) {
-        paquet.ajouterCarte(n);
-    }
+	Paquet paquet;
+	/*or (auto n : cartes) {
+		paquet.ajouterCarte(n);
+	}*/
+	cout << paquet;
 
     vector<Carte*> cartas;
     try {
@@ -40,14 +41,9 @@ int main() {
         cout << *n << "\n";
     }
 
-    for (auto n : cartes) {
-        delete n;
-    }
-*/
-    return 0;
+	for (auto n : cartes) {
+		delete n;
+	}
+	return 0;
 }
-
-
-
-
 
