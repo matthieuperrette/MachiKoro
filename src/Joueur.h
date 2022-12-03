@@ -29,10 +29,10 @@ private:
 public:
     //Constructeurs et destructeurs//
     Joueur()=delete;
-    Joueur(string& pseudo, bool ia, Paquet& c,unsigned int argent, unsigned int des):pseudo(pseudo),ia(ia),cartes(c),money(argent),des(des){}
+    Joueur(string pseudo, bool ia, Paquet& c,unsigned int argent, unsigned int des):pseudo(pseudo),ia(ia),cartes(c),money(argent),des(des){}
     Joueur(const Joueur&)=delete;
     Joueur& operator=(const Joueur&)=delete;
-    ~Joueur()=default;
+    ~Joueur() =default;
     //Constructeurs et destructeurs//
 
 
