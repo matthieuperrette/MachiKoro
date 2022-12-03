@@ -23,7 +23,7 @@ private:
 public:
     Paquet() = default;
     virtual ~Paquet() = default;
-    Paquet(const Paquet& p)=default; //On ne doit pas pouvoir créer un paquet par recopie d'un autre
+    Paquet(const Paquet& p)=default;
     Paquet& operator=(const Paquet&) = delete; //On ne doit pas pouvoir créer un paquet par affectation
 
     unsigned int getNbCartes() const { return cartes.size(); }

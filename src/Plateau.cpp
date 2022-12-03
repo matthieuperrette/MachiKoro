@@ -160,7 +160,6 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelée lor
    {
 
 
-       /////////////////////////ATTTTTENTTTTIOONNNNNN :CHANGER 14 EN 10+NB_MONUMENT
        while (cartes.size()!=10 && firstCall || cartes.size()!=(10+nb_monuments) && !firstCall){
            Carte* carte=pioche.piocher();
            bool added= false;
