@@ -2,6 +2,7 @@
 #include "./src/Paquet.h"
 #include "./src/Plateau.h"
 #include "./src/Joueur.h"
+#include "./src/Jeu.h"
 
 
 using namespace std;
@@ -30,6 +31,14 @@ int main() {
     catch (PaquetException& e) {
         cout << e.getInfo() << "\n";
     }
+
+
+    Jeu::getJeu().afficherJeu();
+    srand((unsigned)time(nullptr));
+    cout << Jeu::getJeu().lancerDe();
+    Jeu::libererJeu();
+
+
 
 
     for (auto n : cartes) {
