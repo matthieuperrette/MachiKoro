@@ -13,7 +13,7 @@ using namespace std;
 //-----------------------Constructeurs et destructeur-----------------------//
 Jeu::Jeu(){
 
-    //-----------On demande à l'utilisateur combien de joueurs
+    //-----------On demande a l'utilisateur combien de joueurs
     unsigned int nb=0;
     do{
         cout << "Veuillez entrer le nombre de joueurs pour cette partie :\n";
@@ -53,14 +53,14 @@ Jeu::Jeu(){
 
     do {
         cout << "\n\n";
-        cout << "Valeur minimale du dé?\n";
+        cout << "Valeur minimale du de?\n";
         cin >> min;
     }
     while (min<1);
 
     do {
         cout << "\n\n";
-        cout << "Valeur maximale du dé?\n";
+        cout << "Valeur maximale du de?\n";
         cin >> max;
     }
     while (max<1 || max <min);
@@ -113,5 +113,5 @@ void Jeu::afficherJeu() {
 //**--------------------Classe Jeu---------------------**//
 
 
-//----------------------Fonctions supplémentaires-------------------------//
-//**------------------Fonctions supplémentaires-------------------------**//
+//----------------------Fonctions supplementaires-------------------------//
+//**------------------Fonctions supplementaires-------------------------**//

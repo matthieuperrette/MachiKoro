@@ -20,7 +20,7 @@ Carte* Paquet::retirerCarte(string& nom){
 
 
         Carte* result= nullptr;
-        if (it != cartes.end()) //si la carte a été trouvée, on l'efface
+        if (it != cartes.end()) //si la carte a ete trouvee, on l'efface
         {
             result = (*it);
             cartes.erase(it);
@@ -39,11 +39,11 @@ Carte* Paquet::retirerCarte(Carte* c) {
         throw PaquetException("Ce paquet ne contient aucune carte");
     }
     else {
-        vector<Carte*>::iterator it; //on créer un itérateur fait pour travailler dans un vecteur de pointeurs de Carte
+        vector<Carte*>::iterator it; //on creer un iterateur fait pour travailler dans un vecteur de pointeurs de Carte
         it = find(cartes.begin(), cartes.end(), c); //on lui affecte l'index de la carte
 
         Carte* result= nullptr;
-        if (it != cartes.end()) //si la carte a été trouvée, on l'efface
+        if (it != cartes.end()) //si la carte a ete trouvee, on l'efface
         {
             result = (*it);
             cartes.erase(it);
@@ -117,7 +117,7 @@ vector<Carte*> Paquet::getCarteActive(int activateur) {
 
 
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 ostream& operator<<(ostream& f, const Paquet& p) {
     f << "/**********Affichage Paquet**********/\n";
     int i = 1;
@@ -131,4 +131,4 @@ ostream& operator<<(ostream& f, const Paquet& p) {
     f << "/**********Paquet Affiche**********/\n";
     return f;
 }
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
