@@ -53,9 +53,9 @@ public:
 //****************class Joueur*******************//
 
 
-//********************Fonctions supplémentaires**************************//
+//********************Fonctions supplementaires**************************//
 ostream& operator<<(ostream& f, const Joueur& joueur);
-//********************Fonctions supplémentaires**************************//
+//********************Fonctions supplementaires**************************//
 
 
 

@@ -31,7 +31,7 @@ enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, march
 string toString(Couleur c);
 string toString(Type t);
 
-// �criture d'une caract�ristique sur un flux ostream
+// ecriture d'une caract�ristique sur un flux ostream
 ostream& operator<<(ostream& f, Couleur c);
 ostream& operator<<(ostream& f, Type t);
 
@@ -75,5 +75,5 @@ ostream& operator<<(ostream& f, const Carte& c);
 
 //fonction qui renvoie un vecteur avec un pointeur sur chaque carte de l'edition classique
 // ATTENTION IL FAUT DELETE TOUTES LES CARTES CAR L'ALLOCATION EST DYNAMIQUE
-//a terme a integrer � jeu
+//a terme a integrer a jeu
 vector<Carte*> cartesEditionClassique();

@@ -42,9 +42,9 @@ public:
 
 
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 ostream& operator<<(ostream& f, const Paquet& p); //Fonction d'affichage d'un paquet
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 
 
 #endif //MINIVILLES_PAQUET_H
