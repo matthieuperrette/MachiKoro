@@ -15,26 +15,26 @@
 
 
 
-//Méthods de service//
-void Joueur::ajouterCarte(Carte* carte){
-    if (carte!= nullptr)
+//Methods de service//
+void Joueur::ajouterCarte(Carte* carte) {
+    if (carte != nullptr)
         cartes.ajouterCarte(carte);
     else
-        throw JoueurException("La carte à ajouter n'existe pas !");
+        throw JoueurException("La carte a ajouter n'existe pas !");
 }
-Carte* Joueur::retirerCarte(Carte* carte){
-    if (carte!= nullptr)
+Carte* Joueur::retirerCarte(Carte* carte) {
+    if (carte != nullptr)
         cartes.retirerCarte(carte);
     else
-        throw JoueurException("La carte à retirer n'existe pas !");
+        throw JoueurException("La carte a retirer n'existe pas !");
     return carte;
 }
 
-Carte* Joueur::retirerCarte(string& nom){
+Carte* Joueur::retirerCarte(string& nom) {
     return cartes.retirerCarte(nom);
 }
 
-//Méthods de service//
+//Methods de service//
 
 
 //****************class Joueur*******************//
@@ -42,16 +42,15 @@ Carte* Joueur::retirerCarte(string& nom){
 
 
 
-//********************Fonctions supplémentaires**************************//
+//********************Fonctions supplementaires**************************//
 ostream& operator<<(ostream& f, const Joueur& joueur) {
-    f << "**-> PSEUDONYME : "<< joueur.getPseudo() << "\n";
-    f << "**-> IA         : "<< ((joueur.getIa()) ? ("OUI"):("NON")) << "\n";
-    f << "**-> PAQUET     : "<< joueur.getPaquet().getNbCartes() << " CARTE(S)\n";
-    f << "**-> MONEY      : "<< joueur.getMoney() << "\n";
-    f << "**-> NB DE DES  : "<< joueur.getDes() << "\n";
+    f << "**-> PSEUDONYME : " << joueur.getPseudo() << "\n";
+    f << "**-> IA         : " << ((joueur.getIa()) ? ("OUI") : ("NON")) << "\n";
+    f << "**-> PAQUET     : " << joueur.getPaquet().getNbCartes() << " CARTE(S)\n";
+    f << "**-> MONEY      : " << joueur.getMoney() << "\n";
+    f << "**-> NB DE DES  : " << joueur.getDes() << "\n";
 
     return f;
 }
-//********************Fonctions supplémentaires**************************//
-
+//********************Fonctions supplementaires**************************//
 

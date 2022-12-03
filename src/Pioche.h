@@ -12,6 +12,6 @@ public:
 
 //****************class Pioche*******************//
 
-//****************Fonctions suppl�mentaires******************//
+//****************Fonctions supplementaires******************//
 ostream& operator<<(ostream& f, const Pioche& p);
-//****************Fonctions suppl�mentaires******************//
+//****************Fonctions supplementaires******************//

@@ -4,10 +4,10 @@
 #ifndef MINIVILLES_JOUEUR_H
 #define MINIVILLES_JOUEUR_H
 #include <string>
-#include "../src/Paquet.h"
+#include "Paquet.h"
 
 
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 class JoueurException {
 public:
     JoueurException(const string& i) :info(i) {}
@@ -15,7 +15,7 @@ public:
 private:
     string info;
 };
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 
 
 //****************class Joueur*******************//
@@ -28,34 +28,38 @@ private:
     unsigned int des;
 public:
     //Constructeurs et destructeurs//
-    Joueur()=delete;
-    Joueur(string pseudo, bool ia, Paquet& c,unsigned int argent, unsigned int des):pseudo(pseudo),ia(ia),cartes(c),money(argent),des(des){}
-    Joueur(const Joueur&)=delete;
-    Joueur& operator=(const Joueur&)=delete;
-    ~Joueur() =default;
+    Joueur() = delete;
+    Joueur(string pseudo, bool ia, Paquet& c, unsigned int argent, unsigned int des) :pseudo(pseudo), ia(ia), cartes(c), money(argent), des(des) {}
+    Joueur(const Joueur&) = delete;
+    Joueur& operator=(const Joueur&) = delete;
+    ~Joueur() = default;
     //Constructeurs et destructeurs//
 
 
 
 
-    //Méthods de service//
-    string getPseudo() const {return pseudo;}
-    bool getIa() const {return ia;}
-    const Paquet& getPaquet() const {return cartes;}
-    unsigned int getMoney() const {return money;}
-    unsigned int getDes() const {return des;}
+    //Methods de service//
+    string getPseudo() const { return pseudo; }
+    bool getIa() const { return ia; }
+    const Paquet& getPaquet() const { return cartes; }
+    unsigned int getMoney() const { return money; }
+    unsigned int getDes() const { return des; }
 
     void ajouterCarte(Carte* carte); //Ajoute une carte dans le paquet du joueur
     Carte* retirerCarte(Carte* c); //Retire une carte dans le paquet du joueur et la retourne sous forme de pointeur
     Carte* retirerCarte(string& nom);
-    //Méthodes de service//
+
+
+    void changerMoney(int n) { money = n; }
+    void changerDes(int n) { des = n; }
+    //Methodes de service//
 };
 //****************class Joueur*******************//
 
 
-//********************Fonctions supplémentaires**************************//
+//********************Fonctions supplementaires**************************//
 ostream& operator<<(ostream& f, const Joueur& joueur);
-//********************Fonctions supplémentaires**************************//
+//********************Fonctions supplementaires**************************//
 
 
 

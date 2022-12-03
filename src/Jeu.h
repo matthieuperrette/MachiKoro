@@ -66,7 +66,7 @@ public:
 
 
 
-//----------------------Fonctions supplémentaires-------------------------//
-//**------------------Fonctions supplémentaires-------------------------**//
+//----------------------Fonctions supplementaires-------------------------//
+//**------------------Fonctions supplementaires-------------------------**//
 
 #endif //MINIVILLES_JEU_H

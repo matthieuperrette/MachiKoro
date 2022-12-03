@@ -2,7 +2,7 @@
 #include "Carte.h"*
 
 
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 class DeException {
 private:
     string info;
@@ -10,7 +10,7 @@ public:
     DeException(const string& i) :info(i) {}
     string getInfo() const { return info; }
 };
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 
 //****************class De*******************//
 class De {
@@ -25,6 +25,6 @@ public:
 };
 //****************class De*******************//
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 ostream& operator<<(ostream& f, const De& d);
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
