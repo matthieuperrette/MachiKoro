@@ -15,11 +15,12 @@ Jeu::Jeu(){
 
     //-----------On demande a l'utilisateur combien de joueurs
     unsigned int nb=0;
-    do{
-        cout << "Veuillez entrer le nombre de joueurs pour cette partie :\n";
-        cin >> nb;
-    } while (nb<1); //On s'assure que le nombre entre est bien un entier strictement positif
-
+    cout << "Veuillez entrer le nombre de joueurs pour cette partie :\n";
+    while (!(cin >> nb) || nb<2) {
+        cout << "Erreur ! Nombre invalide.\n";
+        cin.clear();
+        cin.ignore(255, '\n');
+    }
     nbJoueurs=nb;
 
     //-----------Variable permettant d'initialiser les joueurs de jeu
@@ -51,21 +52,20 @@ Jeu::Jeu(){
     unsigned int min;
     unsigned int max;
 
-    do {
-        cout << "\n\n";
-        cout << "Valeur minimale du de?\n";
-        cin >> min;
+    cout << "Valeur minimale du de?\n";
+    while (!(cin >> min) || min<1) {
+        cout << "Erreur ! Valeur invalide.\n";
+        cin.clear();
+        cin.ignore(255, '\n');
     }
-    while (min<1);
 
-    do {
-        cout << "\n\n";
-        cout << "Valeur maximale du de?\n";
-        cin >> max;
+
+    cout << "Valeur maximale du de?\n";
+    while (!(cin >> max) || max<1 || max<min) {
+        cout << "Erreur ! Valeur invalide.\n";
+        cin.clear();
+        cin.ignore(255, '\n');
     }
-    while (max<1 || max <min);
-
-
     de=new De(min,max);
 
 }
@@ -80,24 +80,33 @@ Jeu::~Jeu(){
 //**-----------------------Constructeur et destructeur-----------------------**//
 
 
-Jeu& Jeu::getJeu() {
-    if (handler.jeu ==nullptr)
-        handler.jeu = new Jeu;
-    return *handler.jeu;
-}
-
-void Jeu::libererJeu()
-{
-    delete handler.jeu;
-    handler.jeu =nullptr;
-}
 
 const Joueur& Jeu::getJoueur(size_t i) const {
     if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
     return *joueurs[i];
 }
 
-Jeu::Handler Jeu::handler = Handler();
+void Jeu::ajouterCarteJoueur(size_t i,Carte* carte){
+    if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
+    joueurs[i]->ajouterCarte(carte);
+}
+Carte* Jeu::retirerCarteJoueur(size_t i,Carte* c){
+    if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
+    joueurs[i]->retirerCarte(c);
+}
+Carte* Jeu::retirerCarteJoueur(size_t i,string& nom){
+    if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
+    joueurs[i]->retirerCarte(nom);
+}
+
+void Jeu::changerMoneyJoueur(size_t i,int n){
+    if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
+    joueurs[i]->changerMoney(n);
+}
+void Jeu::changerDesJoueur(size_t i,int n){
+    if (i>nbJoueurs) throw JeuException("Le joueur n'existe pas");
+    joueurs[i]->changerDes(n);
+}
 
 void Jeu::afficherJeu() {
     if (joueurs.size()==0) throw JeuException("Aucun joueur, rien a afficher");

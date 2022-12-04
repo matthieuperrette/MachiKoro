@@ -1,5 +1,5 @@
 #pragma once
-#include "Carte.h"*
+#include "Carte.h"
 
 
 //********************Structures et variables necessaires*****************//

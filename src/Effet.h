@@ -34,7 +34,7 @@ public:
 		choixJoueur(choixJoueur), typeConcerne(typeConcerne), ferme(ferme) {}
 	virtual ~Effet() = default;
 
-	bool getFerme() { return ferme; }
+	bool getFerme() const { return ferme; }
 	void setFerme(bool b) { ferme = b; }
 	void ajouterPiecesEnJeu(unsigned int n) { piecesEnJeu += n; }
 	void enleverPiecesEnJeu(unsigned int n) { piecesEnJeu -= n; }

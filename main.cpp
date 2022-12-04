@@ -3,12 +3,13 @@
 #include "./src/Plateau.h"
 #include "./src/Joueur.h"
 #include "./src/Jeu.h"
-
+#include "./src/JeuClassique.h"
+#include "./src/fonctions.h"
 
 using namespace std;
 
 int main() {
-
+/*
 	srand((unsigned)time(NULL));
 	//test de vecteurs
 	//vector<int> vect = { 1, 3 };
@@ -162,7 +163,6 @@ int main() {
 	int pos = fonctions::recupPosition(&player4, joueurs);
 	cout << "position de joueur :" << pos << "\n";
 
-	/*
 	//Test de choisir carte
 	int cpt = 1;
 	for (auto n : cartes) {
@@ -196,8 +196,7 @@ int main() {
 	cout << player3.getPaquet() << "\n\n";
 	cout << player4 << "\n";
 	cout << player4.getPaquet() << "\n\n";
-
-	*/
+    */
 
 	/*
 	cout << "___________voler avec choix____________" << "\n";
@@ -216,8 +215,6 @@ int main() {
 	cout << player2 << "\n";
 	cout << player3 << "\n";
 	cout << player4 << "\n";
-
-*/
 
 	cout << "___________recevoir en fonction d'un type____________" << "\n";
 	//recevoir en fct d un type
@@ -245,14 +242,19 @@ int main() {
 	gare->runEffect(&player1);
 	cout << "___________Joueur apres effet____________" << "\n";
 	cout << player1 << "\n";
+*/
+    srand((unsigned)time(NULL));
+	JeuClassique::getJeu().afficherJeu();
+    cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+    JeuClassique::getJeu().changerMoneyJoueur(0,2);
+    cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().lancerDe();
+    JeuClassique::libererJeu();
 
-	Jeu::getJeu().afficherJeu();
-	cout << Jeu::getJeu().lancerDe();
-	Jeu::libererJeu();
-
+    /*
 	for (auto n : cartes) {
 		delete n;
-	}
+	}*/
 	return 0;
 }
 
