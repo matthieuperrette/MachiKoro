@@ -146,6 +146,7 @@ int Effet::runEffect(Joueur* j1, Joueur* j2) {
 		cout << "\n";
 		return 0;
 	}
+    return -1;
 }
 
 int Effet::runEffect(Joueur* j1) {
@@ -164,14 +165,14 @@ int Effet::runEffect(Joueur* j1) {
 		return 0;
 	}
 	if (recevoirPiecesNbEtablissement) {
-		//cas ou on recoit un certains nombre de pièces en fonctions des
+		//cas ou on recoit un certains nombre de piï¿½ces en fonctions des
 		cout << "\n" << "------------Recevoir des pieces en fonction d'un type------------" << "\n";
 		ajouterPieces(j1, j1->getPaquet().getCarteType(typeConcerne).size() * piecesEnJeu);
 		cout << "\n";
 		return 0;
 
 	}
-
+    return -1;
 }
 //****************class Effet*******************//
 
