@@ -66,6 +66,12 @@ private:
 
     //Méthodes agissant sur le plateau à l'échelle du jeu
     const Plateau& getPlateau() const {return *plateau;}
+    Paquet& getPaquetByNomPlateau(string& nom) const{return plateau->getPaquetByNom(nom);}
+    vector<Paquet*> getAllPaquetsPlateau() const{return plateau->getAllPaquets();}
+    unsigned int getNbPaquetsPlateau() const{return plateau->getNbPaquets();}
+    vector<Paquet*> getPaquetsNonVidesPlateau() const{return plateau->getPaquetsNonVides();}
+    Carte* retirerCartePlateau(string& nom) {return plateau->retirerCarte(nom);}
+    void afficherPlateau() const {plateau->afficherPlateau();}
 
 public:
     static JeuClassique& getJeu();
