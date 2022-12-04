@@ -4,15 +4,17 @@
 #pragma once
 #ifndef MINIVILLES_JEUCLASSIQUE_H
 #define MINIVILLES_JEUCLASSIQUE_H
-
+#include "Jeu.h"
 
 //---Structures et variables necessaires---//
 //---Structures et variables necessaires---//
 
 
 //------------Classe JeuClassique----------//
-class JeuClassique {
+class JeuClassique : public Jeu{
+private:
 
+public:
 };
 //------------Classe JeuClassique----------//
 
