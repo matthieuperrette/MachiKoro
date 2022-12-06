@@ -26,7 +26,7 @@ private:
 
 // class d'enumeration
 enum class Couleur { bleu, vert, rouge, violet, monument };
-enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, marche };
+enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, marche, bateau, entreprise };
 
 // conversion en string
 string toString(Couleur c);
