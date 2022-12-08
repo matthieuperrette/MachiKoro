@@ -83,7 +83,7 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     vect.push_back(new Carte(new Effet("Une fois par tour, vous pouvez choisir de relancer vos des"),
         Couleur::monument, 22, v, "Tour radio", Type::tour));
 
-    vect.push_back(new Carte(new Effet("Si votre jet de des est un double, rejouez un tour après celui-ci"),
+    vect.push_back(new Carte(new Effet("Si votre jet de des est un double, rejouez un tour apres celui-ci"),
         Couleur::monument, 16, v, "Parc d'attractions", Type::tour));
 
     return vect;

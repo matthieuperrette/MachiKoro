@@ -30,8 +30,8 @@ public:
     bool is_In(Carte*);
     void ajouterCarte(Carte* c) { cartes.push_back(c); }
     Carte* retirerCarte(string& nom);
-    Carte* retirerCarte(Carte* c); //retirer la carte passe en paramètre
-    Carte* retirerCarte(); //retirer la dernière carte (sur le paquet)
+    Carte* retirerCarte(Carte* c); //retirer la carte passe en parametre
+    Carte* retirerCarte(); //retirer la derniere carte (sur le paquet)
     Carte& getCarte(size_t i) const { if (!cartes.empty())return *(cartes[i]); else throw PaquetException("Aucune carte contenue dans ce paquet"); } //a voir si on garde/change
     vector<Carte*> getContener() const { return cartes; } //retourne le conteneur entier de cartes
     vector<Carte*> getCarteCouleur(Couleur couleur) const;

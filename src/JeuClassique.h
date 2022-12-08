@@ -24,7 +24,7 @@ private:
     //Constructeur et Destructeur//
     JeuClassique(): cartes(fonctions::cartesEditionClassique()){
         plateau=new Plateau(cartes);
-        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelée directement
+        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelee directement
         string nomCarteDepart1="Champs de ble";
         Carte* carteDepart1= *(find_if(cartes.begin(),cartes.end(), [&nomCarteDepart1](Carte* c){return c->getNom()==nomCarteDepart1;}));
         string nomCarteDepart2="Boulangerie";
@@ -39,8 +39,8 @@ private:
 
     }
     ~JeuClassique(){
-        //On détruit les cartes crées par fonctions::cartesEditionClassique()
-        //Pas besoin de détruire le plateau, sa destruction est automatique
+        //On detruit les cartes crees par fonctions::cartesEditionClassique()
+        //Pas besoin de detruire le plateau, sa destruction est automatique
         vector<Carte*>::iterator it;
         for(it=cartes.begin(); it!=cartes.end();it++) //Destruction des cartes
             delete *it;
@@ -61,10 +61,10 @@ private:
     static Handler handler;
 
 
-    //Méthodes agissant sur les cartes à l'échelle du jeu
+    //Methodes agissant sur les cartes à l'echelle du jeu
     vector<Carte*> getCartes() const {return cartes;}
 
-    //Méthodes agissant sur le plateau à l'échelle du jeu
+    //Methodes agissant sur le plateau à l'echelle du jeu
     const Plateau& getPlateau() const {return *plateau;}
     Paquet& getPaquetByNomPlateau(string& nom) const{return plateau->getPaquetByNom(nom);}
     vector<Paquet*> getAllPaquetsPlateau() const{return plateau->getAllPaquets();}

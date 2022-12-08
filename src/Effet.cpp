@@ -165,7 +165,7 @@ int Effet::runEffect(Joueur* j1) {
 		return 0;
 	}
 	if (recevoirPiecesNbEtablissement) {
-		//cas ou on recoit un certains nombre de pi�ces en fonctions des
+		//cas ou on recoit un certains nombre de pieces en fonctions des
 		cout << "\n" << "------------Recevoir des pieces en fonction d'un type------------" << "\n";
 		ajouterPieces(j1, j1->getPaquet().getCarteType(typeConcerne).size() * piecesEnJeu);
 		cout << "\n";

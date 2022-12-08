@@ -65,7 +65,7 @@ Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p){
     {
         throw PlateauException("Creation de Plateau impossible, aucune carte n'est fournie dans la pioche");
     }
-    remplirPlateau(true); //remplir plateau ne gère que le maintient des paquets de cartes achetables mais pas les monuments
+    remplirPlateau(true); //remplir plateau ne gere que le maintient des paquets de cartes achetables mais pas les monuments
 
     //on doit donc ajouter les monuments avec cartesJeu
     int nbJoueurs=4; //ATTENTION ! A MODIFIER
@@ -100,7 +100,7 @@ Plateau::~Plateau(){
 //Espace de definition des get et autres methodes d'utilisation//
 Paquet& Plateau::getPaquetByNom(string& nom) const{
     for (auto p: cartes)
-        if (p->getCarte(0).getNom()==nom) //Si la première carte du paquet a le nom "nom"
+        if (p->getCarte(0).getNom()==nom) //Si la premiere carte du paquet a le nom "nom"
         {
             return *p;
         }
@@ -133,7 +133,7 @@ Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir a retirer de
     //On la retourne
 
     //Ici on saisie une carte a prendre
-    Paquet* paquet= &getPaquetByNom(nom); //ici on imagine que cette fonction est appelee après que l'on ait affiche les paquets non vides du plateau et saisi une carte sur le plateau
+    Paquet* paquet= &getPaquetByNom(nom); //ici on imagine que cette fonction est appelee apres que l'on ait affiche les paquets non vides du plateau et saisi une carte sur le plateau
     if (paquet== nullptr){
         throw PlateauException("La carte est demandee dans un paquet inexistant");
     }
@@ -145,7 +145,7 @@ Carte* Plateau::retirerCarte(string& nom){ //le but est de parvenir a retirer de
         vector<Paquet*>::iterator it;
         it=find(cartes.begin(),cartes.end(),paquet);
         if (it!=cartes.end())
-            cartes.erase(it); //On enlève le paquet vide de notre plateau
+            cartes.erase(it); //On enleve le paquet vide de notre plateau
         delete paquet;
     }
     remplirPlateau(false);
@@ -163,8 +163,8 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelee lors
        while (cartes.size()!=10 && firstCall || cartes.size()!=(10+nb_monuments) && !firstCall){
            Carte* carte=pioche.piocher();
            bool added= false;
-           //Si il existe un paquet deja cree pour l'accueillir -> on l'insère
-           //Sinon on creer un paquet puis on l'insère
+           //Si il existe un paquet deja cree pour l'accueillir -> on l'insere
+           //Sinon on creer un paquet puis on l'insere
            for (auto p : cartes){
                if(p->is_In(carte)){
                    p->ajouterCarte(carte);
@@ -172,7 +172,7 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelee lors
                    break;
                }
            }
-           if(!added){//Si on a pas trouve un paquet dans lequel inserer la carte, on le creer et on l'insère
+           if(!added){//Si on a pas trouve un paquet dans lequel inserer la carte, on le creer et on l'insere
                Paquet* newPaquet=new Paquet; //creation
                newPaquet->ajouterCarte(carte); //ajout de la carte
                cartes.push_back(newPaquet); //push dans le contener de paquets du plateau

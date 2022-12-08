@@ -36,7 +36,7 @@ Jeu::Jeu(){
     for (unsigned int i = 0; i<nb; i++){
 
         cout << "\n\n";
-        cout << "Pseudo du "<<(i+1)<<((i==0) ? "er joueur :":"ème joueur : \n");
+        cout << "Pseudo du "<<(i+1)<<((i==0) ? "er joueur :":"eme joueur : \n");
         cin>>p;
 
         cout << "\nEst ce une IA? (Oui/Non)\n";
