@@ -38,7 +38,7 @@ public:
     //Constructeur et Destructeur//
 
 
-    //Méthodes agissant sur les joueurs à l'échelle du jeu
+    //Methodes agissant sur les joueurs à l'echelle du jeu
     vector<Joueur*> getJoueursList() const {return joueurs;}
     unsigned int getNbJoueurs() const { return nbJoueurs; }
     const Joueur& getJoueur(size_t i) const; //Renvoie un joueur
@@ -56,12 +56,12 @@ public:
     //**Fonctions sur un joueur particulier**//
 
 
-    //Méthodes agissant sur le de à l'échelle du jeu
+    //Methodes agissant sur le de à l'echelle du jeu
     unsigned int lancerDe() const {return de->lancerDe();}
 
 
 
-    //Méthodes supplémentaires
+    //Methodes supplementaires
     void afficherJeu();
 };
 //**--------------------Classe Jeu---------------------**//

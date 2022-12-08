@@ -40,8 +40,8 @@ private:
 
     }
     ~JeuClassique(){
-        //On détruit les cartes crées par fonctions::cartesEditionClassique()
-        //Pas besoin de détruire le plateau, sa destruction est automatique
+        //On detruit les cartes crees par fonctions::cartesEditionClassique()
+        //Pas besoin de detruire le plateau, sa destruction est automatique
         vector<Carte*>::iterator it;
         for(it=cartes.begin(); it!=cartes.end();it++) //Destruction des cartes
             delete *it;
@@ -62,10 +62,10 @@ private:
     static Handler handler;
 
 
-    //Méthodes agissant sur les cartes à l'échelle du jeu
+    //Methodes agissant sur les cartes à l'echelle du jeu
     vector<Carte*> getCartes() const {return cartes;}
 
-    //Méthodes agissant sur le plateau à l'échelle du jeu
+    //Methodes agissant sur le plateau à l'echelle du jeu
     const Plateau& getPlateau() const {return *plateau;}
     Paquet& getPaquetByNomPlateau(string& nom) const{return plateau->getPaquetByNom(nom);}
     vector<Paquet*> getAllPaquetsPlateau() const{return plateau->getAllPaquets();}

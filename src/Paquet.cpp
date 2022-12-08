@@ -2,13 +2,17 @@
 
 //****************class Paquet*******************//
 
-bool Paquet::is_In(Carte* c){
-    return (find(cartes.begin(),cartes.end(), c)!=cartes.end());
+bool Paquet::is_In(Carte* c) {
+    return (find(cartes.begin(), cartes.end(), c) != cartes.end());
+}
+
+bool Paquet::is_In(string& nom) const {
+    return (find_if(cartes.begin(), cartes.end(), [&nom](Carte* c) {return c->getNom() == nom; }) != cartes.end());
 }
 
 
 
-Carte* Paquet::retirerCarte(string& nom){
+Carte* Paquet::retirerCarte(string& nom) {
     if (cartes.empty())
     {
         throw PaquetException("Ce paquet ne contient aucune carte");
@@ -16,10 +20,10 @@ Carte* Paquet::retirerCarte(string& nom){
     else {
         vector<Carte*>::iterator it;
         //On retrouve la carte dont le nom est "nom"
-        it=find_if(cartes.begin(),cartes.end(), [&nom](Carte* c){return c->getNom()==nom;});
+        it = find_if(cartes.begin(), cartes.end(), [&nom](Carte* c) {return c->getNom() == nom; });
 
 
-        Carte* result= nullptr;
+        Carte* result = nullptr;
         if (it != cartes.end()) //si la carte a ete trouvee, on l'efface
         {
             result = (*it);
@@ -42,7 +46,7 @@ Carte* Paquet::retirerCarte(Carte* c) {
         vector<Carte*>::iterator it; //on creer un iterateur fait pour travailler dans un vecteur de pointeurs de Carte
         it = find(cartes.begin(), cartes.end(), c); //on lui affecte l'index de la carte
 
-        Carte* result= nullptr;
+        Carte* result = nullptr;
         if (it != cartes.end()) //si la carte a ete trouvee, on l'efface
         {
             result = (*it);
@@ -52,8 +56,8 @@ Carte* Paquet::retirerCarte(Carte* c) {
     }
 }
 
-Carte* Paquet::retirerCarte(){
-    Carte* carte=cartes.back();
+Carte* Paquet::retirerCarte() {
+    Carte* carte = cartes.back();
     cartes.pop_back();
     return carte;
 }
@@ -88,7 +92,7 @@ vector<Carte*> Paquet::getCarteType(Type type) const {
         throw PaquetException("Ce paquet ne contient aucune carte");
 }
 
-vector<Carte*> Paquet::getCarteActive(int activateur) {
+vector<Carte*> Paquet::getCarteActive(int activateur) const {
     if (activateur == 0)
     {
         throw PaquetException("Activateur 0 non existant");
@@ -111,6 +115,22 @@ vector<Carte*> Paquet::getCarteActive(int activateur) {
             throw PaquetException("Ce paquet ne contient aucune carte");
     }
 }
+
+
+vector<Carte*> Paquet::getCarteNom(string& nom) const {
+    if (!cartes.empty())
+    {
+        vector<Carte*> result;
+        for (auto c : cartes)
+        {
+            if (c->getNom() == nom)
+                result.push_back(c);
+        }
+        return result;
+    }
+    else
+        throw PaquetException("Ce paquet ne contient aucune carte");
+}
 //****************class Paquet*******************//
 
 
@@ -132,3 +152,6 @@ ostream& operator<<(ostream& f, const Paquet& p) {
     return f;
 }
 //****************Fonctions supplementaires******************//
+
+
+
