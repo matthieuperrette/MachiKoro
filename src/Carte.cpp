@@ -29,6 +29,8 @@ string toString(Type t) {
     case Type::industrie: return "industrie";
     case Type::ressource: return "ressource";
     case Type::marche: return "marche";
+    case Type::bateau: return "bateau";
+    case Type::entreprise: return "entreprise";
     default: throw CarteException("Type inconnue");
     }
 }

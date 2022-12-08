@@ -24,12 +24,13 @@ private:
     //Constructeur et Destructeur//
     JeuClassique(): cartes(fonctions::cartesEditionClassique()){
         plateau=new Plateau(cartes);
-        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelee directement
+        if (!plateau){throw JeuException("Attention ! allocation de plateau échouée");}
+        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelée directement
         string nomCarteDepart1="Champs de ble";
         Carte* carteDepart1= *(find_if(cartes.begin(),cartes.end(), [&nomCarteDepart1](Carte* c){return c->getNom()==nomCarteDepart1;}));
         string nomCarteDepart2="Boulangerie";
         Carte* carteDepart2=*(find_if(cartes.begin(),cartes.end(), [&nomCarteDepart2](Carte* c){return c->getNom()==nomCarteDepart2;}));
-
+        if (!carteDepart1 || !carteDepart2) {throw JeuException("Attention ! les cartes de départ n'ont pu être sélectionnées");}
         vector<Joueur*> playerList=getJoueursList();
         for (auto j:playerList)
         {
