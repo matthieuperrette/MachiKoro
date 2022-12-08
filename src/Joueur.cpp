@@ -1,15 +1,57 @@
+//
+// Created by Antoine Sesini on 29/11/2022.
+//
 #include "Joueur.h"
 
-//****************Fonctions supplémentaires******************//
-ostream& operator<<(ostream& f, const Joueur& j) {
-    f << "/**********Affichage Joueur**********/\n";
-    f << "Pseudonyme: " << j.getPseudo() << "\n";
-    f << "Est-ce une IA? (0 pour non, 1 pour oui): " << j.getIa() << "\n";
-    f << "Paquet: " << j.getPaquet() << "\n";
-    f << "Argent disponible: " << j.getMoney() << "\n";
-    f <<"Nombre de dés jouables: "<< j.getNbDes()<<"\n";
-    f << "/**********Joueur Affiche**********/\n";
+
+//****************class Joueur*******************//
+
+
+
+
+//Constructeurs et destructeurs//
+//ILS SONT TOUS DEJA DEFINIS DE BASE
+//Constructeurs et destructeurs//
+
+
+
+//Methods de service//
+void Joueur::ajouterCarte(Carte* carte) {
+    if (carte != nullptr)
+        cartes.ajouterCarte(carte);
+    else
+        throw JoueurException("La carte a ajouter n'existe pas !");
+}
+Carte* Joueur::retirerCarte(Carte* carte) {
+    if (carte != nullptr)
+        cartes.retirerCarte(carte);
+    else
+        throw JoueurException("La carte a retirer n'existe pas !");
+    return carte;
+}
+
+Carte* Joueur::retirerCarte(string& nom) {
+    return cartes.retirerCarte(nom);
+}
+
+//Methods de service//
+
+
+//****************class Joueur*******************//
+
+
+
+
+//********************Fonctions supplementaires**************************//
+ostream& operator<<(ostream& f, const Joueur& joueur) {
+    f << "**-> PSEUDONYME : " << joueur.getPseudo() << "\n";
+    f << "**-> IA         : " << ((joueur.getIa()) ? ("OUI") : ("NON")) << "\n";
+    f << "**-> PAQUET     : " << joueur.getPaquet().getNbCartes() << " CARTE(S)\n";
+    f << "**-> MONEY      : " << joueur.getMoney() << "\n";
+    f << "**-> NB DE DES  : " << joueur.getDes() << "\n";
+
     return f;
 }
-//****************Fonctions supplémentaires******************//
+//********************Fonctions supplementaires**************************//
+
 
