@@ -6,7 +6,7 @@
 #include "Plateau.h"
 #include "Joueur.h"
 #include "fonctions.h"
-
+#include <vector>
 
 vector<Carte*> fonctions::cartesEditionClassique() {
     vector<int> v = {  };
@@ -53,7 +53,7 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     vect.push_back(new Carte(new Effet("Recevez 5 pieces du joueur de votre choix", 5, false, true, false, false, false, true),
         Couleur::violet, 7, v6, "Chaine de television", Type::tour));
 
-    vect.push_back(new Carte(new Effet("Recevez 3 pieces de la banque pour chaque etablissement de type champ que vous possedez",
+    vect.push_back(new Carte(new Effet("Recevez 3 pieces de la banque pour chaque etablissement de type ferme que vous possedez",
         3, false, false, false, false, true, false, Type::ferme),
         Couleur::vert, 5, v7, "Fromagerie", Type::industrie));
 
@@ -71,7 +71,7 @@ vector<Carte*> fonctions::cartesEditionClassique() {
         Couleur::bleu, 3, v10, "Verger", Type::champ));
 
     vect.push_back(new Carte(new Effet("Recevez 2 pieces de la banque pour chaque etablissement de type champ que vous possedez",
-        2, false, false, false, false, true, false, Type::ferme),
+        2, false, false, false, false, true, false, Type::champ),
         Couleur::vert, 2, v11_12, "Marche de fruits et legumes", Type::marche));
 
     vect.push_back(new Carte(new EffetClassique("Vous pouvez lancer deux des", 0, true),
@@ -90,13 +90,12 @@ vector<Carte*> fonctions::cartesEditionClassique() {
 }
 
 int fonctions::recupPosition(Joueur* j1, vector<Joueur*> vectJoueur) {
-    int position = 0;
-    while (position < vectJoueur.size() && j1 != vectJoueur[position]) {
-        position++;
-    }
-    if (position == vectJoueur.size())
-        cout << "Erreur";
-    return position;
+
+    auto it = find(vectJoueur.begin(), vectJoueur.end(), j1);
+    if (it != vectJoueur.end())
+        return(it - vectJoueur.begin());
+    else
+        return -1;
 }
 
 Joueur* fonctions::choisirJoueur(Joueur* j, vector<Joueur*> vectJoueur) {

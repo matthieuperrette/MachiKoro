@@ -10,7 +10,7 @@ class Joueur;
 
 
 class Effet {
-private:
+protected:
 	bool ferme;
 	string description;
 	unsigned int piecesEnJeu;
