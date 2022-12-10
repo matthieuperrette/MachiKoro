@@ -22,11 +22,11 @@ public:
 
 //****************class Plateau*******************//
 class Plateau {
-private :
+private:
     vector<Paquet*> cartes;
     Pioche pioche;
     unsigned int nb_monuments;
-public :
+public:
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
     explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'edition ne necessitant pas de pioche et de distribution speciale
     //Constructeur avec un dispatch anormal : on utilise la pioche pour faire des tirages
@@ -44,8 +44,10 @@ public :
     unsigned int getNbPaquets() const;
     vector<Paquet*> getPaquetsNonVides() const;
     Carte* retirerCarte(string& nom);
+    void ajouterCarte(Carte* carte);
     void remplirPlateau(bool firstCall);
-    void afficherPlateau() const ;
+    void afficherPlateau() const;
+
     //Espace de definition des get et autres methodes d'utilisation//
 
 

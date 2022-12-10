@@ -100,7 +100,7 @@ Plateau::~Plateau() {
 //Espace de definition des get et autres methodes d'utilisation//
 Paquet& Plateau::getPaquetByNom(string& nom) const {
     for (auto p : cartes)
-        if (p->getCarte(0).getNom() == nom) //Si la premiere carte du paquet a le nom "nom"
+        if (p->getNbCartes() != 0 && p->getCarte(0).getNom() == nom) //Si la premiere carte du paquet a le nom "nom"
         {
             return *p;
         }
