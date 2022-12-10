@@ -79,10 +79,18 @@ Controleur::~Controleur() {
 //constructeurs et destructeurs//
 
 //methodes publiques//
-static Controleur& Controleur::getControleur(){
-
+Controleur& Controleur::getControleur(){
+    if (handler.controleur ==nullptr)
+        handler.controleur = new Controleur;
+    return *handler.controleur;
 }
 
+void Controleur::libererControleur() {
+    delete handler.controleur;
+    handler.controleur = nullptr;
+}
+
+Controleur::Handler Controleur::handler = Handler();
 //methodes publiques//
 
 //*************CLASSE CONTROLEUR*************//

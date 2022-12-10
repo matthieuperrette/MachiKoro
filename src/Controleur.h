@@ -62,6 +62,9 @@ public :
     //methodes publiques//
 };
 
+
+
+
 //Autres fonctions non membres//
 //Autres fonctions non membres//
 
