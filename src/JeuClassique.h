@@ -61,6 +61,9 @@ private:
 
     static Handler handler;
 
+public:
+    static JeuClassique& getJeu();
+    static void libererJeu();
 
     //Méthodes agissant sur les cartes à l'échelle du jeu
     vector<Carte*> getCartes() const {return cartes;}
@@ -73,10 +76,6 @@ private:
     vector<Paquet*> getPaquetsNonVidesPlateau() const{return plateau->getPaquetsNonVides();}
     Carte* retirerCartePlateau(string& nom) {return plateau->retirerCarte(nom);}
     void afficherPlateau() const {plateau->afficherPlateau();}
-
-public:
-    static JeuClassique& getJeu();
-    static void libererJeu();
 };
 //------------Classe JeuClassique----------//
 
