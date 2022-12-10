@@ -335,14 +335,6 @@ int main() {
 	cout << player3 << "\n";
 	*/
 
-	srand((unsigned)time(NULL));
-	JeuClassique::getJeu().afficherJeu();
-	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
-	JeuClassique::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().lancerDe();
-	vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
-
 	/*
 	//test des effets des cartes avec le jeu
 	int cpt = 0;
@@ -389,13 +381,62 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(1);
 
 	*/
+	/*
+	//test de ajouterCarte de Plateau
+	vector<Carte*> cartes = fonctions::cartesEditionClassique();
+	int cpt = 0;
+	for (auto carte : cartes) {
+		cout << "Carte " << cpt << "\n";
+		cout << *carte << "\n";
+		cpt++;
+	}
+	Pioche pioche2(cartes, 4);
+	try {
+		Plateau plateau(cartes,pioche2);
+		cout << "------------plateau initial------------ " << "\n";
+		plateau.afficherPlateau();
+		string str = "Antoine";
+		Paquet paquettest;
+		Joueur player(str, 0, paquettest, 0, 1);
+		player.ajouterCarte(cartes[9]);
+		string gare = "Gare";
+		plateau.retirerCarte(gare);
+		plateau.retirerCarte(gare);
+		plateau.retirerCarte(gare);
+		//plateau.retirerCarte(gare);
+		cout << "------------plateau après suppression de 3 gare------------ " << "\n";
+		plateau.afficherPlateau();
+		plateau.ajouterCarte(cartes[15]);
+		cout << "------------plateau après rajout de gare------------ " << "\n";
+		plateau.afficherPlateau();
+		plateau.retirerCarte(gare);
+		plateau.retirerCarte(gare);
+		cout << "------------plateau sans gare------------ " << "\n";
+		plateau.afficherPlateau();
+		cout << "------------plateau ajout d'une gare------------ " << "\n";
+		plateau.ajouterCarte(cartes[15]);
+		plateau.afficherPlateau();
+		cout << "------------plateau ajout d'une autre carte------------ " << "\n";
 
+		vector<int> v;
+		string name = "Test";
+		plateau.ajouterCarte(new Carte(new Effet("test"),Couleur::violet,1,v,name,Type::tour));
+		plateau.afficherPlateau();
+	}
+	catch (PaquetException& e) {
+		cout << e.getInfo() << "\n";
+	}
+	*/
+
+	srand((unsigned)time(NULL));
+	JeuClassique::getJeu().afficherJeu();
+	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+	JeuClassique::getJeu().changerMoneyJoueur(0, 2);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().lancerDe();
+	vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
 
 	JeuClassique::libererJeu();
-
-
-
-
 
 
 	/*
