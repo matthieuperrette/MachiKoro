@@ -91,6 +91,18 @@ void Controleur::libererControleur() {
 }
 
 Controleur::Handler Controleur::handler = Handler();
+
+int runPartie(){
+
+}
+
+int runTour(){
+
+}
+
+void afficherPartie(){
+
+}
 //methodes publiques//
 
 //*************CLASSE CONTROLEUR*************//

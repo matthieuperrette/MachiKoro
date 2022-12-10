@@ -56,6 +56,7 @@ public :
     static void libererControleur();
 
 
+    Jeu* getJeu() const {return jeu;}
     int runPartie();
     int runTour();
     void afficherPartie();
