@@ -55,7 +55,6 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
 }
 
 
-
 Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p) {
     if (cartesJeu.empty())
     {
@@ -93,10 +92,6 @@ Plateau::~Plateau() {
 //**************Structure***************//
 
 
-
-
-
-
 //Espace de definition des get et autres methodes d'utilisation//
 Paquet& Plateau::getPaquetByNom(string& nom) const {
     for (auto p : cartes)
@@ -123,7 +118,6 @@ vector<Paquet*> Plateau::getPaquetsNonVides() const {
 unsigned int Plateau::getNbPaquets() const {
     return cartes.size();
 }
-
 
 void Plateau::ajouterCarte(Carte* carte) {
 
@@ -225,7 +219,7 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelee lors
     {
 
 
-        while (cartes.size() != 10 && firstCall || cartes.size() != (10 + nb_monuments) && !firstCall) {
+        while (cartes.size() < 10 && firstCall || cartes.size() < (10 + nb_monuments) && !firstCall) {
             Carte* carte = pioche.piocher();
             bool added = false;
             //Si il existe un paquet deja cree pour l'accueillir -> on l'insere

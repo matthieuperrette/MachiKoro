@@ -89,7 +89,7 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     return vect;
 }
 
-int fonctions::recupPosition(Joueur* j1, vector<Joueur*> vectJoueur) {
+int fonctions::recupPositionJoueur(Joueur* j1, vector<Joueur*> vectJoueur) {
 
     auto it = find(vectJoueur.begin(), vectJoueur.end(), j1);
     if (it != vectJoueur.end())
@@ -98,17 +98,25 @@ int fonctions::recupPosition(Joueur* j1, vector<Joueur*> vectJoueur) {
         return -1;
 }
 
+int fonctions::recupPositionCarte(string& nom, vector <Carte*> cartes) {
+    auto it = cartes.begin();
+    while (it != cartes.end()) {
+        if ((*it)->getNom() == nom) return it - cartes.begin();
+        ++it;
+    }
+    return -1;
+}
+
 Joueur* fonctions::choisirJoueur(Joueur* j, vector<Joueur*> vectJoueur) {
     cout << "\n" << "Choisissez un joueur de" << " 1 a " << vectJoueur.size() - 1 << "\n";
     int choix;
-    int temp;
     while (!(cin >> choix) || choix < 1 || choix >(vectJoueur.size() - 1)) {
         cout << "Erreur veuillez choisir de nouveau" << "\n";
         cin.clear();
         cin.ignore(255, '\n');
     }
     choix -= 1;
-    int position = fonctions::recupPosition(j, vectJoueur);
+    int position = fonctions::recupPositionJoueur(j, vectJoueur);
     if (choix >= position)
         choix += 1;
     return vectJoueur.at(choix);
@@ -124,4 +132,52 @@ Carte* fonctions::choisirCarte(vector <Carte*> cartes) {
         cin.ignore(255, '\n');
     }
     return cartes.at(choix - 1);
+}
+/*
+Type fonctions::choisirType() {
+    int i = 1;
+    int choix;
+    cout << "Choisissez un type de 1 a" << Types.size() << "\n";
+    while (!(cin >> choix) || choix < 1 || choix >Types.size()) {
+        cout << "Erreur veuillez choisir de nouveau" << "\n";
+        cin.clear();
+        cin.ignore(255, '\n');
+    }
+    choix--;
+    auto it = find(Types.begin(), Types.end(), choix);
+    return *it;
+}
+*/
+Carte* fonctions::choisirMonumentSauf(Joueur* j, string& nom) {
+    vector<Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
+    cout << "\n" << "Choisissez un monument de" << " 1 a " << monuments.size() - 1 << "\n";
+    int choix;
+    while (!(cin >> choix) || choix < 1 || choix >(monuments.size() - 1)) {
+        cout << "Erreur veuillez choisir de nouveau" << "\n";
+        cin.clear();
+        cin.ignore(255, '\n');
+    }
+    choix -= 1;
+
+    int position = fonctions::recupPositionCarte(nom, monuments);
+    if (position != -1 && choix >= position)
+        choix += 1;
+    return monuments.at(choix);
+}
+
+Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
+    vector<Carte*> violettes = j->getPaquet().getCarteCouleur(Couleur::violet);
+    cout << "\n" << "Choisissez une carte violette de" << " 1 a " << violettes.size() - 1 << "\n";
+    int choix;
+    while (!(cin >> choix) || choix < 1 || choix >(violettes.size() - 1)) {
+        cout << "Erreur veuillez choisir de nouveau" << "\n";
+        cin.clear();
+        cin.ignore(255, '\n');
+    }
+    choix -= 1;
+
+    int position = fonctions::recupPositionCarte(nom, violettes);
+    if (position != -1 && choix >= position)
+        choix += 1;
+    return violettes.at(choix);
 }

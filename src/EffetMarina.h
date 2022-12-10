@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include <iostream>
 #include "Effet.h"
@@ -8,7 +9,7 @@ class Joueur;
 
 
 class EffetMarina : public EffetClassique {
-private:
+protected:
 	bool recevoirAvecPort;
 	bool recevoirPieceChaqueChampDeFleurs;
 	bool volerAvecPort;
@@ -30,9 +31,9 @@ public:
 
 
 
-	int runEffect(Joueur* j1, vector<Joueur*> vectJoueur);
-	int runEffect(Joueur* j1);
-	int runEffect(Joueur* j1, Joueur* j2);
+	int runEffect(Joueur* j1, vector<Joueur*> vectJoueur) override;
+	int runEffect(Joueur* j1) override;
+	int runEffect(Joueur* j1, Joueur* j2) override;
 
 };
 

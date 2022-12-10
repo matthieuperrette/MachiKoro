@@ -404,10 +404,10 @@ int main() {
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
 		//plateau.retirerCarte(gare);
-		cout << "------------plateau après suppression de 3 gare------------ " << "\n";
+		cout << "------------plateau apres suppression de 3 gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.ajouterCarte(cartes[15]);
-		cout << "------------plateau après rajout de gare------------ " << "\n";
+		cout << "------------plateau apres rajout de gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
