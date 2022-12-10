@@ -3,13 +3,15 @@
 #include "./src/Plateau.h"
 #include "./src/Joueur.h"
 #include "./src/Jeu.h"
+#include "./src/Effet.h"
+#include "./src/EffetMarina.h"
 #include "./src/JeuClassique.h"
 #include "./src/fonctions.h"
 
 using namespace std;
 
 int main() {
-/*
+	/*
 	srand((unsigned)time(NULL));
 	//test de vecteurs
 	//vector<int> vect = { 1, 3 };
@@ -98,7 +100,7 @@ int main() {
 	catch (PaquetException& e) {
 		cout << e.getInfo() << "\n";
 	}
-
+	//test des Effets Classique
 	Paquet paquetAntoine;
 	paquetAntoine.ajouterCarte(cartes[0]);
 	paquetAntoine.ajouterCarte(cartes[0]);
@@ -196,7 +198,7 @@ int main() {
 	cout << player3.getPaquet() << "\n\n";
 	cout << player4 << "\n";
 	cout << player4.getPaquet() << "\n\n";
-    */
+	*/
 
 	/*
 	cout << "___________voler avec choix____________" << "\n";
@@ -242,16 +244,161 @@ int main() {
 	gare->runEffect(&player1);
 	cout << "___________Joueur apres effet____________" << "\n";
 	cout << player1 << "\n";
-*/
-    srand((unsigned)time(NULL));
-	JeuClassique::getJeu().afficherJeu();
-    cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
-    JeuClassique::getJeu().changerMoneyJoueur(0,2);
-    cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().lancerDe();
-    JeuClassique::libererJeu();
+	*/
 
-    /*
+	/*
+	vector<Carte*> cartes = fonctions::cartesEditionClassique();
+	vector<int> v={};
+	string porto = "Port";
+	Carte* port = new Carte(new Effet("C'est le port"), Couleur::monument, 0, v, porto, Type::tour);
+	string chmp = "Champ de fleurs";
+	Carte* ChampDeFleurs = new Carte(new Effet("C'est le champ de fleurs"), Couleur::bleu, 0, v, chmp, Type::champ);
+	int cpt = 0;
+	for (auto carte : cartes) {
+		cout << "Carte " << cpt << "\n";
+		cout << *carte << "\n";
+		cpt++;
+	}
+
+
+	Paquet paquetAntoine;
+	paquetAntoine.ajouterCarte(cartes[0]);
+	paquetAntoine.ajouterCarte(cartes[2]);
+	paquetAntoine.ajouterCarte(port);
+	paquetAntoine.ajouterCarte(ChampDeFleurs);
+	paquetAntoine.ajouterCarte(ChampDeFleurs);
+	Paquet paquetMatthieu;
+	paquetMatthieu.ajouterCarte(cartes[0]);
+	paquetMatthieu.ajouterCarte(cartes[2]);
+	paquetMatthieu.ajouterCarte(port);
+	Paquet paquetHarry;
+	paquetHarry.ajouterCarte(cartes[0]);
+	paquetHarry.ajouterCarte(cartes[2]);
+	paquetHarry.ajouterCarte(cartes[3]);
+	Paquet paquetMathieu;
+	paquetMathieu.ajouterCarte(cartes[2]);
+	paquetMathieu.ajouterCarte(cartes[0]);
+	Joueur player1("Antoine", 0, paquetAntoine, 0, 1);
+	Joueur player2("Matthieu", 0, paquetMatthieu, 2, 1);
+	Joueur player3("Harry", 0, paquetHarry, 10, 1);
+	Joueur player4("Mathieu", 0, paquetMathieu, 0, 1);
+	vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
+	string chaine = "test";
+
+	cout << "___________test Recevoir avec port____________" << "\n";
+	//recevoir fonctionne
+	Effet* effetRecevoir = new EffetMarina(chaine, 1, true);
+	cout << "___________Joueur avant effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+	effetRecevoir->runEffect(&player1);
+	effetRecevoir->runEffect(&player3);
+	cout << "___________Joueur apres effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+
+
+	cout << "___________test Recevoir pour chaque champ de fleur____________" << "\n";
+	//recevoir fonctionne
+	Effet* effetRecevoirChamp = new EffetMarina(chaine, 1, false, true);
+	cout << "___________Joueur avant effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+	effetRecevoirChamp->runEffect(&player1);
+	effetRecevoirChamp->runEffect(&player3);
+	cout << "___________Joueur apres effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+
+	cout << "___________test voler avec port____________" << "\n";
+	//recevoir fonctionne
+	Effet* effetVoler = new EffetMarina(chaine, 5, false, false, true);
+	cout << "___________Joueur avant effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+	effetVoler->runEffect(&player1, &player3);
+	effetVoler->runEffect(&player3, &player1);
+	cout << "___________Joueur apres effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+
+	cout << "___________test maison edition____________" << "\n";
+	//recevoir fonctionne
+	Effet* effetMaison = new EffetMarina(chaine, 5, false, false, false, true);
+	cout << "___________Joueur avant effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+	effetMaison->runEffect(&player1, joueurs);
+	effetMaison->runEffect(&player3, joueurs);
+	cout << "___________Joueur apres effet____________" << "\n";
+	cout << player1 << "\n";
+	cout << player3 << "\n";
+	*/
+
+	srand((unsigned)time(NULL));
+	JeuClassique::getJeu().afficherJeu();
+	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+	JeuClassique::getJeu().changerMoneyJoueur(0, 2);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().lancerDe();
+	vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
+
+	/*
+	//test des effets des cartes avec le jeu
+	int cpt = 0;
+	for (auto carte : cartes) {
+		cout << "Carte " << cpt<< "\n";
+		cout << *carte << "\n";
+		cpt++;
+	}
+
+	JeuClassique::getJeu().changerMoneyJoueur(1, 100);
+	vector<Joueur*> joueurs= JeuClassique::getJeu().getJoueursList();
+	//+1 piece j1 a 3
+	cartes[0]->runEffect(joueurs[0]);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+	cout << JeuClassique::getJeu().getJoueur(1);
+	cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
+
+	//echanger une carte donner deux champs a j1 donc deux boulangerie a j2
+	cartes[7]->runEffect(joueurs[0],joueurs);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+	cout << JeuClassique::getJeu().getJoueur(1);
+	cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
+
+	//+2 pour chaque ferme piece j1 a 7
+	cartes[14]->runEffect(joueurs[0]);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(1);
+
+	//+1 volé donc j2 99 et j1 8
+	cartes[3]->runEffect(joueurs[0], joueurs[1]);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(1);
+
+	//+2 de chaque joueur donc j2 97 et j1 10
+	cartes[6]->runEffect(joueurs[0],joueurs);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(1);
+
+	//+5 volé en choisissant le joueur joueur donc j2 92 et j1 15
+	cartes[8]->runEffect(joueurs[0],joueurs);
+	cout << JeuClassique::getJeu().getJoueur(0);
+	cout << JeuClassique::getJeu().getJoueur(1);
+
+	*/
+
+
+	JeuClassique::libererJeu();
+
+
+
+
+
+
+	/*
 	for (auto n : cartes) {
 		delete n;
 	}*/
