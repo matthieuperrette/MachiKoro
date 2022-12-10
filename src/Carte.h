@@ -32,7 +32,7 @@ enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, march
 string toString(Couleur c);
 string toString(Type t);
 
-// ecriture d'une caract�ristique sur un flux ostream
+// ecriture d'une caracteristique sur un flux ostream
 ostream& operator<<(ostream& f, Couleur c);
 ostream& operator<<(ostream& f, Type t);
 
