@@ -94,10 +94,12 @@ Controleur::Handler Controleur::handler = Handler();
 
 int runPartie(){
 
+    return 0;
 }
 
 int runTour(){
 
+    return 0;
 }
 
 void afficherPartie(){
