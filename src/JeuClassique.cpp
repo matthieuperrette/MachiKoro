@@ -6,9 +6,10 @@
 //---Structures et variables necessaires---//
 //---Structures et variables necessaires---//
 
+
 //------------Classe JeuClassique----------//
 JeuClassique& JeuClassique::getJeu() {
-    if (handler.jeu ==nullptr)
+    if (handler.jeu == nullptr)
         handler.jeu = new JeuClassique;
     return *handler.jeu;
 }
@@ -16,7 +17,7 @@ JeuClassique& JeuClassique::getJeu() {
 void JeuClassique::libererJeu()
 {
     delete handler.jeu;
-    handler.jeu =nullptr;
+    handler.jeu = nullptr;
 }
 
 JeuClassique::Handler JeuClassique::handler = Handler();

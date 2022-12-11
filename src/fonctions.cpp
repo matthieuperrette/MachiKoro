@@ -7,6 +7,7 @@
 #include "Joueur.h"
 #include "fonctions.h"
 #include <vector>
+#include "EffetGreenValley.h"
 
 vector<Carte*> fonctions::cartesEditionClassique() {
     vector<int> v = {  };
@@ -89,6 +90,74 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     return vect;
 }
 
+vector<Carte*> fonctions::cartesEditionGreenValley() {
+    vector<int> v2 = { 2 };
+    vector<int> v3_4 = { 3,4 };
+    vector<int> v4 = { 4 };
+    vector<int> v5 = { 5 };
+    vector<int> v5_6 = { 5,6 };
+    vector<int> v7 = { 7 };
+    vector<int> v8 = { 8 };
+    vector<int> v9 = { 9 };
+    vector<int> v9_10 = { 9,10 };
+    vector<int> v10 = { 10 };
+    vector<int> v11 = { 11 };
+    vector<int> v11_12_13 = { 11,12,13 };
+    vector<int> v12_13_14 = { 12,13,14 };
+
+    vector<Carte*> vect;
+    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 1 pièce de la banque", 1, true, false, false, 2),
+        Couleur::bleu, 2, v3_4, "Champ de mais", Type::champ));
+
+    vect.push_back(new Carte(new Effet("Recevez 3 pieces de la banque", 3, true),
+        Couleur::bleu, 3, v7, "Vignoble", Type::champ));
+
+    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 2 pièce de la banque", 2, true, false, false, 2),
+        Couleur::vert, 0, v2, "Epicerie", Type::magasin));
+
+    vect.push_back(new Carte(new EffetGreenValley("Vous devez donner une carte de type non-tour a un autre joueur et recevez 4 pièces de la banque", 4, false, false, false, 0, true),
+        Couleur::vert, 2, v2, "Entreprise de demenagement", Type::entreprise));
+
+    vect.push_back(new Carte(new EffetGreenValley("Recevez 5 pieces a la construction. Quand cette carte est active, payez 2 pieces a la banque", 2, false, false, false, 0, false, true),
+        Couleur::vert, 0, v5_6, "Banque de minivilles", Type::entreprise));
+
+    vect.push_back(new Carte(new EffetGreenValley("Recevez 6 pieces pour chaque champ de raisin en votre possession, puis fermer cette etablissement", 6, false, false, false, 0, false, false, true),
+        Couleur::vert, 3, v9, "Cave a vin", Type::industrie));
+
+    vect.push_back(new Carte(new EffetGreenValley("Si possible, vous devez démolir l'un de vos monuments (hors hotel de ville). Recevez alors 8 pieces de la banque", 8, false, false, false, 0, false, false, false, true),
+        Couleur::vert, 2, v4, "Entreprise de travaux publics", Type::entreprise));
+
+    vect.push_back(new Carte(new EffetGreenValley("Recevez 1 pieces pour tous les etablissements de type cafe de tous les joueurs", 1, false, false, false, 0, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, Type::cafe),
+        Couleur::vert, 5, v11, "Moonster soda", Type::industrie));
+    //la traduction est bizarre
+
+    vect.push_back(new Carte(new EffetGreenValley("Si le joueur ayant lancer les des a au moins 2 monuments (hors hotel de ville), recevez 5 pieces de sa part", 5, false, true, false, 2),
+        Couleur::rouge, 3, v5, "Restaurant 5 etoiles", Type::cafe));
+
+    vect.push_back(new Carte(new EffetGreenValley("Si le joueur qui a obtenu ce nombre a au moins 3 monuments construits (hors hotel de ville), recuperez toutes ses pieces.", 0, false, false, true, 3),
+        Couleur::rouge, 4, v12_13_14, "club prive", Type::cafe));
+
+    vect.push_back(new Carte(new EffetGreenValley("Redistribuez les pieces equitablement entre tous les joueurs. S'il y a une quantite inegale de pieces, prenez des pieces à la banque pour combler la différence.", 0, false, false, false, 0, false, false, false, false, false, true),
+        Couleur::violet, 3, v11_12_13, "Parc", Type::tour));
+
+    vect.push_back(new Carte(new EffetGreenValley("Choisissez un etablissement de type non-tour. Tous les batiments de ce type sont ferme pour renovation. Recevez une piece de chaque joueur pour chaque etablissement ferme", 1, false, false, false, 0, false, false, false, false, false, false, true),
+        Couleur::violet, 4, v8, "Entreprise de renovation", Type::tour));
+
+    vect.push_back(new Carte(new EffetGreenValley("A votre tour, vous pouvez placer une piece sur cette carte. Quand l'etablissement est active, recevez le total investit par tous les joueurs",
+        0, false, false, false, 0, false, false, false, false, false, false, false, true),
+        Couleur::violet, 1, v10, "Tech Startup", Type::tour));
+
+    vect.push_back(new Carte(new EffetGreenValley("Vous pouvez choisir d'activer un autre etablissement (bleu ou vert) qu vous possedez. Si vous le faites, renvoyez cette carte au marche",
+        0, false, false, false, 0, false, false, false, false, false, false, false, false, true),
+        Couleur::violet, 7, v10, "Salle d'exposition internationale", Type::tour));
+
+
+
+
+
+    return vect;
+}
+
 int fonctions::recupPositionJoueur(Joueur* j1, vector<Joueur*> vectJoueur) {
 
     auto it = find(vectJoueur.begin(), vectJoueur.end(), j1);
@@ -133,21 +202,21 @@ Carte* fonctions::choisirCarte(vector <Carte*> cartes) {
     }
     return cartes.at(choix - 1);
 }
-/*
+
 Type fonctions::choisirType() {
     int i = 1;
     int choix;
-    cout << "Choisissez un type de 1 a" << Types.size() << "\n";
+    cout << "Choisissez un type de 1 a " << Types.size() << "\n";
     while (!(cin >> choix) || choix < 1 || choix >Types.size()) {
         cout << "Erreur veuillez choisir de nouveau" << "\n";
         cin.clear();
         cin.ignore(255, '\n');
     }
     choix--;
-    auto it = find(Types.begin(), Types.end(), choix);
-    return *it;
+    //auto it = find(Types.begin(), Types.end(), choix);
+    return *(Types.begin() + choix);
 }
-*/
+
 Carte* fonctions::choisirMonumentSauf(Joueur* j, string& nom) {
     vector<Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
     cout << "\n" << "Choisissez un monument de" << " 1 a " << monuments.size() - 1 << "\n";

@@ -1,5 +1,4 @@
 #include "Effet.h"
-#include "JeuClassique.h"
 #include "EffetMarina.h"
 #include "Joueur.h"
 #include "fonctions.h"
@@ -7,16 +6,7 @@
 
 
 int EffetMarina::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
-	int retour = EffetClassique::runEffect(j1, vectJoueur);
 
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
 	if (maisonEdition) {
 		//cout << "\n" << "------------Recevoir une piece de chaque joueur pour chaque carte de type cafe et magasin------------" << "\n";
 		for (auto joueur : vectJoueur) {
@@ -29,7 +19,6 @@ int EffetMarina::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 					volerPieces(j1, joueur, nbCafe + nbMagasin);
 			}
 		}
-		cout << "\n";
 		return 0;
 	}
 	if (tax) {
@@ -44,23 +33,13 @@ int EffetMarina::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 
 			}
 		}
-		cout << "\n";
 		return 0;
 	}
-	return -1;
+	int retour = EffetClassique::runEffect(j1, vectJoueur);
+	return retour;
 }
 
 int EffetMarina::runEffect(Joueur* j1, Joueur* j2) {
-	int retour = EffetClassique::runEffect(j1, j2);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
 
 	if (volerAvecPort) {
 		//cas ou j1 prend de l'argent a j2
@@ -70,31 +49,18 @@ int EffetMarina::runEffect(Joueur* j1, Joueur* j2) {
 			//cout << "dans le if \n";
 			volerPieces(j1, j2, piecesEnJeu);
 		}
-		cout << "\n";
 		return 0;
 	}
-
-	return -1;
+	int retour = EffetClassique::runEffect(j1, j2);
+	return retour;
 }
 
 int EffetMarina::runEffect(Joueur* j1) {
-	int retour = EffetClassique::runEffect(j1);
-
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
 	if (recevoirAvecPort) {
 		//cout << "\n" << "------------Recevoir des pieces si le joueur a le port------------" << "\n";
 		string port = "Port";
 		if (j1->getPaquet().is_In(port))
 			ajouterPieces(j1, piecesEnJeu);
-		cout << "\n";
 		return 0;
 	}
 	if (recevoirPieceChaqueChampDeFleurs) {
@@ -103,12 +69,10 @@ int EffetMarina::runEffect(Joueur* j1) {
 		int nbChampDeFleurs = j1->getPaquet().getCarteNom(champDeFleurs).size();
 		//cout << "nb champ de fleurs " << nbChampDeFleurs << "\n";
 		if (nbChampDeFleurs > 0)
-			ajouterPieces(j1, nbChampDeFleurs);
-		cout << "\n";
+			ajouterPieces(j1, nbChampDeFleurs * piecesEnJeu);
 		return 0;
 	}
-
-
-	return -1;
+	int retour = EffetClassique::runEffect(j1);
+	return retour;
 }
 //****************class EffetClassique*******************//

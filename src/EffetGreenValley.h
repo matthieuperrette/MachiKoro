@@ -23,19 +23,19 @@ private:
 	bool equilibrePieces;
 	bool renovation;
 	bool recevoirInvestissement;
-	bool activerAutreBatimentViolet;
+	bool activeAutre;
 
 
 public:
 	EffetGreenValley(string description, unsigned int piecesEnJeu = 0, bool recevoirAvecMoinsDeNMonuments = false,
 		bool volerAvecPlusDeNMonuments = false, bool volerToutAvecPlusDeNMonuments = false,
-		bool nMonuments = 0, bool donnerCarteEtRecevoir = false, bool payerPieces = false,
+		int nMonuments = 0, bool donnerCarteEtRecevoir = false, bool payerPieces = false,
 		bool recevoirPieceChaqueVignoblePuisFermer = false, bool demolirMonumentPuisRecevoir = false,
 		bool pourChaqueTypePourTousLesJoueursRecevoir = false, bool equilibrePieces = false,
-		bool renovation = false, bool recevoirInvestissement = false, bool activerAutreBatimentViolet = false, bool recevoirPieces = false,
+		bool renovation = false, bool recevoirInvestissement = false, bool activeAutre = false, bool recevoirPieces = false,
 		bool volePieces = false, bool echangeCarte = false, bool volePiecesChaqueJoueur = false,
 		bool recevoirPiecesNbEtablissement = false, bool choixJoueur = false, Type typeConcerne = Type::champ,
-		bool ferme = false, bool gare = false, bool recevoirAvecPort = false,
+		bool gare = false, bool recevoirAvecPort = false,
 		bool recevoirPieceChaqueChampDeFleurs = false, bool volerAvecPort = false,
 		bool maisonEdition = false, bool tax = false) : recevoirAvecMoinsDeNMonuments(recevoirAvecMoinsDeNMonuments),
 		volerAvecPlusDeNMonuments(volerAvecPlusDeNMonuments),
@@ -45,11 +45,11 @@ public:
 		demolirMonumentPuisRecevoir(demolirMonumentPuisRecevoir),
 		pourChaqueTypePourTousLesJoueursRecevoir(pourChaqueTypePourTousLesJoueursRecevoir),
 		equilibrePieces(equilibrePieces), renovation(renovation),
-		recevoirInvestissement(recevoirInvestissement), activerAutreBatimentViolet(activerAutreBatimentViolet),
+		recevoirInvestissement(recevoirInvestissement), activeAutre(activeAutre),
 		EffetMarina(description, piecesEnJeu, recevoirAvecPort, recevoirPieceChaqueChampDeFleurs,
 			volerAvecPort, maisonEdition, tax, recevoirPieces, volePieces, echangeCarte,
 			volePiecesChaqueJoueur, recevoirPiecesNbEtablissement, choixJoueur, typeConcerne,
-			ferme, gare) {}
+			gare) {}
 	~EffetGreenValley() = default;
 
 
@@ -60,6 +60,7 @@ public:
 	void donnerCarte(Joueur* j1);
 	int demolir(Joueur* j1);
 	void equilibrerPieces(vector<Joueur*> joueurs);
+	int activerAutre(Joueur* j, vector<Joueur*> joueurs);
 };
 
 //****************class Effet*******************//

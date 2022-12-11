@@ -24,5 +24,7 @@ namespace fonctions {
 
 	int recupPositionCarte(string& nom, vector <Carte*> cartes);
 
-	//Type choisirType();
+	vector<Carte*> cartesEditionGreenValley();
+
+	Type choisirType();
 }

@@ -51,7 +51,7 @@ void EffetGreenValley::donnerCarte(Joueur* j1) {
 
 		//cout << "\n" << "----------resume-------------" << "\n";
 		cout << j1->getPseudo() << " a donner la carte " << cJ1->getNom()
-			<< " a " << jChoisi->getPseudo();
+			<< " a " << jChoisi->getPseudo() << "\n";
 	}
 	else
 		cout << "Activation de l'effet impossible " << j1->getPseudo() << " n'a pas de carte a echanger" << "\n";
@@ -70,13 +70,40 @@ void EffetGreenValley::equilibrerPieces(vector<Joueur*> joueurs) {
 		joueur->changerMoney(division);
 
 	//resume
-	cout << "Tous les joueurs possèdent maintenant " << division << "piece(s)\n";
+	cout << "Tous les joueurs possèdent maintenant " << division << " piece(s)\n";
 }
 
+int EffetGreenValley::activerAutre(Joueur* j, vector<Joueur*> joueurs) {
+	cout << "Souhaitez vous activez un autre etablissement bleu ou vert que vous possedez ? (Oui/Non)\n";
+	string choix1;
+	while (!(cin >> choix1) || (choix1 != "Oui" && choix1 != "Non" && choix1 != "oui" && choix1 != "non")) {
+		cout << "Erreur ! Input invalide.\n";
+		cin.clear();
+		cin.ignore(255, '\n');
+	}
+	if (choix1 == "Oui" || choix1 == "oui") {
+		vector<Carte*> cartes = j->getPaquet().getCarteCouleur(Couleur::bleu);
+		vector<Carte*> cartesVert = j->getPaquet().getCarteCouleur(Couleur::vert);
+		cartes.insert(cartes.end(), cartesVert.begin(), cartesVert.end());
+
+		int i = 1;
+		for (auto carte : cartes) {
+			cout << "Carte n" << i;
+			cout << *carte << "\n";
+			i++;
+		}
+
+		Carte* carteChoisi = fonctions::choisirCarte(cartes);
+		carteChoisi->runEffect(j);
+		cout << "L'effet de " << carteChoisi->getNom() << " a ete active\n";
+		return 0;
+	}
+	return -1;
+}
 
 int EffetGreenValley::demolir(Joueur* j1) {
-
-	int nbMonuments = j1->getPaquet().getCarteCouleur(Couleur::monument).size();
+	vector <Carte*> monuments = j1->getPaquet().getCarteCouleur(Couleur::monument);
+	int nbMonuments = monuments.size();
 	string hdv = "Hotel de Ville";
 	int nbHdv = j1->getPaquet().getCarteNom(hdv).size();
 	if (nbMonuments == nbHdv) {
@@ -84,6 +111,13 @@ int EffetGreenValley::demolir(Joueur* j1) {
 		return -1;
 	}
 	string hotel = "Hotel de Ville";
+	int i = 1;
+	for (auto monument : monuments) {
+		if (monument->getNom() != hdv)
+			cout << "Carte n" << i << *monument << "\n";
+		i++;
+	}
+
 	Carte* choix = fonctions::choisirMonumentSauf(j1, hotel);
 	j1->retirerCarte(choix);
 	Controleur::getControleur().getJeu()->ajouterCartePlateau(choix);
@@ -92,16 +126,6 @@ int EffetGreenValley::demolir(Joueur* j1) {
 }
 
 int EffetGreenValley::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
-	int retour = EffetMarina::runEffect(j1, vectJoueur);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
 	if (equilibrePieces) {
 		equilibrerPieces(vectJoueur);
 	}
@@ -112,11 +136,9 @@ int EffetGreenValley::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 		{
 			cout << "Type n" << i << " : " << "type" << "\n";
 		}
-		//Type type = fonctions::choisirType();
-		Type type = Type::ressource;
+		Type type = fonctions::choisirType();
 		for (auto joueur : vectJoueur) {
-			if (joueur != j1)
-				nbFerme += j1->fermerOuvrirEtablissement(type, true);
+			nbFerme += joueur->fermerOuvrirEtablissement(type, true);
 		}
 		ajouterPieces(j1, nbFerme * piecesEnJeu);
 		cout << "Et a ferme les etablisssements de type " << type << "\n";
@@ -130,57 +152,37 @@ int EffetGreenValley::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 
 		return 0;
 	}
-	if (activerAutreBatimentViolet) {
+	if (activeAutre) {
 		string expo = "Salle d'exposition internationale";
-		Carte* choix = fonctions::choisirCarteVioletteSauf(j1, expo);
 		vector<Carte*> cartes = j1->getPaquet().getCarteNom(expo);
-		j1->retirerCarte(cartes.at(0));
-		Controleur::getControleur().getJeu()->ajouterCartePlateau(cartes.at(0));
-		cout << expo << " a ete retourne au marche " << "\n";
-		choix->runEffect(j1, vectJoueur);
+		if (activerAutre(j1, vectJoueur) == 0)
+		{
+			j1->retirerCarte(cartes.at(0));
+			Controleur::getControleur().getJeu()->ajouterCartePlateau(cartes.at(0));
+			cout << expo << " a ete retourne au marche " << "\n";
+		}
 		return 0;
 	}
-
-	return -1;
+	int retour = EffetMarina::runEffect(j1, vectJoueur);
+	return retour;
 }
 
 int EffetGreenValley::runEffect(Joueur* j1, Joueur* j2) {
-	int retour = EffetMarina::runEffect(j1, j2);
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
-
 	if (volerAvecPlusDeNMonuments) {
 		if (getNbmonumentSaufHotelDeVille(j1) >= nMonuments)
 			volerPieces(j1, j2, piecesEnJeu);
 		return 0;
 	}
 	if (volerToutAvecPlusDeNMonuments) {
-		if (getNbmonumentSaufHotelDeVille(j1) >= nMonuments)
+		if (getNbmonumentSaufHotelDeVille(j2) >= nMonuments)
 			volerPieces(j1, j2, j2->getMoney());
 		return 0;
 	}
-
-	return -1;
+	int retour = EffetMarina::runEffect(j1, j2);
+	return retour;
 }
 
 int EffetGreenValley::runEffect(Joueur* j1) {
-	int retour = EffetMarina::runEffect(j1);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
-
 	if (recevoirAvecMoinsDeNMonuments) {
 		if (getNbmonumentSaufHotelDeVille(j1) < nMonuments)
 			ajouterPieces(j1, piecesEnJeu);
@@ -200,32 +202,30 @@ int EffetGreenValley::runEffect(Joueur* j1) {
 
 	if (recevoirPieceChaqueVignoblePuisFermer) {
 		string vignoble = "Vignoble";
+		string caveAVin = "Cave a vin";
 		int nbVignobles = j1->getPaquet().getCarteNom(vignoble).size();
-		//cout << "nb champ de fleurs " << nbChampDeFleurs << "\n";
-		if (nbVignobles > 0)
-			ajouterPieces(j1, nbVignobles * piecesEnJeu);
-		for (int i = 0; i < nbVignobles; i++)
-			j1->fermerOuvrirEtablissement(vignoble, true);
+		ajouterPieces(j1, nbVignobles * piecesEnJeu);
+		j1->fermerOuvrirEtablissement(caveAVin, true);
 		return 0;
 	}
 
 	if (demolirMonumentPuisRecevoir) {
-		demolir(j1);
-		ajouterPieces(j1, piecesEnJeu);
+		if (demolir(j1) == 0)
+			ajouterPieces(j1, piecesEnJeu);
 		return 0;
 	}
 
 	if (pourChaqueTypePourTousLesJoueursRecevoir) {
 		vector<Joueur*> joueurs = Controleur::getControleur().getJeu()->getJoueursList();
-		int nbCafe = 0;
+		int nbType = 0;
 		for (auto joueur : joueurs) {
-			nbCafe += joueur->getPaquet().getCarteType(typeConcerne).size();
+			nbType += joueur->getPaquet().getCarteType(typeConcerne).size();
 		}
-		ajouterPieces(j1, piecesEnJeu * nbCafe);
+		ajouterPieces(j1, piecesEnJeu * nbType);
 		return 0;
 	}
 
-
-	return -1;
+	int retour = EffetMarina::runEffect(j1);
+	return retour;
 }
 //****************class EffetClassique*******************//

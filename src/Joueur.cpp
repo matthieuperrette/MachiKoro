@@ -67,15 +67,16 @@ void Joueur::fermerOuvrirEtablissement(string& nom, bool fermer) {
     vector<Carte*> Cartes = cartes.getContener();
     auto itferme = ferme.begin();
     auto it = Cartes.begin();
+    bool terminer = false;
     Carte* result = nullptr;
-    while (it != Cartes.end() && (*it)->getNom() != nom) {
+    while (it != Cartes.end() && terminer == false) {
+        if ((*it)->getNom() == nom && (*itferme) != fermer) {
+            (*itferme) = fermer;
+            terminer = true;
+        }
         it++;
         itferme++;
     }
-    if (it != Cartes.end()) {
-        (*itferme) = fermer;
-    }
-
 }
 
 void Joueur::fermerOuvrirEtablissement(Carte* carte, bool fermer) {

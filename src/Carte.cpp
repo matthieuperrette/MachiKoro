@@ -63,9 +63,8 @@ ostream& operator<<(ostream& f, const Carte& c) {
         << "Effet : " << c.getEffet() << "\n";
     if (c.getActivation().size() != 0) {
         f << "S'acctive avec les des : ";
-        for (int n : c.getActivation()) f << n << " ";
+        for (int n : c.getActivation()) f << n << "\n";
     }
-    f << "\n";
     return f;
 }
 

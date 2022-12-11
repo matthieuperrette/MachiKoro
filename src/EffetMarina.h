@@ -23,10 +23,10 @@ public:
 		bool maisonEdition = false, bool tax = false, bool recevoirPieces = false,
 		bool volePieces = false, bool echangeCarte = false, bool volePiecesChaqueJoueur = false,
 		bool recevoirPiecesNbEtablissement = false, bool choixJoueur = false, Type typeConcerne = Type::champ,
-		bool ferme = false, bool gare = false) : recevoirAvecPort(recevoirAvecPort),
+		bool gare = false) : recevoirAvecPort(recevoirAvecPort),
 		recevoirPieceChaqueChampDeFleurs(recevoirPieceChaqueChampDeFleurs), volerAvecPort(volerAvecPort),
 		maisonEdition(maisonEdition), tax(tax),
-		EffetClassique(description, piecesEnJeu, gare, recevoirPieces, volePieces, echangeCarte, volePiecesChaqueJoueur, recevoirPiecesNbEtablissement, choixJoueur, typeConcerne, ferme) {}
+		EffetClassique(description, piecesEnJeu, gare, recevoirPieces, volePieces, echangeCarte, volePiecesChaqueJoueur, recevoirPiecesNbEtablissement, choixJoueur, typeConcerne) {}
 	~EffetMarina() = default;
 
 
