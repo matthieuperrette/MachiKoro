@@ -10,6 +10,15 @@ void Effet::ajouterPieces(Joueur* j, int nbPieces) {
 	cout << j->getPseudo() << " a gagne " << nbPieces << " piece(s)" << "\n";
 }
 
+void Effet::enleverPieces(Joueur* j, int nbPieces) {
+	if (j->getMoney() >= nbPieces) {
+		j->changerMoney(j->getMoney() - nbPieces);
+		cout << j->getPseudo() << " a perdu " << nbPieces << " piece(s)" << "\n";
+	}
+	else
+		cout << j->getPseudo() << " a perdu 0 piece(s)" << "\n";
+}
+
 void Effet::volerPieces(Joueur* j1, Joueur* j2, unsigned int pieces) {
 	//vole le nombre de pieces de j2 pour le donner a j1
 	int piecesPrises;
@@ -31,7 +40,7 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 	if (j1->getPaquet().getCarteType(Type::tour).size() != j1->getPaquet().getContener().size()) {
 		cout << "Vous pouvez échanger une carte" << "\n";
 		bool terminer = false;
-		int position = fonctions::recupPosition(j1, vectJoueur);
+		int position = fonctions::recupPositionJoueur(j1, vectJoueur);
 		int cpt = 1;
 		//potentiel erreurs si vect joueur vide ou s'il y a des paquets vides
 
@@ -92,27 +101,33 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 		cout << "Activation de l'effet impossible " << j1->getPseudo() << " n'a pas de carte a echanger" << "\n";
 }
 
+int Effet::getNbmonumentSaufHotelDeVille(Joueur* j) {
+	vector <Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
+	for (auto monument : monuments) {
+		if (monument->getNom() == "Hotel de Ville")
+			return monuments.size() - 1;
+	}
+	return monuments.size();
+}
+
+
+
+
 int Effet::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 	//violet
 	//retour = 0 effet effectuer, retour = 1 aucun effet fait et on ne veut pas en faire, retour = -1 pas d'effet trouver
-	if (ferme) {
-		ferme = false;
-		return 1;
-	}
 	if (volePiecesChaqueJoueur) {
 		//cout << "\n" << "------------Voler a tout le monde------------" << "\n";
 		//cas ou j1 prend de l'azrgent a tous les joueurs
 		for (auto n : vectJoueur)
 			if (j1 != n)
 				volerPieces(j1, n, piecesEnJeu);
-		cout << "\n";
 		return 0;
 	}
 	if (echangeCarte) {
 		//cas ou j1 echange un joueur choisi
 		//cout << "\n" << "------------Echange de carte------------" << "\n";
 		echangerCarte(j1, vectJoueur);
-		cout << "\n";
 		return 0;
 	}
 
@@ -128,7 +143,6 @@ int Effet::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 		Joueur* jChoisi;
 		jChoisi = fonctions::choisirJoueur(j1, vectJoueur);
 		volerPieces(j1, jChoisi, piecesEnJeu);
-		cout << "\n";
 		return 0;
 	}
 	return -1;
@@ -138,17 +152,10 @@ int Effet::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 int Effet::runEffect(Joueur* j1, Joueur* j2) {
 	//rouges
 	//j1 est le joueur qui est benefique de l'effet
-
-	if (ferme) {
-		ferme = false;
-		return 1;
-	}
-
 	if (volePieces && !choixJoueur) {
 		//cas ou j1 prend de l'argent a j2
 		//cout << "\n" << "------------Voler des Pieces------------" << "\n";
 		volerPieces(j1, j2, piecesEnJeu);
-		cout << "\n";
 		return 0;
 	}
 	return -1;
@@ -156,24 +163,16 @@ int Effet::runEffect(Joueur* j1, Joueur* j2) {
 
 int Effet::runEffect(Joueur* j1) {
 	//bleu et verte
-
-	if (ferme) {
-		ferme = false;
-		return 1;
-	}
-
 	if (recevoirPieces) {
 		//cas ou j1 prend de l'argent
 		//cout << "\n" << "------------Recevoir des pieces------------" << "\n";
 		ajouterPieces(j1, piecesEnJeu);
-		cout << "\n";
 		return 0;
 	}
 	if (recevoirPiecesNbEtablissement) {
 		//cas ou on recoit un certains nombre de pieces en fonctions des
 		//cout << "\n" << "------------Recevoir des pieces en fonction d'un type------------" << "\n";
 		ajouterPieces(j1, j1->getPaquet().getCarteType(typeConcerne).size() * piecesEnJeu);
-		cout << "\n";
 		return 0;
 
 	}
@@ -185,49 +184,21 @@ int Effet::runEffect(Joueur* j1) {
 
 int EffetClassique::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 	int retour = Effet::runEffect(j1, vectJoueur);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
-	return -1;
+	return retour;
 }
 
 int EffetClassique::runEffect(Joueur* j1, Joueur* j2) {
 	int retour = Effet::runEffect(j1, j2);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
-	return -1;
+	return retour;
 }
 
 int EffetClassique::runEffect(Joueur* j1) {
-	int retour = Effet::runEffect(j1);
-
-	//la cvarte est ferme on ne fait pas d'effet
-	if (retour == 1) {
-		return 1;
-	}
-	//l'effet a deja ete declencher on peut renvoyer 0
-	if (retour == 0) {
-		return 0;
-	}
 	if (gare) {
 		j1->changerDes(2);
 		return 0;
 	}
-	Effet::runEffect(j1);
-	return -1;
+	int retour = Effet::runEffect(j1);
+	return retour;
 }
 //****************class EffetClassique*******************//
 

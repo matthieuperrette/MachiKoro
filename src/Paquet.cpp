@@ -77,6 +77,7 @@ vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
     else
         throw PaquetException("Ce paquet ne contient aucune carte");
 }
+
 vector<Carte*> Paquet::getCarteType(Type type) const {
     if (!cartes.empty())
     {
@@ -115,7 +116,6 @@ vector<Carte*> Paquet::getCarteActive(int activateur) const {
             throw PaquetException("Ce paquet ne contient aucune carte");
     }
 }
-
 
 vector<Carte*> Paquet::getCarteNom(string& nom) const {
     if (!cartes.empty())

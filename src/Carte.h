@@ -36,11 +36,11 @@ string toString(Type t);
 ostream& operator<<(ostream& f, Couleur c);
 ostream& operator<<(ostream& f, Type t);
 
-// listes contenant les valeurs possibles pour chacune des caract�ristiques
+// listes contenant les valeurs possibles pour chacune des caracteristiques
 extern std::initializer_list<Couleur> Couleurs;
 extern std::initializer_list<Type> Types;
 
-// affichage des valeurs possibles pour chaque caract�ristiques
+// affichage des valeurs possibles pour chaque caracteristiques
 void printCouleurs(std::ostream& f = cout);
 void printTypes(std::ostream& f = cout);
 //*---------------------Enumerations de Type et Couleur---------------------*//
@@ -60,9 +60,9 @@ private:
 	Carte(const Carte&) = delete;
 	Carte operator=(const Carte&) = delete;
 public:
-	Carte(Effet* f, Couleur c, unsigned int p, vector<int> a, string n, Type t) : effet(f),
-		couleur(c), prix(p), activation(a), nom(n), type(t) {}
-
+	Carte(Effet* effet, Couleur couleur, unsigned int prix, vector<int> activation, string nom, Type type) : effet(effet),
+		couleur(couleur), prix(prix), activation(activation), nom(nom), type(type) {}
+	~Carte() { delete effet; }
 	Couleur getCouleur() const { return couleur; }
 	Effet getEffet() const;
 	unsigned int getPrix() const { return prix; }

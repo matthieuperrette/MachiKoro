@@ -17,21 +17,158 @@
 
 //Methods de service//
 void Joueur::ajouterCarte(Carte* carte) {
-    if (carte != nullptr)
+    if (carte != nullptr) {
         cartes.ajouterCarte(carte);
+        ferme.push_back(false);
+    }
     else
         throw JoueurException("La carte a ajouter n'existe pas !");
 }
 Carte* Joueur::retirerCarte(Carte* carte) {
-    if (carte != nullptr)
-        cartes.retirerCarte(carte);
+    vector<Carte*> Cartes = cartes.getContener();
+    if (carte != nullptr) {
+        //cartes.retirerCarte(carte);
+        auto itferme = ferme.begin();
+        auto it = Cartes.begin();
+        while (it != Cartes.end() && *it != carte) {
+            it++;
+            itferme++;
+        }
+        if (it != Cartes.end()) {
+            cartes.retirerCarte(carte);
+            ferme.erase(itferme);
+        }
+    }
+
     else
         throw JoueurException("La carte a retirer n'existe pas !");
     return carte;
 }
 
 Carte* Joueur::retirerCarte(string& nom) {
-    return cartes.retirerCarte(nom);
+    vector<Carte*> Cartes = cartes.getContener();
+    auto itferme = ferme.begin();
+    auto it = Cartes.begin();
+    Carte* result = nullptr;
+    while (it != Cartes.end() && (*it)->getNom() != nom) {
+        it++;
+        itferme++;
+    }
+    if (it != Cartes.end()) {
+        result = (*it);
+        cartes.retirerCarte(nom);
+        ferme.erase(itferme);
+    }
+    return result;
+
+}
+
+void Joueur::fermerOuvrirEtablissement(string& nom, bool fermer) {
+    vector<Carte*> Cartes = cartes.getContener();
+    auto itferme = ferme.begin();
+    auto it = Cartes.begin();
+    bool terminer = false;
+    Carte* result = nullptr;
+    while (it != Cartes.end() && terminer == false) {
+        if ((*it)->getNom() == nom && (*itferme) != fermer) {
+            (*itferme) = fermer;
+            terminer = true;
+        }
+        it++;
+        itferme++;
+    }
+}
+
+void Joueur::fermerOuvrirEtablissement(Carte* carte, bool fermer) {
+    if (carte != nullptr) {
+        vector<Carte*> Cartes = cartes.getContener();
+        auto itferme = ferme.begin();
+
+        auto it = Cartes.begin();
+
+        while (it != Cartes.end() && *it != carte) {
+            it++;
+            itferme++;
+        }
+
+        if (it != Cartes.end()) {
+            (*itferme) = fermer;
+        }
+
+    }
+    else
+        throw JoueurException("La carte a retirer n'existe pas !");
+}
+
+int Joueur::fermerOuvrirEtablissement(Type type, bool fermer) {
+    int nbFerme = 0;
+    auto itferme = ferme.begin();
+    vector<Carte*> Cartes = cartes.getContener();
+    for (auto carte : Cartes) {
+        if (carte->getType() == type && *itferme != fermer) {
+            *itferme = fermer;
+            nbFerme++;
+        }
+    }
+    return nbFerme;
+}
+
+bool Joueur::isFermer(string& nom) {
+    vector<Carte*> Cartes = cartes.getContener();
+    auto itferme = ferme.begin();
+    auto it = Cartes.begin();
+    Carte* result = nullptr;
+    while (it != Cartes.end() && (*it)->getNom() != nom) {
+        it++;
+        itferme++;
+    }
+    if (it != Cartes.end()) {
+        return *itferme;
+    }
+    else
+        throw JoueurException("Erreur la carte rechercher n'est pas dans la paquet");
+}
+
+bool Joueur::isFermer(Carte* carte) {
+    vector<Carte*> Cartes = cartes.getContener();
+    if (carte != nullptr) {
+        auto itferme = ferme.begin();
+        auto it = Cartes.begin();
+        while (it != Cartes.end() && *it != carte) {
+            it++;
+            itferme++;
+        }
+        if (it != Cartes.end()) {
+            return *itferme;
+        }
+        else
+            throw JoueurException("Erreur la carte rechercher n'est pas dans la paquet");
+    }
+    else
+        throw JoueurException("La carte a retirer n'existe pas !");
+}
+
+
+
+void Joueur::afficherCartes() {
+    cout << "/**********Affichage Paquet**********/\n";
+    int i = 1;
+    auto it = ferme.begin();
+    for (auto carte : cartes.getContener()) {
+        cout << "Carte n." << i;
+        cout << *carte;
+        i++;
+        if (*it)
+            cout << "Ferme\n";
+        else
+            cout << "Ouvert\n";
+        cout << "\n";
+        it++;
+    }
+    cout << "/**********Paquet Affiche**********/\n";
+
+
+
 }
 
 //Methods de service//
