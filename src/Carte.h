@@ -62,7 +62,7 @@ private:
 public:
 	Carte(Effet* effet, Couleur couleur, unsigned int prix, vector<int> activation, string nom, Type type) : effet(effet),
 		couleur(couleur), prix(prix), activation(activation), nom(nom), type(type) {}
-	~Carte() { delete effet; }
+	~Carte()=default;
 	Couleur getCouleur() const { return couleur; }
 	Effet getEffet() const;
 	unsigned int getPrix() const { return prix; }

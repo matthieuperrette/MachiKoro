@@ -3,13 +3,25 @@
 //
 
 #include "JeuGreenValley.h"
-#include "Jeu.h"
 
 //---Structures et variables necessaires---//
 //---Structures et variables necessaires---//
 
 
 //------------Classe JeuGreenValley----------//
+JeuGreenValley& JeuGreenValley::getJeu() {
+    if (handler.jeu == nullptr)
+        handler.jeu = new JeuGreenValley;
+    return *handler.jeu;
+}
+
+void JeuGreenValley::libererJeu()
+{
+    delete handler.jeu;
+    handler.jeu = nullptr;
+}
+
+JeuGreenValley::Handler JeuGreenValley::handler = Handler();
 //------------Classe JeuGreenValley----------//
 
 //---------Fonctions supplementaires-------//

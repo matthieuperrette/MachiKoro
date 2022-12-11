@@ -10,25 +10,64 @@
 #include "JeuGreenValley.h"
 #include "JeuDeluxe.h"
 
-//Structures et classes necessaires à la classe principale//
-//Structures et classes necessaires à la classe principale//
+//Structures et classes necessaires a la classe principale//
+class ControleurException {
+public:
+    ControleurException(const string& i) :info(i) {}
+    string getInfo() const { return info; }
+private:
+    string info;
+};
+
+enum class Edition {Classique, Marina, GreenValley, Deluxe};
+//Structures et classes necessaires a la classe principale//
+
+
+
+
 
 class Controleur {
 private :
     //attributs//
+    bool sens; //Si sens horaire -> =true sinon =false
+    Edition edition;
+    Jeu* jeu; //à voir si on garde ça sous cette forme
     //attributs//
 
     //constructeurs et destructeurs//
+    Controleur();
+    ~Controleur();
+    Controleur(const Controleur& controleur)=delete;
+    const Controleur& operator=(const Controleur& controleur)=delete;
     //constructeurs et destructeurs//
 
-    //autres methodes et structures necessaires//
-    //autres methodes et structures necessaires//
+    //gestion singleton
+    struct Handler{
+        Controleur* controleur;
+        Handler() : controleur(nullptr){}
+        ~Handler() { delete controleur; }
+    };
+    static Handler handler;
+    //gestion singleton
+
 public :
     //methodes publiques//
+    static Controleur& getControleur();
+    static void libererControleur();
+
+
+    Jeu* getJeu() const {return jeu;}
+    int runPartie();
+    int runTour();
+    void afficherPartie();
     //methodes publiques//
 };
+
+
+
 
 //Autres fonctions non membres//
 //Autres fonctions non membres//
 
 #endif //MINIVILLES_CONTROLEUR_H
+
