@@ -4,6 +4,11 @@
 
 #ifndef MINIVILLES_JEUGREENVALLEY_H
 #define MINIVILLES_JEUGREENVALLEY_H
+#include "Jeu.h"
+#include "Plateau.h"
+#include "Pioche.h"
+#include "Carte.h"
+#include "fonctions.h"
 
 
 //---Structures et variables necessaires---//
@@ -34,7 +39,7 @@ private:
         Carte* carteDepart1= *(find_if(cartes.begin(),cartes.end(), [&nomCarteDepart1](Carte* c){return c->getNom()==nomCarteDepart1;}));
         string nomCarteDepart2="Boulangerie";
         Carte* carteDepart2=*(find_if(cartes.begin(),cartes.end(), [&nomCarteDepart2](Carte* c){return c->getNom()==nomCarteDepart2;}));
-        if (!carteDepart1 || !carteDepart2) {throw JeuException("Attention ! les cartes de départ n'ont pu être sélectionnées");}
+        if (!carteDepart1 || !carteDepart2) {throw JeuException("Attention ! les cartes de dÃ©part n'ont pu Ãªtre sÃ©lectionnÃ©es");}
         vector<Joueur*> playerList=getJoueursList();
         for (auto j:playerList)
         {
@@ -72,10 +77,10 @@ public:
     static JeuGreenValley& getJeu();
     static void libererJeu();
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
+    //Methodes agissant sur les cartes Ã  l'echelle du jeu
     vector<Carte*> getCartes() const {return cartes;}
 
-    //Methodes agissant sur le plateau à l'echelle du jeu
+    //Methodes agissant sur le plateau Ã  l'echelle du jeu
     Paquet& getPaquetByNomPlateau(string& nom) const override { return plateau->getPaquetByNom(nom); }
     vector<Paquet*> getAllPaquetsPlateau() const override { return plateau->getAllPaquets(); }
     unsigned int getNbPaquetsPlateau() const override { return plateau->getNbPaquets(); }

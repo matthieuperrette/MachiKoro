@@ -4,6 +4,11 @@
 #pragma once
 #ifndef MINIVILLES_JEUDELUXE_H
 #define MINIVILLES_JEUDELUXE_H
+#include "Jeu.h"
+#include "Plateau.h"
+#include "Pioche.h"
+#include "Carte.h"
+#include "fonctions.h"
 
 
 //---Structures et variables necessaires---//
@@ -29,7 +34,7 @@ private:
         // CREATION DE LA PIOCHE ET DU PLATEAU
         pioche = new Pioche(cartes, nbJoueurs);
         plateau = new Plateau(cartes, *pioche);
-        if (!plateau) { throw JeuException("Attention ! allocation de plateau échouée"); }
+        if (!plateau) { throw JeuException("Attention ! allocation de plateau Ã©chouÃ©e"); }
 
         // AJOUT DES CARTES DE DEPARTS A TOUS LES JOUEURS
         string nomCarteDepart1 = "Champs de ble";
@@ -38,7 +43,7 @@ private:
         Carte* carteDepart2 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart2](Carte* c) {return c->getNom() == nomCarteDepart2; }));
         string nomCarteDepart3 = "Hotel de Ville";
         Carte* carteDepart3 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart3](Carte* c) {return c->getNom() == nomCarteDepart3; }));
-        if (!carteDepart1 || !carteDepart2 || !carteDepart3) { throw JeuException("Attention ! les cartes de départ n'ont pu être sélectionnées"); }
+        if (!carteDepart1 || !carteDepart2 || !carteDepart3) { throw JeuException("Attention ! les cartes de dÃ©part n'ont pu Ãªtre sÃ©lectionnÃ©es"); }
         vector<Joueur*> playerList = getJoueursList();
         for (auto j : playerList)
         {
@@ -74,7 +79,7 @@ private:
     static Handler handler;
 
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
+    //Methodes agissant sur les cartes Ã  l'echelle du jeu
     vector<Carte*> getCartes() const { return cartes; }
 
 
@@ -91,3 +96,4 @@ public:
 
 
 #endif //MINIVILLES_JEUDELUXE_H
+
