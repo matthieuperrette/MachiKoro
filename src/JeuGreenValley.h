@@ -16,7 +16,7 @@
 
 
 //------------Classe JeuGreenValley----------//
-class JeuGreenValley : public Jeu{
+class JeuGreenValley : public Jeu {
 private:
     Plateau* plateau;
     vector<Carte*> cartes;
@@ -25,14 +25,14 @@ private:
     //Constructeur et Destructeur//
     JeuGreenValley() {
         // CREATION DES CARTES GREEN VALLEY
-        cartes=fonctions::cartesEditionClassique();
-        vector<Carte*> cartesGreenValley=fonctions::cartesEditionGreenValley();
-        cartes.insert(cartes.end(),cartesGreenValley.begin(),cartesGreenValley.end());
+        cartes = fonctions::cartesEditionClassique();
+        vector<Carte*> cartesGreenValley = fonctions::cartesEditionGreenValley();
+        cartes.insert(cartes.end(), cartesGreenValley.begin(), cartesGreenValley.end());
 
         // CREATION DE LA PIOCHE ET DU PLATEAU
-        pioche = new Pioche(cartes,nbJoueurs);
+        pioche = new Pioche(cartes, nbJoueurs);
         plateau = new Plateau(cartes, *pioche);
-        if (!plateau){throw JeuException("Attention ! allocation de plateau échouée");}
+        if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }
 
         // AJOUT DES CARTES DE DEPARTS A TOUS LES JOUEURS
         string nomCarteDepart1="Champs de ble";
@@ -48,21 +48,21 @@ private:
         }
     }
 
-    ~JeuGreenValley(){
+    ~JeuGreenValley() {
         vector<Carte*>::iterator it;
-        for(it=cartes.begin(); it!=cartes.end();it++) //Destruction des cartes
-            delete *it;
+        for (it = cartes.begin(); it != cartes.end(); it++) //Destruction des cartes
+            delete* it;
         delete plateau;
         delete pioche;
     }
 
-    JeuGreenValley(const JeuGreenValley& j)=delete;
-    JeuGreenValley& operator=(const JeuGreenValley& j)=delete;
+    JeuGreenValley(const JeuGreenValley& j) = delete;
+    JeuGreenValley& operator=(const JeuGreenValley& j) = delete;
     //Constructeur et Destructeur//
 
 
     //Structure et definition d'un Handler permettant de faire un getJeu
-    struct Handler{
+    struct Handler {
         JeuGreenValley* jeu;
         Handler() : jeu(nullptr) {}
         ~Handler() { libererJeu(); }

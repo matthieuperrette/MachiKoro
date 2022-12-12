@@ -63,10 +63,10 @@ public:
     //Methodes agissant sur le de a l'echelle du jeu
     unsigned int lancerDe() const { return de->lancerDe(); }
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
+    //Methodes agissant sur les cartes a l'echelle du jeu
     virtual vector<Carte*> getCartes() const = 0;
 
-    //Methodes agissant sur le plateau à l'echelle du jeu
+    //Methodes agissant sur le plateau a l'echelle du jeu
     //virtual Plateau* getPlateau() = 0;
 
     virtual Paquet& getPaquetByNomPlateau(string& nom) const = 0;

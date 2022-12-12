@@ -64,7 +64,7 @@ public:
 		couleur(couleur), prix(prix), activation(activation), nom(nom), type(type) {}
 	~Carte()=default;
 	Couleur getCouleur() const { return couleur; }
-	Effet getEffet() const;
+	Effet* getEffet() const;
 	unsigned int getPrix() const { return prix; }
 	vector<int> getActivation() const { return activation; }
 	string getNom() const { return nom; }

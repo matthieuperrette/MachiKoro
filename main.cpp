@@ -1,15 +1,15 @@
-#include "./src/Carte.h"
-#include "./src/Paquet.h"
-#include "./src/Plateau.h"
-#include "./src/Joueur.h"
-#include "./src/Jeu.h"
-#include "./src/Effet.h"
-#include "./src/EffetMarina.h"
-#include "./src/JeuClassique.h"
-#include "./src/fonctions.h"
-#include "./src/fonctions.h"
-#include "./src/JeuGreenValley.h"
-#include "./src/Controleur.h"
+#include "Carte.h"
+#include "Paquet.h"
+#include "Plateau.h"
+#include "Joueur.h"
+#include "Jeu.h"
+#include "Effet.h"
+#include "EffetMarina.h"
+#include "EffetGreenValley.h"
+#include "JeuClassique.h"
+#include "fonctions.h"
+#include "JeuGreenValley.h"
+#include "Controleur.h"
 
 using namespace std;
 
@@ -529,7 +529,7 @@ int main() {
 	cout << player3 << "\n";
 
 	player1.ajouterInvestissement(5);
-	cout << "___________test de �quilibrer____________" << "\n";
+	cout << "___________test de equilibrer____________" << "\n";
 	Effet* effetEquilibre = new EffetGreenValley(chaine, 0, false, false, false, 0, false, false, false, false, false, true);
 	cout << "___________Joueur avant effet____________" << "\n";
 	cout << player1 << "\n";
@@ -573,7 +573,7 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+1 vol� donc j2 99 et j1 8
+	//+1 vole donc j2 99 et j1 8
 	cartes[3]->runEffect(joueurs[0], joueurs[1]);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
@@ -583,7 +583,7 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+5 vol� en choisissant le joueur joueur donc j2 92 et j1 15
+	//+5 vole en choisissant le joueur joueur donc j2 92 et j1 15
 	cartes[8]->runEffect(joueurs[0],joueurs);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
@@ -640,7 +640,7 @@ int main() {
 	/*
 	//test de l'implementation des etablissements ferme
 
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
+
 	vector<int> v = {};
 	string porto = "Port";
 	Carte* port = new Carte(new Effet("C'est le port"), Couleur::monument, 0, v, porto, Type::tour);
@@ -697,23 +697,42 @@ int main() {
 	JeuClassique::libererJeu();
 	*/
 
+
+
+
+
+
+
+
 	/*
 	for (auto type : Types)
 		cout << type << "\n";
 	cout << fonctions::choisirType();
 	*/
+	/*
+	//test de jeuMarina
+	//srand((unsignedMarinatime(NULL));
+	JeuMarina::getJeu().afficherJeu();
+	cout << JeuMarina::getJeu().getJoueur(0).getPaquet();
+	JeuMarina::getJeu().changerMoneyJoueur(0, 2);
+	cout << JeuMarina::getJeu().getJoueur(0);
+	cout << JeuMarina::getJeu().lancerDe();
+	vector<Carte*> cartes = JeuMarina::getJeu().getCartes();
+	JeuMarina::libererJeu();
+	*/
+	/*
+	//test de jeuGreenValley
+	srand((unsigned)time(NULL));
+	JeuGreenValley::getJeu().afficherJeu();
+	cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
+	JeuGreenValley::getJeu().changerMoneyJoueur(0, 2);
+	cout << JeuGreenValley::getJeu().getJoueur(0);
+	//cout << JeuGreenValley::getJeu().lancerDe();
+	cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
+	JeuGreenValley::getJeu().afficherPlateau();
 
-    srand((unsigned)time(NULL));
-    JeuGreenValley::getJeu().afficherJeu();
-    cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
-    JeuGreenValley::getJeu().changerMoneyJoueur(0, 2);
-    cout << JeuGreenValley::getJeu().getJoueur(0);
-    //cout << JeuGreenValley::getJeu().lancerDe();
-    cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
-    JeuGreenValley::getJeu().afficherPlateau();
-
-    JeuGreenValley::libererJeu();
-
+	JeuGreenValley::libererJeu();
+	*/
 	/*
 	for (auto n : cartes) {
 		delete n;

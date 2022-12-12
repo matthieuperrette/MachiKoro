@@ -80,7 +80,7 @@ int Carte::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
     return effet->runEffect(j1, vectJoueur);
 }
 
-Effet Carte::getEffet() const { return *effet; }
+Effet* Carte::getEffet() const { return effet; }
 
 //*---------------------Classe Carte---------------------*//
 

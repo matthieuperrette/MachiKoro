@@ -90,6 +90,48 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     return vect;
 }
 
+vector<Carte*> fonctions::cartesEditionMarina() {
+    vector<int> v = {  };
+    vector<int> v1 = { 1 };
+    vector<int> v4 = { 4 };
+    vector<int> v6 = { 6 };
+    vector<int> v7 = { 7 };
+    vector<int> v8 = { 8 };
+    vector<int> v8_9 = { 8, 9 };
+    vector<int> v12_13 = { 12, 13 };
+    vector<int> v12_14 = { 12, 14 };
+
+    vector<Carte*> vect;
+
+    vect.push_back(new Carte(new EffetMarina("Pendant le tour de n'importe quel joueur: Recevez 1 piece de la banque"), Couleur::bleu, 2, v4, "Champ de fleurs", Type::champ));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant le tour de n'importe quel joueur: Si vous avez le Port, recevez 3 pieces de la banque"), Couleur::bleu, 2, v8, "Petit bateau de peche", Type::bateau));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant le tour de n'importe quel joueur: Le joueur dont c'est le tour lance 2 des.Si vous avez le Port, recevez de la banque autant de pieces que le total des 2 des"), Couleur::bleu, 5, v12_14, "Chalutier", Type::bateau));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez 2 pieces de la banque pour chaque etablissement de type cafe que vous possedez"), Couleur::vert, 2, v12_13, "Halle de marche", Type::industrie));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez 1 piece de la banque pour chaque Champ de fleurs que vous possedez"), Couleur::vert, 1, v6, "Fleuriste", Type::magasin));
+
+    vect.push_back(new Carte(new EffetMarina("Si vous avez le Port, recevez 3 pieces du joueur qui a fait le lancer de des"), Couleur::rouge, 4, v1, "Sushi bar", Type::cafe));
+
+    vect.push_back(new Carte(new EffetMarina("Recevez 1 piece du joueur qui a fait le lancer de des"), Couleur::rouge, 1, v7, "Pizzeria", Type::cafe));
+
+    vect.push_back(new Carte(new EffetMarina("Recevez 1 piece du joueur qui a fait le lancer de des"), Couleur::rouge, 1, v8, "Moonster burger", Type::cafe));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez 1 piece de chaque joueur pour chaque etablissement de type cafe et magasin qu''il possede."), Couleur::violet, 5, v7, "Maison d'edition", Type::tour));
+
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez la moitie (arrondie a l’inferieur) des pieces de chaque joueur qui en possede 10 ou plus"), Couleur::violet, 4, v8_9, "Centre des impots", Type::tour));
+
+    vect.push_back(new Carte(new EffetMarina("Avant de construire un etablissement ou un monument, si vous n'avez pas de pieces, recevez 1 piece de la banque"), Couleur::monument, 0, v, "Hotel de Ville", Type::tour));
+
+    vect.push_back(new Carte(new EffetMarina("Si le resultat de votre jet de des est de 10 ou plus, vous pouvez ajouter 2 au resultat"), Couleur::monument, 2, v, "Port", Type::tour));
+
+    vect.push_back(new Carte(new EffetMarina("Si vous n'avez rien construit pendant votre tour, recevez 10 pieces de la banque"), Couleur::monument, 30, v, "Aeroport", Type::tour));
+
+    return vect;
+}
+
 vector<Carte*> fonctions::cartesEditionGreenValley() {
     vector<int> v2 = { 2 };
     vector<int> v3_4 = { 3,4 };
@@ -106,16 +148,16 @@ vector<Carte*> fonctions::cartesEditionGreenValley() {
     vector<int> v12_13_14 = { 12,13,14 };
 
     vector<Carte*> vect;
-    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 1 pièce de la banque", 1, true, false, false, 2),
+    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 1 piece de la banque", 1, true, false, false, 2),
         Couleur::bleu, 2, v3_4, "Champ de mais", Type::champ));
 
     vect.push_back(new Carte(new Effet("Recevez 3 pieces de la banque", 3, true),
         Couleur::bleu, 3, v7, "Vignoble", Type::champ));
 
-    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 2 pièce de la banque", 2, true, false, false, 2),
+    vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 2 piece de la banque", 2, true, false, false, 2),
         Couleur::vert, 0, v2, "Epicerie", Type::magasin));
 
-    vect.push_back(new Carte(new EffetGreenValley("Vous devez donner une carte de type non-tour a un autre joueur et recevez 4 pièces de la banque", 4, false, false, false, 0, true),
+    vect.push_back(new Carte(new EffetGreenValley("Vous devez donner une carte de type non-tour a un autre joueur et recevez 4 pieces de la banque", 4, false, false, false, 0, true),
         Couleur::vert, 2, v2, "Entreprise de demenagement", Type::entreprise));
 
     vect.push_back(new Carte(new EffetGreenValley("Recevez 5 pieces a la construction. Quand cette carte est active, payez 2 pieces a la banque", 2, false, false, false, 0, false, true),
@@ -124,7 +166,7 @@ vector<Carte*> fonctions::cartesEditionGreenValley() {
     vect.push_back(new Carte(new EffetGreenValley("Recevez 6 pieces pour chaque champ de raisin en votre possession, puis fermer cette etablissement", 6, false, false, false, 0, false, false, true),
         Couleur::vert, 3, v9, "Cave a vin", Type::industrie));
 
-    vect.push_back(new Carte(new EffetGreenValley("Si possible, vous devez démolir l'un de vos monuments (hors hotel de ville). Recevez alors 8 pieces de la banque", 8, false, false, false, 0, false, false, false, true),
+    vect.push_back(new Carte(new EffetGreenValley("Si possible, vous devez demolir l'un de vos monuments (hors hotel de ville). Recevez alors 8 pieces de la banque", 8, false, false, false, 0, false, false, false, true),
         Couleur::vert, 2, v4, "Entreprise de travaux publics", Type::entreprise));
 
     vect.push_back(new Carte(new EffetGreenValley("Recevez 1 pieces pour tous les etablissements de type cafe de tous les joueurs", 1, false, false, false, 0, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, Type::cafe),
@@ -135,9 +177,9 @@ vector<Carte*> fonctions::cartesEditionGreenValley() {
         Couleur::rouge, 3, v5, "Restaurant 5 etoiles", Type::cafe));
 
     vect.push_back(new Carte(new EffetGreenValley("Si le joueur qui a obtenu ce nombre a au moins 3 monuments construits (hors hotel de ville), recuperez toutes ses pieces.", 0, false, false, true, 3),
-        Couleur::rouge, 4, v12_13_14, "club prive", Type::cafe));
+        Couleur::rouge, 4, v12_13_14, "Club prive", Type::cafe));
 
-    vect.push_back(new Carte(new EffetGreenValley("Redistribuez les pieces equitablement entre tous les joueurs. S'il y a une quantite inegale de pieces, prenez des pieces à la banque pour combler la différence.", 0, false, false, false, 0, false, false, false, false, false, true),
+    vect.push_back(new Carte(new EffetGreenValley("Redistribuez les pieces equitablement entre tous les joueurs. S'il y a une quantite inegale de pieces, prenez des pieces a la banque pour combler la difference.", 0, false, false, false, 0, false, false, false, false, false, true),
         Couleur::violet, 3, v11_12_13, "Parc", Type::tour));
 
     vect.push_back(new Carte(new EffetGreenValley("Choisissez un etablissement de type non-tour. Tous les batiments de ce type sont ferme pour renovation. Recevez une piece de chaque joueur pour chaque etablissement ferme", 1, false, false, false, 0, false, false, false, false, false, false, true),
@@ -250,3 +292,4 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
         choix += 1;
     return violettes.at(choix);
 }
+
