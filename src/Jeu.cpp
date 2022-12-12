@@ -113,7 +113,7 @@ void Jeu::afficherJeu() {
     vector<Joueur*>::iterator it;
     for (it = joueurs.begin(); it != joueurs.end(); it++)
     {
-        cout << **it;
+        cout << **it <<"\n";
     }
 }
 

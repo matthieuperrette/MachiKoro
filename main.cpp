@@ -529,7 +529,7 @@ int main() {
 	cout << player3 << "\n";
 
 	player1.ajouterInvestissement(5);
-	cout << "___________test de équilibrer____________" << "\n";
+	cout << "___________test de ï¿½quilibrer____________" << "\n";
 	Effet* effetEquilibre = new EffetGreenValley(chaine, 0, false, false, false, 0, false, false, false, false, false, true);
 	cout << "___________Joueur avant effet____________" << "\n";
 	cout << player1 << "\n";
@@ -573,7 +573,7 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+1 volé donc j2 99 et j1 8
+	//+1 volï¿½ donc j2 99 et j1 8
 	cartes[3]->runEffect(joueurs[0], joueurs[1]);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
@@ -583,7 +583,7 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+5 volé en choisissant le joueur joueur donc j2 92 et j1 15
+	//+5 volï¿½ en choisissant le joueur joueur donc j2 92 et j1 15
 	cartes[8]->runEffect(joueurs[0],joueurs);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
@@ -702,6 +702,17 @@ int main() {
 		cout << type << "\n";
 	cout << fonctions::choisirType();
 	*/
+
+    srand((unsigned)time(NULL));
+    JeuGreenValley::getJeu().afficherJeu();
+    cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
+    JeuGreenValley::getJeu().changerMoneyJoueur(0, 2);
+    cout << JeuGreenValley::getJeu().getJoueur(0);
+    //cout << JeuGreenValley::getJeu().lancerDe();
+    cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
+    JeuGreenValley::getJeu().afficherPlateau();
+
+    JeuGreenValley::libererJeu();
 
 	/*
 	for (auto n : cartes) {
