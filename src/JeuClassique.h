@@ -33,13 +33,13 @@ private:
     //Constructeur et Destructeur//
     JeuClassique() : cartes(fonctions::cartesEditionClassique()) {
         plateau = new Plateau(cartes);
-        if (!plateau) { throw JeuException("Attention ! allocation de plateau échouée"); }
-        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelée directement
+        if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }
+        //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelee directement
         string nomCarteDepart1 = "Champs de ble";
         Carte* carteDepart1 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart1](Carte* c) {return c->getNom() == nomCarteDepart1; }));
         string nomCarteDepart2 = "Boulangerie";
         Carte* carteDepart2 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart2](Carte* c) {return c->getNom() == nomCarteDepart2; }));
-        if (!carteDepart1 || !carteDepart2) { throw JeuException("Attention ! les cartes de départ n'ont pu être sélectionnées"); }
+        if (!carteDepart1 || !carteDepart2) { throw JeuException("Attention ! les cartes de depart n'ont pu être selectionnees"); }
         vector<Joueur*> playerList = getJoueursList();
         for (auto j : playerList)
         {
@@ -52,8 +52,10 @@ private:
         //On detruit les cartes crees par fonctions::cartesEditionClassique()
         //Pas besoin de detruire le plateau, sa destruction est automatique
         vector<Carte*>::iterator it;
+        delete plateau;
         for (it = cartes.begin(); it != cartes.end(); it++) //Destruction des cartes
-            delete* it;
+            delete (*it)->getEffet();
+        delete* it;
     }
     JeuClassique(const JeuClassique& j) = delete;
     JeuClassique& operator=(const JeuClassique& j) = delete;
@@ -79,10 +81,10 @@ public:
     static JeuClassique& getJeu();
     static void libererJeu();
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
+    //Methodes agissant sur les cartes a l'echelle du jeu
     vector<Carte*> getCartes() const override { return cartes; }
 
-    //Methodes agissant sur le plateau à l'echelle du jeu
+    //Methodes agissant sur le plateau a l'echelle du jeu
     Plateau* getPlateau() const { return plateau; }
 
     Paquet& getPaquetByNomPlateau(string& nom) const override { return plateau->getPaquetByNom(nom); }
