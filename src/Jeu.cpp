@@ -23,6 +23,18 @@ Jeu::Jeu() {
     }
     nbJoueurs = nb;
 
+    cout << "chiffre minimum du dé?\n";
+    cin >> min;
+
+    cout << "chiffre maximum du dé?\n";
+    cin >> max;
+
+    de = De(min, max);
+
+    //-----------On demande à l'utilisateur combien de joueurs
+    cout << "Combien de joueurs dans la Partie :";
+    cin >> nbJoueurs;
+
     //-----------Variable permettant d'initialiser les joueurs de jeu
     string p;
     bool Ia;
@@ -57,7 +69,7 @@ Jeu::Jeu() {
         cout << "Erreur ! Valeur invalide.\n";
         cin.clear();
         cin.ignore(255, '\n');
-    }
+}
 
 
     cout << "Valeur maximale du de?\n";
@@ -69,6 +81,7 @@ Jeu::Jeu() {
     de = new De(min, max);
 
 }
+//**-----------------------Constructeur et destructeur-----------------------**//
 
 
 Jeu::~Jeu() {
@@ -80,6 +93,11 @@ Jeu::~Jeu() {
 //**-----------------------Constructeur et destructeur-----------------------**//
 
 
+void Jeu::libererJeu()
+{
+    delete handler.jeu;
+    handler.jeu =nullptr;
+}
 
 const Joueur& Jeu::getJoueur(size_t i) const {
     if (i > nbJoueurs) throw JeuException("Le joueur n'existe pas");

@@ -27,6 +27,7 @@ class Jeu {
 protected:
     //Liste des attributs//
     vector<Joueur*> joueurs;
+    De de;
     unsigned int nbJoueurs;
     De* de;
     //Liste des attributs//
@@ -59,6 +60,7 @@ public:
 
     //methodes virtuels pures
 
+    static Handler handler;
 
     //Methodes agissant sur le de a l'echelle du jeu
     unsigned int lancerDe() const { return de->lancerDe(); }
