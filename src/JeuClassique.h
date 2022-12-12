@@ -10,15 +10,6 @@
 #include "Carte.h"
 #include "fonctions.h"
 
-//-----------------------Exception--------------------------//
-class JeuClassiqueException{
-public:
-    JeuClassiqueException(const string& i) :info(i) {}
-    string getInfo() const { return info; }
-private:
-    string info;
-};
-//**---------------------Exception----------------------**//
 
 //---Structures et variables necessaires---//
 //---Structures et variables necessaires---//
@@ -61,11 +52,6 @@ private:
     JeuClassique& operator=(const JeuClassique& j) = delete;
     //Constructeur et Destructeur//
 
-    // constructeur et destructeur
-    JeuClassique();
-    ~JeuClassique();
-    JeuClassique(const JeuClassique& j)=delete;
-    JeuClassique& operator=(const JeuClassique& j)=delete;
 
 
     //Structure et definition d'un Handler permettant de faire un getJeu
@@ -105,9 +91,6 @@ public:
 
 
 
-//----------------------Fonctions supplémentaires-------------------------//
-ostream& operator<<(ostream& f, const JeuClassique& jeu);
-//**------------------Fonctions supplémentaires-------------------------**//
 
 //---------Fonctions supplementaires-------//
 //---------Fonctions supplementaires-------//

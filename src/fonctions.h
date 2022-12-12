@@ -5,6 +5,9 @@ class Joueur;
 
 namespace fonctions {
 
+	//fonction qui renvoie un vecteur avec un pointeur sur chaque carte de l'edition classique
+	// ATTENTION IL FAUT DELETE TOUTES LES CARTES CAR L'ALLOCATION EST DYNAMIQUE
+	//a terme a integrer a jeu
 	vector<Carte*> cartesEditionClassique();
 
 	vector<Carte*> cartesEditionMarina();
@@ -26,6 +29,9 @@ namespace fonctions {
 
 	int recupPositionCarte(string& nom, vector <Carte*> cartes);
 
+	vector<Carte*> cartesEditionGreenValley();
+
 	Type choisirType();
 
+	vector<Carte*> cartesEditionMarina();
 }

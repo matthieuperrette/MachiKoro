@@ -38,7 +38,7 @@ void Effet::volerPieces(Joueur* j1, Joueur* j2, unsigned int pieces) {
 
 void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 	if (j1->getPaquet().getCarteType(Type::tour).size() != j1->getPaquet().getContener().size()) {
-		cout << "Vous pouvez échanger une carte" << "\n";
+		cout << "Vous pouvez echanger une carte" << "\n";
 		bool terminer = false;
 		int position = fonctions::recupPositionJoueur(j1, vectJoueur);
 		int cpt = 1;

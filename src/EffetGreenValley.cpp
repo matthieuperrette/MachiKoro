@@ -70,7 +70,7 @@ void EffetGreenValley::equilibrerPieces(vector<Joueur*> joueurs) {
 		joueur->changerMoney(division);
 
 	//resume
-	cout << "Tous les joueurs possèdent maintenant " << division << " piece(s)\n";
+	cout << "Tous les joueurs possedent maintenant " << division << " piece(s)\n";
 }
 
 int EffetGreenValley::activerAutre(Joueur* j, vector<Joueur*> joueurs) {

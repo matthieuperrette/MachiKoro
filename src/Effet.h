@@ -56,7 +56,7 @@ public:
 };
 
 class EffetClassique : public Effet {
-private:
+protected:
 	bool gare;
 public:
 	EffetClassique(string description, unsigned int piecesEnJeu = 0, bool gare = false, bool recevoirPieces = false,
