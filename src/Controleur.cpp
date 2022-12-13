@@ -114,7 +114,7 @@ int Controleur::runTour(Joueur* currentJoueur){
      * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
      * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
          Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
-     * Interpreter le resultat des des et faire les changements par activation des effets (attention, si des cartes de types cafe ou magasin sont activés et que le joueur a centre commercial : +1 par carte)
+     * Interpreter le resultat des des et faire les changements par activation des effets
      * (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
      * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
      * Enregistrer les achats et faire les modifications
