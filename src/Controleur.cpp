@@ -51,16 +51,16 @@ Controleur::Controleur(){
         case (Edition::Classique) :
             jeu=&(JeuClassique::getJeu());
             break;
-            /*case (Edition::Marina) :
-                jeu=&(JeuMarina::getJeu());
-                break;
-            case (Edition::GreenValley) :
-                jeu=&(JeuGreenValley::getJeu());
-                break;
-            case (Edition::Deluxe) :
-                jeu=&(JeuGreenDeluxe::getJeu());
-                break;
-            */
+        /*case (Edition::Marina) :
+            jeu=&(JeuMarina::getJeu());
+            break;
+        case (Edition::GreenValley) :
+            jeu=&(JeuGreenValley::getJeu());
+            break;
+        case (Edition::Deluxe) :
+            jeu=&(JeuGreenDeluxe::getJeu());
+            break;
+        */
         default:
             throw ControleurException("Attention, l'edition n'existe pas");
     }
@@ -79,32 +79,10 @@ Controleur::~Controleur() {
 //constructeurs et destructeurs//
 
 //methodes publiques//
-Controleur& Controleur::getControleur(){
-    if (handler.controleur ==nullptr)
-        handler.controleur = new Controleur;
-    return *handler.controleur;
-}
-
-void Controleur::libererControleur() {
-    delete handler.controleur;
-    handler.controleur = nullptr;
-}
-
-Controleur::Handler Controleur::handler = Handler();
-
-int runPartie(){
-
-    return 0;
-}
-
-int runTour(){
-
-    return 0;
-}
-
-void afficherPartie(){
+static Controleur& Controleur::getControleur(){
 
 }
+
 //methodes publiques//
 
 //*************CLASSE CONTROLEUR*************//
@@ -114,4 +92,3 @@ void afficherPartie(){
 
 //Autres fonctions non membres//
 //Autres fonctions non membres//
-

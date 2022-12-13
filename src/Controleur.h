@@ -56,18 +56,13 @@ public :
     static void libererControleur();
 
 
-    Jeu* getJeu() const {return jeu;}
     int runPartie();
     int runTour();
     void afficherPartie();
     //methodes publiques//
 };
 
-
-
-
 //Autres fonctions non membres//
 //Autres fonctions non membres//
 
 #endif //MINIVILLES_CONTROLEUR_H
-
