@@ -33,7 +33,7 @@ private:
 
         // CREATION DE LA PIOCHE ET DU PLATEAU
         pioche = new Pioche(cartes, nbJoueurs);
-        plateau = new Plateau(cartes, *pioche);
+        plateau = new Plateau(cartes, *pioche, nbJoueurs);
         if (!plateau) { throw JeuException("Attention ! allocation de plateau échouée"); }
 
         // AJOUT DES CARTES DE DEPARTS A TOUS LES JOUEURS
@@ -79,15 +79,13 @@ private:
     static Handler handler;
 
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
-    vector<Carte*> getCartes() const { return cartes; }
-
-
 
 public:
     static JeuDeluxe& getJeu();
     static void libererJeu();
 
+    //Methodes agissant sur les cartes à l'echelle du jeu
+    vector<Carte*> getCartes() const override { return cartes; }
 
     //Methodes agissant sur le plateau à l'echelle du jeu
     Paquet& getPaquetByNomPlateau(string& nom) const override { return plateau->getPaquetByNom(nom); }

@@ -17,7 +17,7 @@ JeuMarina::JeuMarina() {
     vector<Carte*> cartesMarina = fonctions::cartesEditionMarina();
     cartes.insert(cartes.end(), cartesMarina.begin(), cartesMarina.end());
 
-    plateau = new Plateau(cartes);
+    plateau = new Plateau(cartes, nbJoueurs);
     pioche = new Pioche(cartes, getNbJoueurs());
     //Ensuite, pas besoin de faire appel au constructeur sans argument, il y a un appel de la partie Jeu de JeuMarina directement
     string nomCarteDepart1 = "Champs de ble";
@@ -26,7 +26,7 @@ JeuMarina::JeuMarina() {
     Carte* carteDepart2 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart2](Carte* c) {return c->getNom() == nomCarteDepart2; }));
     string nomCarteDepart3 = "Hotel de Ville";
     Carte* carteDepart3 = *(find_if(cartes.begin(), cartes.end(), [&nomCarteDepart3](Carte* c) {return c->getNom() == nomCarteDepart3; }));
-    if (!carteDepart1 || !carteDepart2 || !carteDepart3) { throw JeuException("Attention ! les cartes de départ n'ont pu être sélectionnées"); }
+    if (!carteDepart1 || !carteDepart2 || !carteDepart3) { throw JeuException("Attention ! les cartes de dï¿½part n'ont pu ï¿½tre sï¿½lectionnï¿½es"); }
     vector<Joueur*> playerList = getJoueursList();
     for (auto j : playerList)
     {

@@ -109,12 +109,16 @@ void Jeu::changerDesJoueur(size_t i, int n) {
 }
 
 void Jeu::afficherJeu() {
+    cout << "\n";
     if (joueurs.size() == 0) throw JeuException("Aucun joueur, rien a afficher");
     vector<Joueur*>::iterator it;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
     for (it = joueurs.begin(); it != joueurs.end(); it++)
     {
-        cout << **it <<"\n";
+        cout << "| Pseudo : "<<it.operator*()->getPseudo()<< " | IA : "<< ((it.operator*()->getIa()) ? "Oui":"Non") << " | Nombre de cartes : "<< it.operator*()->getPaquet().getNbCartes() << " | Porte-monnaie : "<< it.operator*()->getMoney() << "| Nombre de des : "<<it.operator*()->getDes() << " |" << endl;
     }
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    cout << "\n";
 }
 
 

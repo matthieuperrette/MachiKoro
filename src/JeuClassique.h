@@ -23,7 +23,7 @@ private:
 
     //Constructeur et Destructeur//
     JeuClassique() : cartes(fonctions::cartesEditionClassique()) {
-        plateau = new Plateau(cartes);
+        plateau = new Plateau(cartes, nbJoueurs);
         if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }
         //Ensuite, pas besoin d'appeler le constructeur sans argument, la partie Jeu de JeuClassique est appelee directement
         string nomCarteDepart1 = "Champs de ble";

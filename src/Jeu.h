@@ -57,8 +57,6 @@ public:
     void changerDesJoueur(size_t i, int n);
     //**Fonctions sur un joueur particulier**//
 
-    //methodes virtuels pures
-
 
     //Methodes agissant sur le de a l'echelle du jeu
     unsigned int lancerDe() const { return de->lancerDe(); }
@@ -67,13 +65,13 @@ public:
 
 
 
+    //methodes virtuels pures
 
     //Methodes agissant sur les cartes a l'echelle du jeu
     virtual vector<Carte*> getCartes() const = 0;
 
     //Methodes agissant sur le plateau a l'echelle du jeu
     //virtual Plateau* getPlateau() = 0;
-
     virtual Paquet& getPaquetByNomPlateau(string& nom) const = 0;
     virtual vector<Paquet*> getAllPaquetsPlateau() const = 0;
     virtual unsigned int getNbPaquetsPlateau() const = 0;
