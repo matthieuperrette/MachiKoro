@@ -31,7 +31,7 @@ private:
 
         // CREATION DE LA PIOCHE ET DU PLATEAU
         pioche = new Pioche(cartes, nbJoueurs);
-        plateau = new Plateau(cartes, *pioche);
+        plateau = new Plateau(cartes, *pioche, nbJoueurs);
         if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }
 
         // AJOUT DES CARTES DE DEPARTS A TOUS LES JOUEURS

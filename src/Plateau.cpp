@@ -3,7 +3,7 @@
 //
 
 #include "Plateau.h"
-
+#include "Controleur.h"
 
 
 //****************class Plateau*******************//
@@ -15,7 +15,7 @@
 
 
 //**************Structure***************//
-Plateau::Plateau(vector<Carte*> cartesJeu) {
+Plateau::Plateau(vector<Carte*> cartesJeu, unsigned int nbJoueurs) {
     if (cartesJeu.empty())
     {
         throw PlateauException("Creation de Plateau impossible, aucune carte n'est fournie");
@@ -25,8 +25,6 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
      * Paquets de nb joueurs violettes
      * Paquets de nb joueurs monuments
      * */
-     //Dans l'absence de nbJoueurs on utilise pour le moment :
-    int nbJoueurs = 4; //ATTENTION ! A MODIFIER
     nb_monuments = 0;
     int i = 0;
     for (auto c : cartesJeu)
@@ -55,7 +53,7 @@ Plateau::Plateau(vector<Carte*> cartesJeu) {
 }
 
 
-Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p) {
+Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p, unsigned int nbJoueurs) : pioche(p) {
     if (cartesJeu.empty())
     {
         throw PlateauException("Creation de Plateau impossible, aucune carte n'est fournie");
@@ -67,7 +65,6 @@ Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p) : pioche(p) {
     remplirPlateau(true); //remplir plateau ne gere que le maintient des paquets de cartes achetables mais pas les monuments
 
     //on doit donc ajouter les monuments avec cartesJeu
-    int nbJoueurs = 4; //ATTENTION ! A MODIFIER
     nb_monuments = 0;
     int i = 0;
     for (auto c : cartesJeu)
@@ -243,17 +240,23 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelee lors
 
 
 void Plateau::afficherPlateau() const {
-    size_t compt = 1;
+    cout << "\n";
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
     for (auto p : cartes)
     {
-        if (p->getNbCartes() != 0)
+        Carte* current=&(p->getCarte(0));
+        cout <<"| NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
+        cout << "Activation : ";
+        if (current->getCouleur()!=Couleur::monument)
         {
-            cout << "Carte n " << compt << ((compt / 10 != 0) ? "                   " : "                    ") << p->getNbCartes() << "-" << p->getCarte(0).getNom() << "\n";
-            compt++;
+            for (auto i : current->getActivation())
+                cout << i<<" ";
         }
-
-
+        cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
     }
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+    cout << "\n";
 }
 
 //Espace de definition des get et autres methodes d'utilisation//

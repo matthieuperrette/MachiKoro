@@ -52,16 +52,15 @@ Controleur::Controleur(){
         case (Edition::Classique) :
             jeu=&(JeuClassique::getJeu());
             break;
-        /*case (Edition::Marina) :
+        case (Edition::Marina) :
             jeu=&(JeuMarina::getJeu());
             break;
         case (Edition::GreenValley) :
             jeu=&(JeuGreenValley::getJeu());
             break;
         case (Edition::Deluxe) :
-            jeu=&(JeuGreenDeluxe::getJeu());
+            jeu=&(JeuDeluxe::getJeu());
             break;
-        */
         default:
             throw ControleurException("Attention, l'edition n'existe pas");
     }
@@ -71,13 +70,14 @@ Controleur::~Controleur() {
     //Tout est libéré implicitement
     //Il ne reste qu'à libérer l'unique instance de Jeu selon l'édition
     if (edition==Edition::Classique) JeuClassique::libererJeu();
-    /*
     else if (edition==Edition::Marina) JeuMarina::libererJeu();
     else if (edition==Edition::GreenValley) JeuGreenValley::libererJeu();
     else if (edition==Edition::Deluxe) JeuDeluxe::libererJeu();
-    */
 }
+
 //constructeurs et destructeurs//
+
+
 
 //methodes publiques//
 Controleur& Controleur::getControleur(){
@@ -114,7 +114,8 @@ void Controleur::afficherJeu() {
 
 
 int Controleur::runTour(Joueur* currentJoueur){
-    cout << "C'est au tour de " << currentJoueur->getPseudo() << "\n";
+    afficherJeu();
+    cout << "C'est au tour de " << currentJoueur->getPseudo() << endl;
     return 0;
 
 

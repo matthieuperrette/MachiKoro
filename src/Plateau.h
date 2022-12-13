@@ -28,9 +28,9 @@ private:
     unsigned int nb_monuments;
 public:
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
-    explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'edition ne necessitant pas de pioche et de distribution speciale
+    explicit Plateau(vector<Carte*> cartesJeu, unsigned int nbJoueurs); //cartesJeu=toutes les cartes de l'edition ne necessitant pas de pioche et de distribution speciale
     //Constructeur avec un dispatch anormal : on utilise la pioche pour faire des tirages
-    Plateau(vector<Carte*>& cartesJeu, Pioche& p);
+    Plateau(vector<Carte*>& cartesJeu, Pioche& p, unsigned int nbJoueurs);
     Plateau(const Plateau&) = delete;
     Plateau operator=(const Plateau&) = delete;
     ~Plateau();
