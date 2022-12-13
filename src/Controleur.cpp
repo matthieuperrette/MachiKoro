@@ -15,7 +15,8 @@
 Controleur::Controleur(){
     cout << "\n\n";
     unsigned int choix;
-    cout << "Veuillez entrer le nom de l'edition que vous souhaitez lancer :\n";
+    cout << "Veuillez entrer le numero de l'edition que vous souhaitez lancer :"<<endl;
+    cout << "(1) Classique (2) Marina (3) GreenValley (4) Deluxe"<<endl;
     while (!(cin >> choix) || (choix!=1 && choix!=2 && choix!=3 && choix!=4)) {
         cout << "Erreur ! Nombre invalide.\n";
         cin.clear();
@@ -51,16 +52,16 @@ Controleur::Controleur(){
         case (Edition::Classique) :
             jeu=&(JeuClassique::getJeu());
             break;
-            /*case (Edition::Marina) :
-                jeu=&(JeuMarina::getJeu());
-                break;
-            case (Edition::GreenValley) :
-                jeu=&(JeuGreenValley::getJeu());
-                break;
-            case (Edition::Deluxe) :
-                jeu=&(JeuGreenDeluxe::getJeu());
-                break;
-            */
+        /*case (Edition::Marina) :
+            jeu=&(JeuMarina::getJeu());
+            break;
+        case (Edition::GreenValley) :
+            jeu=&(JeuGreenValley::getJeu());
+            break;
+        case (Edition::Deluxe) :
+            jeu=&(JeuGreenDeluxe::getJeu());
+            break;
+        */
         default:
             throw ControleurException("Attention, l'edition n'existe pas");
     }
@@ -92,19 +93,46 @@ void Controleur::libererControleur() {
 
 Controleur::Handler Controleur::handler = Handler();
 
-int runPartie(){
+int Controleur::runPartie(){
+    /*bool termine=false;
+    while (!termine)
+    {
 
+    }*/
+    for (int i=0; i<jeu->getNbJoueurs();i++)
+        runTour(&jeu->getJoueur(i));
     return 0;
 }
 
-int runTour(){
 
+
+void Controleur::afficherJeu() {
+    jeu->afficherJeu();
+    jeu->afficherPlateau();
+}
+
+
+
+int Controleur::runTour(Joueur* currentJoueur){
+    cout << "C'est au tour de " << currentJoueur->getPseudo() << "\n";
     return 0;
+
+
+    //GERER L'EFFet de centre commercial dans les runEffect par Matthieu
+    /*Un tour (dans JeuClassique) c'est :
+     * Vérifier les monuments du joueur et savoir comment les activer
+     * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
+     * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
+         Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
+     * Interpreter le resultat des des et faire les changements par activation des effets
+     * (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
+     * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
+     * Enregistrer les achats et faire les modifications
+     * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
+     */
+
 }
 
-void afficherPartie(){
-
-}
 //methodes publiques//
 
 //*************CLASSE CONTROLEUR*************//
@@ -114,4 +142,3 @@ void afficherPartie(){
 
 //Autres fonctions non membres//
 //Autres fonctions non membres//
-

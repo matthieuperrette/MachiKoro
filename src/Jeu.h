@@ -43,7 +43,7 @@ public:
 
     vector<Joueur*> getJoueursList() const { return joueurs; }
     unsigned int getNbJoueurs() const { return nbJoueurs; }
-    const Joueur& getJoueur(size_t i) const; //Renvoie un joueur
+    Joueur& getJoueur(size_t i) const; //Renvoie un joueur
     //**Fonctions sur un joueur particulier**//
     string getPseudoJoueur(size_t i) const { return getJoueur(i).getPseudo(); }
     bool getIaJoueur(size_t i) const { return getJoueur(i).getIa(); }
@@ -62,6 +62,11 @@ public:
 
     //Methodes agissant sur le de a l'echelle du jeu
     unsigned int lancerDe() const { return de->lancerDe(); }
+
+
+
+
+
 
     //Methodes agissant sur les cartes a l'echelle du jeu
     virtual vector<Carte*> getCartes() const = 0;

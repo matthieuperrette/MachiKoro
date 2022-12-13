@@ -1,15 +1,13 @@
-#include "Carte.h"
-#include "Paquet.h"
-#include "Plateau.h"
-#include "Joueur.h"
-#include "Jeu.h"
-#include "Effet.h"
-#include "EffetMarina.h"
-#include "EffetGreenValley.h"
-#include "JeuClassique.h"
-#include "fonctions.h"
-#include "JeuGreenValley.h"
-#include "Controleur.h"
+#include "./src/Effet.h"
+#include "./src/EffetMarina.h"
+#include "./src/Carte.h"
+#include "./src/Paquet.h"
+#include "./src/Plateau.h"
+#include "./src/Joueur.h"
+#include "./src/Jeu.h"
+#include "./src/JeuClassique.h"
+#include "./src/fonctions.h"
+#include "./src/Controleur.h"
 
 using namespace std;
 
@@ -250,7 +248,6 @@ int main() {
 	*/
 
 	/*
-	* //test des effets de EffetMarina
 	vector<Carte*> cartes = fonctions::cartesEditionClassique();
 	vector<int> v={};
 	string porto = "Port";
@@ -340,210 +337,6 @@ int main() {
 	*/
 
 	/*
-	//test des Effets de GreenValley
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
-	vector<int> v = {};
-	string vignobl = "Vignoble";
-	Carte* vignoble = new Carte(new Effet("C'est le vignoble"), Couleur::bleu, 0, v, vignobl, Type::champ);
-	string cava = "Cave a vin";
-	Carte* CaveAVin = new Carte(new Effet("C'est la cave"), Couleur::vert, 0, v, cava, Type::magasin);
-	string hdv = "Hotel de Ville";
-	Carte* HotelDeVille = new Carte(new Effet("C'est l'hdv"), Couleur::monument, 0, v, hdv, Type::tour);
-	string sei = "Salle d'exposition internationale";
-	Carte* SalleDExpo = new Carte(new Effet("C'est la salle"), Couleur::violet, 0, v, sei, Type::tour);
-	int cpt = 0;
-	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
-		cpt++;
-	}
-
-
-	Paquet paquetAntoine;
-	paquetAntoine.ajouterCarte(cartes[0]);
-	paquetAntoine.ajouterCarte(cartes[2]);
-	paquetAntoine.ajouterCarte(cartes[6]);
-	paquetAntoine.ajouterCarte(cartes[16]);
-	paquetAntoine.ajouterCarte(cartes[18]);
-	paquetAntoine.ajouterCarte(cartes[17]);
-	paquetAntoine.ajouterCarte(SalleDExpo);
-	paquetAntoine.ajouterCarte(vignoble);
-	paquetAntoine.ajouterCarte(vignoble);
-	paquetAntoine.ajouterCarte(CaveAVin);
-	paquetAntoine.ajouterCarte(HotelDeVille);
-	//paquetAntoine.ajouterCarte(port);
-	//paquetAntoine.ajouterCarte(ChampDeFleurs);
-	//paquetAntoine.ajouterCarte(ChampDeFleurs);
-	Paquet paquetMatthieu;
-	paquetMatthieu.ajouterCarte(cartes[0]);
-	paquetMatthieu.ajouterCarte(cartes[2]);
-	//paquetMatthieu.ajouterCarte(port);
-	Paquet paquetHarry;
-	paquetHarry.ajouterCarte(cartes[0]);
-	paquetHarry.ajouterCarte(cartes[2]);
-	paquetHarry.ajouterCarte(cartes[3]);
-	paquetHarry.ajouterCarte(CaveAVin);
-	paquetHarry.ajouterCarte(HotelDeVille);
-	Paquet paquetMathieu;
-	paquetMathieu.ajouterCarte(cartes[2]);
-	paquetMathieu.ajouterCarte(cartes[0]);
-	Joueur player1("Antoine", 0, paquetAntoine, 0, 1);
-	Joueur player2("Matthieu", 0, paquetMatthieu, 2, 1);
-	Joueur player3("Harry", 0, paquetHarry, 10, 1);
-	Joueur player4("Mathieu", 0, paquetMathieu, 0, 1);
-	vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
-	string chaine = "test";
-
-	cout << "___________test Recevoir avec moins de 2 monuments____________" << "\n";
-	Effet* effetRecevoir = new EffetGreenValley(chaine, 2,true,false,false,2);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetRecevoir->runEffect(&player1);
-	effetRecevoir->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	/*
-	cout << "___________test donner carte et recevoir____________" << "\n";
-	Effet* effetDonner= new EffetGreenValley(chaine, 2, false, false, false, 0, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetDonner->runEffect(&player1);
-	effetDonner->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	*/
-	/*
-	cout << "___________test payer piece____________" << "\n";
-	Effet* effetPayer = new EffetGreenValley(chaine, 2, false, false, false, 0, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetPayer->runEffect(&player1);
-	effetPayer->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-
-	cout << "___________test recevoir pou chaque vignoble puis fermer cave a vin____________" << "\n";
-	Effet* effetVignoble = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	player3.afficherCartes();
-	effetVignoble->runEffect(&player1);
-	effetVignoble->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	player3.afficherCartes();
-	*/
-	/*
-	cout << "___________Demolir monument puis recevoir____________" << "\n";
-	Effet* effetDemo = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	player3.afficherCartes();
-	effetDemo->runEffect(&player1);
-	effetDemo->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	player3.afficherCartes();
-	*/
-	/*
-	cout << "___________test pour chaque type de carte detenu par tous les joueurs recevoir pieces____________" << "\n";
-	Effet* effetPour = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false, false, false,true,false,false,false,false,false,false,false,false,false,false,Type::champ);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetPour->runEffect(&player1);
-	effetPour->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	*/
-	/*
-	cout << "___________voler avec plus de 2 monuments____________" << "\n";
-	Effet* effetVoler = new EffetGreenValley(chaine, 2, false, true, false, 2);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-
-	cout << player3 << "\n";
-	effetVoler->runEffect(&player1, &player3);
-	effetVoler->runEffect(&player3, &player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-
-
-
-	cout << "___________voler tout plus de 3 monuments____________" << "\n";
-	Effet* effetTout = new EffetGreenValley(chaine, 2, false, false, true, 3);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	effetTout->runEffect(&player1, &player3);
-	effetTout->runEffect(&player3, &player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-
-
-	Controleur::getControleur().getJeu()->afficherPlateau();
-
-	cout << "___________activer autre batiment____________" << "\n";
-	Effet* effetAutre = new EffetGreenValley(chaine, 0, false, false, false, 0,false,false,false,false,false,false,false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	effetAutre->runEffect(&player1, joueurs);
-	effetAutre->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	player1.afficherCartes();
-	cout << player3 << "\n";
-	Controleur::getControleur().getJeu()->afficherPlateau();
-
-
-	player1.ajouterInvestissement(5);
-	cout << "___________test de Investissemenbt____________" << "\n";
-	Effet* effetInvest = new EffetGreenValley(chaine, 1, false,false,false,0,false,false,false,false,false,false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetInvest->runEffect(&player1, joueurs);
-	effetInvest->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-
-	player1.ajouterInvestissement(5);
-	cout << "___________test de equilibrer____________" << "\n";
-	Effet* effetEquilibre = new EffetGreenValley(chaine, 0, false, false, false, 0, false, false, false, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	effetEquilibre->runEffect(&player1, joueurs);
-	player1.changerMoney(5);
-	effetEquilibre->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
-	*/
-
-
-	/*
 	//test des effets des cartes avec le jeu
 	int cpt = 0;
 	for (auto carte : cartes) {
@@ -573,7 +366,7 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+1 vole donc j2 99 et j1 8
+	//+1 vol� donc j2 99 et j1 8
 	cartes[3]->runEffect(joueurs[0], joueurs[1]);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
@@ -583,15 +376,14 @@ int main() {
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
-	//+5 vole en choisissant le joueur joueur donc j2 92 et j1 15
+	//+5 vol� en choisissant le joueur joueur donc j2 92 et j1 15
 	cartes[8]->runEffect(joueurs[0],joueurs);
 	cout << JeuClassique::getJeu().getJoueur(0);
 	cout << JeuClassique::getJeu().getJoueur(1);
 
 	*/
-
-	//test de ajouterCarte de Plateau
 	/*
+	//test de ajouterCarte de Plateau
 	vector<Carte*> cartes = fonctions::cartesEditionClassique();
 	int cpt = 0;
 	for (auto carte : cartes) {
@@ -613,10 +405,10 @@ int main() {
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
 		//plateau.retirerCarte(gare);
-		cout << "------------plateau apres suppression de 3 gare------------ " << "\n";
+		cout << "------------plateau apr�s suppression de 3 gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.ajouterCarte(cartes[15]);
-		cout << "------------plateau apres rajout de gare------------ " << "\n";
+		cout << "------------plateau apr�s rajout de gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
@@ -635,57 +427,7 @@ int main() {
 	catch (PaquetException& e) {
 		cout << e.getInfo() << "\n";
 	}
-	*/
 
-	/*
-	//test de l'implementation des etablissements ferme
-
-
-	vector<int> v = {};
-	string porto = "Port";
-	Carte* port = new Carte(new Effet("C'est le port"), Couleur::monument, 0, v, porto, Type::tour);
-	string chmp = "Champ de fleurs";
-	Carte* ChampDeFleurs = new Carte(new Effet("C'est le champ de fleurs"), Couleur::bleu, 0, v, chmp, Type::champ);
-	int cpt = 0;
-	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
-		cpt++;
-	}
-
-
-	Paquet paquetAntoine;
-	paquetAntoine.ajouterCarte(cartes[0]);
-	paquetAntoine.ajouterCarte(cartes[2]);
-	paquetAntoine.ajouterCarte(port);
-	paquetAntoine.ajouterCarte(ChampDeFleurs);
-	paquetAntoine.ajouterCarte(ChampDeFleurs);
-
-	Joueur player1("Antoine", 0, paquetAntoine, 0, 1);
-	player1.afficherCartes();
-	player1.affichageTemp();
-
-	player1.fermerOuvrirEtablissement(cartes[0], true);
-	player1.fermerOuvrirEtablissement(porto, true);
-
-	player1.afficherCartes();
-	player1.affichageTemp();
-
-	cout << "\n\n";
-	cout << player1.isFermer(cartes[0]) << "\n";
-	cout << player1.isFermer(chmp) << "\n";
-
-	player1.retirerCarte(cartes[2]);
-	player1.afficherCartes();
-	player1.affichageTemp();
-	cout << "\n\n";
-	cout << player1.getInvestissement() << "\n";
-	player1.ajouterInvestissement(2);
-	cout << player1.getInvestissement() << "\n";
-
-	*/
-
-	/*
 	srand((unsigned)time(NULL));
 	JeuClassique::getJeu().afficherJeu();
 	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
@@ -695,49 +437,13 @@ int main() {
 	vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
 
 	JeuClassique::libererJeu();
-	*/
 
-
-
-
-
-
-
-
-	/*
-	for (auto type : Types)
-		cout << type << "\n";
-	cout << fonctions::choisirType();
-	*/
-	/*
-	//test de jeuMarina
-	//srand((unsignedMarinatime(NULL));
-	JeuMarina::getJeu().afficherJeu();
-	cout << JeuMarina::getJeu().getJoueur(0).getPaquet();
-	JeuMarina::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuMarina::getJeu().getJoueur(0);
-	cout << JeuMarina::getJeu().lancerDe();
-	vector<Carte*> cartes = JeuMarina::getJeu().getCartes();
-	JeuMarina::libererJeu();
-	*/
-	/*
-	//test de jeuGreenValley
-	srand((unsigned)time(NULL));
-	JeuGreenValley::getJeu().afficherJeu();
-	cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
-	JeuGreenValley::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuGreenValley::getJeu().getJoueur(0);
-	//cout << JeuGreenValley::getJeu().lancerDe();
-	cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
-	JeuGreenValley::getJeu().afficherPlateau();
-
-	JeuGreenValley::libererJeu();
-	*/
-	/*
 	for (auto n : cartes) {
 		delete n;
-	}
-	*/
-	return 0;
+	}*/
+    fonctions::screenInit();
+    int back_value = Controleur::getControleur().runPartie();
+    fonctions::screenStop();
+    return back_value;
 }
 

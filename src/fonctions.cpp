@@ -121,7 +121,7 @@ vector<Carte*> fonctions::cartesEditionMarina() {
 
     vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez 1 piece de chaque joueur pour chaque etablissement de type cafe et magasin qu''il possede."), Couleur::violet, 5, v7, "Maison d'edition", Type::tour));
 
-    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez la moitie (arrondie a l’inferieur) des pieces de chaque joueur qui en possede 10 ou plus"), Couleur::violet, 4, v8_9, "Centre des impots", Type::tour));
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez la moitie (arrondie a lï¿½inferieur) des pieces de chaque joueur qui en possede 10 ou plus"), Couleur::violet, 4, v8_9, "Centre des impots", Type::tour));
 
     vect.push_back(new Carte(new EffetMarina("Avant de construire un etablissement ou un monument, si vous n'avez pas de pieces, recevez 1 piece de la banque"), Couleur::monument, 0, v, "Hotel de Ville", Type::tour));
 
@@ -293,3 +293,32 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
     return violettes.at(choix);
 }
 
+void print_machi_koro()
+{
+    cout <<"\n\n\n\n";
+    const char* machi_koro_pattern[]=
+            {
+                    "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+                    "|                                                                                                                   |",
+                    "|          #   #     #####     #####     #   #     #####               #   #     #####     #####     #####          |",
+                    "|          ## ##     #   #     #         #   #       #                 #  #      #   #     #   #     #   #          |",
+                    "|          # # #     #####     #         #####       #                 ####      #   #     ####      #   #          |",
+                    "|          #   #     #   #     #         #   #       #                 #  #      #   #     #  #      #   #          |",
+                    "|          #   #     #   #     #####     #   #     #####               #   #     #####     #   #     #####          |",
+                    "|                                                                                                                   |",
+                    "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+            };
+    for (int i=0; i<9; i++)
+        cout<<machi_koro_pattern[i]<<endl;
+    cout << "\n          Made with ðŸ’™BY Antoine SESINI, Matthieu PERETTE, Harry BROUDEHOUX and Mathieu BOUSQUET";
+    cout <<"\n\n\n\n";
+}
+
+
+void fonctions::screenInit(){
+    print_machi_koro();
+}
+
+void fonctions::screenStop(){
+    print_machi_koro();
+}

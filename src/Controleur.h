@@ -45,7 +45,7 @@ private :
     struct Handler{
         Controleur* controleur;
         Handler() : controleur(nullptr){}
-        ~Handler() { delete controleur; }
+        ~Handler() { libererControleur(); }
     };
     static Handler handler;
     //gestion singleton
@@ -58,8 +58,8 @@ public :
 
     Jeu* getJeu() const {return jeu;}
     int runPartie();
-    int runTour();
-    void afficherPartie();
+    void afficherJeu();
+    int runTour(Joueur* currentJoueur);
     //methodes publiques//
 };
 
@@ -70,4 +70,3 @@ public :
 //Autres fonctions non membres//
 
 #endif //MINIVILLES_CONTROLEUR_H
-

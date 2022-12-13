@@ -34,4 +34,7 @@ namespace fonctions {
 	Type choisirType();
 
 	vector<Carte*> cartesEditionMarina();
+
+    void screenInit();
+    void screenStop();
 }

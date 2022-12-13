@@ -81,7 +81,7 @@ Jeu::~Jeu() {
 
 
 
-const Joueur& Jeu::getJoueur(size_t i) const {
+Joueur& Jeu::getJoueur(size_t i) const {
     if (i > nbJoueurs) throw JeuException("Le joueur n'existe pas");
     return *joueurs[i];
 }
