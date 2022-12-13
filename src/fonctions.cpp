@@ -293,3 +293,32 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
     return violettes.at(choix);
 }
 
+void print_machi_koro()
+{
+    cout <<"\n\n\n\n";
+    const char* machi_koro_pattern[]=
+            {
+                    "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+                    "|                                                                                                                   |",
+                    "|          #   #     #####     #####     #   #     #####               #   #     #####     #####     #####          |",
+                    "|          ## ##     #   #     #         #   #       #                 #  #      #   #     #   #     #   #          |",
+                    "|          # # #     #####     #         #####       #                 ####      #   #     ####      #   #          |",
+                    "|          #   #     #   #     #         #   #       #                 #  #      #   #     #  #      #   #          |",
+                    "|          #   #     #   #     #####     #   #     #####               #   #     #####     #   #     #####          |",
+                    "|                                                                                                                   |",
+                    "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+            };
+    for (int i=0; i<9; i++)
+        cout<<machi_koro_pattern[i]<<endl;
+    cout << "\n          Made with 💙BY Antoine SESINI, Matthieu PERETTE, Harry BROUDEHOUX and Mathieu BOUSQUET";
+    cout <<"\n\n\n\n";
+}
+
+
+void fonctions::screenInit(){
+    print_machi_koro();
+}
+
+void fonctions::screenStop(){
+    print_machi_koro();
+}
