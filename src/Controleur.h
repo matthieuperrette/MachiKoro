@@ -45,7 +45,7 @@ private :
     struct Handler{
         Controleur* controleur;
         Handler() : controleur(nullptr){}
-        ~Handler() { delete controleur; }
+        ~Handler() { libererControleur(); }
     };
     static Handler handler;
     //gestion singleton
@@ -58,7 +58,7 @@ public :
 
     Jeu* getJeu() const {return jeu;}
     int runPartie();
-    int runTour();
+    int runTour(Joueur* currentJoueur);
     void afficherPartie();
     //methodes publiques//
 };

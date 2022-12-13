@@ -1,12 +1,13 @@
+#include "./src/Effet.h"
+#include "./src/EffetMarina.h"
 #include "./src/Carte.h"
 #include "./src/Paquet.h"
 #include "./src/Plateau.h"
 #include "./src/Joueur.h"
 #include "./src/Jeu.h"
-#include "./src/Effet.h"
-#include "./src/EffetMarina.h"
 #include "./src/JeuClassique.h"
 #include "./src/fonctions.h"
+#include "./src/Controleur.h"
 
 using namespace std;
 
@@ -426,7 +427,6 @@ int main() {
 	catch (PaquetException& e) {
 		cout << e.getInfo() << "\n";
 	}
-	*/
 
 	srand((unsigned)time(NULL));
 	JeuClassique::getJeu().afficherJeu();
@@ -438,11 +438,13 @@ int main() {
 
 	JeuClassique::libererJeu();
 
-
-	/*
 	for (auto n : cartes) {
 		delete n;
 	}*/
-	return 0;
+
+
+    int back_value = Controleur::getControleur().runPartie();
+
+	return back_value;
 }
 

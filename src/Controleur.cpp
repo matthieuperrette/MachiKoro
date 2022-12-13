@@ -92,17 +92,23 @@ void Controleur::libererControleur() {
 
 Controleur::Handler Controleur::handler = Handler();
 
-int runPartie(){
+int Controleur::runPartie(){
+    /*bool termine=false;
+    while (!termine)
+    {
 
+    }*/
+    for (int i=0; i<jeu->getNbJoueurs();i++)
+        runTour(&jeu->getJoueur(i));
     return 0;
 }
 
-int runTour(){
-
+int Controleur::runTour(Joueur* currentJoueur){
+    cout << "C'est au tour de " << currentJoueur->getPseudo();
     return 0;
 }
 
-void afficherPartie(){
+void Controleur::afficherPartie(){
 
 }
 //methodes publiques//
