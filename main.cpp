@@ -441,10 +441,9 @@ int main() {
 	for (auto n : cartes) {
 		delete n;
 	}*/
-
-
+    fonctions::screenInit();
     int back_value = Controleur::getControleur().runPartie();
-
-	return back_value;
+    fonctions::screenStop();
+    return back_value;
 }
 

@@ -121,7 +121,7 @@ vector<Carte*> fonctions::cartesEditionMarina() {
 
     vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez 1 piece de chaque joueur pour chaque etablissement de type cafe et magasin qu''il possede."), Couleur::violet, 5, v7, "Maison d'edition", Type::tour));
 
-    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez la moitie (arrondie a l’inferieur) des pieces de chaque joueur qui en possede 10 ou plus"), Couleur::violet, 4, v8_9, "Centre des impots", Type::tour));
+    vect.push_back(new Carte(new EffetMarina("Pendant votre tour uniquement: Recevez la moitie (arrondie a lï¿½inferieur) des pieces de chaque joueur qui en possede 10 ou plus"), Couleur::violet, 4, v8_9, "Centre des impots", Type::tour));
 
     vect.push_back(new Carte(new EffetMarina("Avant de construire un etablissement ou un monument, si vous n'avez pas de pieces, recevez 1 piece de la banque"), Couleur::monument, 0, v, "Hotel de Ville", Type::tour));
 
