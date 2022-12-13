@@ -1,0 +1,72 @@
+//
+// Created by Antoine Sesini on 08/12/2022.
+//
+#pragma once
+#ifndef MINIVILLES_CONTROLEUR_H
+#define MINIVILLES_CONTROLEUR_H
+#include "Jeu.h"
+#include "JeuClassique.h"
+#include "JeuMarina.h"
+#include "JeuGreenValley.h"
+#include "JeuDeluxe.h"
+
+//Structures et classes necessaires a la classe principale//
+class ControleurException {
+public:
+    ControleurException(const string& i) :info(i) {}
+    string getInfo() const { return info; }
+private:
+    string info;
+};
+
+enum class Edition {Classique, Marina, GreenValley, Deluxe};
+//Structures et classes necessaires a la classe principale//
+
+
+
+
+
+class Controleur {
+private :
+    //attributs//
+    bool sens; //Si sens horaire -> =true sinon =false
+    Edition edition;
+    Jeu* jeu; //à voir si on garde ça sous cette forme
+    //attributs//
+
+    //constructeurs et destructeurs//
+    Controleur();
+    ~Controleur();
+    Controleur(const Controleur& controleur)=delete;
+    const Controleur& operator=(const Controleur& controleur)=delete;
+    //constructeurs et destructeurs//
+
+    //gestion singleton
+    struct Handler{
+        Controleur* controleur;
+        Handler() : controleur(nullptr){}
+        ~Handler() { libererControleur(); }
+    };
+    static Handler handler;
+    //gestion singleton
+
+public :
+    //methodes publiques//
+    static Controleur& getControleur();
+    static void libererControleur();
+
+
+    Jeu* getJeu() const {return jeu;}
+    int runPartie();
+    void afficherJeu();
+    int runTour(Joueur* currentJoueur);
+    //methodes publiques//
+};
+
+
+
+
+//Autres fonctions non membres//
+//Autres fonctions non membres//
+
+#endif //MINIVILLES_CONTROLEUR_H

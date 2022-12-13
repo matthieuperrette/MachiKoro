@@ -27,7 +27,7 @@ Pioche::Pioche(vector<Carte*> cartes, int nb_joueurs) {
 //****************class Pioche*******************//
 
 
-//****************Fonctions suppl�mentaires******************//
+//****************Fonctions supplementaires******************//
 
 ostream& operator<<(ostream& f, const Pioche& p)
 {
@@ -44,4 +44,4 @@ ostream& operator<<(ostream& f, const Pioche& p)
 	return f;
 }
 
-//****************Fonctions suppl�mentaires******************//
+//****************Fonctions supplementaires******************//

@@ -9,7 +9,7 @@
 #include "Pioche.h"
 
 
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 class PlateauException {
 private:
     string info;
@@ -17,18 +17,18 @@ public:
     PlateauException(const string& i) :info(i) {}
     string getInfo() const { return info; }
 };
-//********************Structures et variables nécessaires*****************//
+//********************Structures et variables necessaires*****************//
 
 
 //****************class Plateau*******************//
 class Plateau {
-private :
+private:
     vector<Paquet*> cartes;
     Pioche pioche;
     unsigned int nb_monuments;
-public :
+public:
     //Constructeur avec dispatch normal : on identifie les cartes et on les pointe 6 fois dans chaque Paquet (sauf exception)
-    explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'édition ne nécessitant pas de pioche et de distribution spéciale
+    explicit Plateau(vector<Carte*> cartesJeu); //cartesJeu=toutes les cartes de l'edition ne necessitant pas de pioche et de distribution speciale
     //Constructeur avec un dispatch anormal : on utilise la pioche pour faire des tirages
     Plateau(vector<Carte*>& cartesJeu, Pioche& p);
     Plateau(const Plateau&) = delete;
@@ -38,24 +38,26 @@ public :
 
 
 
-    //Espace de définition des get et autres méthodes d'utilisation//
+    //Espace de definition des get et autres methodes d'utilisation//
     Paquet& getPaquetByNom(string& nom) const;
     vector<Paquet*> getAllPaquets() const;
     unsigned int getNbPaquets() const;
     vector<Paquet*> getPaquetsNonVides() const;
     Carte* retirerCarte(string& nom);
+    void ajouterCarte(Carte* carte);
     void remplirPlateau(bool firstCall);
-    void afficherPlateau() const ;
-    //Espace de définition des get et autres méthodes d'utilisation//
+    void afficherPlateau() const;
+
+    //Espace de definition des get et autres methodes d'utilisation//
 
 
 };
 //****************class Plateau*******************//
 
 
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 ostream& operator<<(ostream& f, const Plateau& p);
-//****************Fonctions supplémentaires******************//
+//****************Fonctions supplementaires******************//
 
 
 #endif //MINIVILLES_PLATEAU_H
