@@ -42,6 +42,7 @@ public:
 		choixJoueur(choixJoueur), typeConcerne(typeConcerne) {}
 	virtual ~Effet() = default;
 
+	void changerPiecesEnJeu(unsigned int n) { piecesEnJeu = n; }
 	void ajouterPiecesEnJeu(unsigned int n) { piecesEnJeu += n; }
 	void enleverPiecesEnJeu(unsigned int n) { piecesEnJeu -= n; }
 
