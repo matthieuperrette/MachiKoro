@@ -1,5 +1,6 @@
 #include "Carte.h"
 #include "Effet.h"
+#include "Joueur.h"
 
 //*---------------------Enumerations de Type et Couleur---------------------*//
 
@@ -69,15 +70,42 @@ ostream& operator<<(ostream& f, const Carte& c) {
 }
 
 int Carte::runEffect(Joueur* j1) {
-    return effet->runEffect(j1);
+    int retour;
+    string centre = "Centre commercial";
+    if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
+        effet->ajouterPiecesEnJeu(1);
+        retour = effet->runEffect(j1);
+        effet->enleverPiecesEnJeu(1);
+    }
+    else
+        retour = effet->runEffect(j1);
+    return retour;
 }
 
 int Carte::runEffect(Joueur* j1, Joueur* j2) {
-    return effet->runEffect(j1, j2);
+    int retour;
+    string centre = "Centre commercial";
+    if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
+        effet->ajouterPiecesEnJeu(1);
+        retour = effet->runEffect(j1, j2);
+        effet->enleverPiecesEnJeu(1);
+    }
+    else
+        retour = effet->runEffect(j1, j2);
+    return retour;
 }
 
 int Carte::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
-    return effet->runEffect(j1, vectJoueur);
+    int retour;
+    string centre = "Centre commercial";
+    if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
+        effet->ajouterPiecesEnJeu(1);
+        retour = effet->runEffect(j1, vectJoueur);
+        effet->enleverPiecesEnJeu(1);
+    }
+    else
+        retour = effet->runEffect(j1, vectJoueur);
+    return retour;
 }
 
 Effet* Carte::getEffet() const { return effet; }
