@@ -295,7 +295,7 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
     return violettes.at(choix);
 }
 
-void print_machi_koro()
+/*void print_machi_koro()
 {
     cout << "\n\n\n\n";
     const char* machi_koro_pattern[] =
@@ -314,8 +314,46 @@ void print_machi_koro()
         cout << machi_koro_pattern[i] << endl;
     cout << "\n          Made with 💙BY Antoine SESINI, Matthieu PERETTE, Harry BROUDEHOUX and Mathieu BOUSQUET";
     cout << "\n\n\n\n";
-}
+}*/
 
+
+void print_machi_koro(){
+    cout << "\n\n\n\n" << R"(
+ MMMMMMMM               MMMMMMMM               AAA                   CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHHIIIIIIIIII
+M:::::::M             M:::::::M              A:::A                 CCC::::::::::::CH:::::::H     H:::::::HI::::::::I
+M::::::::M           M::::::::M             A:::::A              CC:::::::::::::::CH:::::::H     H:::::::HI::::::::I
+M:::::::::M         M:::::::::M            A:::::::A            C:::::CCCCCCCC::::CHH::::::H     H::::::HHII::::::II
+M::::::::::M       M::::::::::M           A:::::::::A          C:::::C       CCCCCC  H:::::H     H:::::H    I::::I
+M:::::::::::M     M:::::::::::M          A:::::A:::::A        C:::::C                H:::::H     H:::::H    I::::I
+M:::::::M::::M   M::::M:::::::M         A:::::A A:::::A       C:::::C                H::::::HHHHH::::::H    I::::I
+M::::::M M::::M M::::M M::::::M        A:::::A   A:::::A      C:::::C                H:::::::::::::::::H    I::::I
+M::::::M  M::::M::::M  M::::::M       A:::::A     A:::::A     C:::::C                H:::::::::::::::::H    I::::I
+M::::::M   M:::::::M   M::::::M      A:::::AAAAAAAAA:::::A    C:::::C                H::::::HHHHH::::::H    I::::I
+M::::::M    M:::::M    M::::::M     A:::::::::::::::::::::A   C:::::C                H:::::H     H:::::H    I::::I
+M::::::M     MMMMM     M::::::M    A:::::AAAAAAAAAAAAA:::::A   C:::::C       CCCCCC  H:::::H     H:::::H    I::::I
+M::::::M               M::::::M   A:::::A             A:::::A   C:::::CCCCCCCC::::CHH::::::H     H::::::HHII::::::II
+M::::::M               M::::::M  A:::::A               A:::::A   CC:::::::::::::::CH:::::::H     H:::::::HI::::::::I
+M::::::M               M::::::M A:::::A                 A:::::A    CCC::::::::::::CH:::::::H     H:::::::HI::::::::I
+MMMMMMMM               MMMMMMMMAAAAAAA                   AAAAAAA      CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHHIIIIIIIIII
+
+                         KKKKKKKKK    KKKKKKK     OOOOOOOOO     RRRRRRRRRRRRRRRRR        OOOOOOOOO
+                         K:::::::K    K:::::K   OO:::::::::OO   R::::::::::::::::R     OO:::::::::OO
+                         K:::::::K    K:::::K OO:::::::::::::OO R::::::RRRRRR:::::R  OO:::::::::::::OO
+                         K:::::::K   K::::::KO:::::::OOO:::::::ORR:::::R     R:::::RO:::::::OOO:::::::O
+                         KK::::::K  K:::::KKKO::::::O   O::::::O  R::::R     R:::::RO::::::O   O::::::O
+                           K:::::K K:::::K   O:::::O     O:::::O  R::::R     R:::::RO:::::O     O:::::O
+                           K::::::K:::::K    O:::::O     O:::::O  R::::RRRRRR:::::R O:::::O     O:::::O
+                           K:::::::::::K     O:::::O     O:::::O  R:::::::::::::RR  O:::::O     O:::::O
+                           K:::::::::::K     O:::::O     O:::::O  R::::RRRRRR:::::R O:::::O     O:::::O
+                           K::::::K:::::K    O:::::O     O:::::O  R::::R     R:::::RO:::::O     O:::::O
+                           K:::::K K:::::K   O:::::O     O:::::O  R::::R     R:::::RO:::::O     O:::::O
+                         KK::::::K  K:::::KKKO::::::O   O::::::O  R::::R     R:::::RO::::::O   O::::::O
+                         K:::::::K   K::::::KO:::::::OOO:::::::ORR:::::R     R:::::RO:::::::OOO:::::::O
+                         K:::::::K    K:::::K OO:::::::::::::OO R::::::R     R:::::R OO:::::::::::::OO
+                         K:::::::K    K:::::K   OO:::::::::OO   R::::::R     R:::::R   OO:::::::::OO
+                         KKKKKKKKK    KKKKKKK     OOOOOOOOO     RRRRRRRR     RRRRRRR     OOOOOOOOO
+)" << '\n';
+}
 
 void fonctions::screenInit() {
     print_machi_koro();
