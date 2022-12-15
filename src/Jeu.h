@@ -79,6 +79,7 @@ public:
     virtual Carte* retirerCartePlateau(string& nom) = 0;
     virtual void afficherPlateau() const = 0;
     virtual void ajouterCartePlateau(Carte* carte) const = 0;
+    virtual unsigned int getNbMonuments() const =0;
     //Methodes supplementaires
     void afficherJeu();
 };

@@ -362,3 +362,33 @@ void fonctions::screenInit() {
 void fonctions::screenStop() {
     print_machi_koro();
 }
+
+
+
+unsigned int fonctions::lancementDes(Joueur* currentJoueur){
+    //Verifier si carte gare alors proposer 1 ou 2 dès
+    //Sinon proposer de lancer juste
+    //Lancer le nombre de des choisi
+    //Mettre un peu de suspense et d'attente
+    //Additionner
+    //Si le joueur a la carte parc d'attraction alors afficher l'addition et proposer de relancer 1 fois
+    //Sinon afficher l'addition simplement
+    //retourner l'addition
+}
+
+vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult){
+    //retourne toutes les cartes activables avec desResult
+}
+
+void fonctions::interpretation(unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
+    //faire un vecteur de carte avec l'appel à getCartesActivables
+    //recuperer les cartes rouges dans getCartesActivables et les activer dans le sens inverse du jeu
+    //recuperer les cartes bleus dans getCartesActivables et les activer
+    //recuperer les cartes vertes dans getCartesActivables et les activer
+    //recuperer les cartes violettes dans getCartesActivables et les activer
+}
+
+void fonctions::buyingManager(Joueur* currentJoueur){
+    //Avec le budget du joueur, buyingManager gere les entrees sorties permettant l'achat des etablissements
+    //Il se charge ensuite d'effectuer le transfert des cartes depuis le plateau vers le paquet du joueur (faire attention aux editions hasardeuses : des transferts dans l'autre sens sont possibles)
+}

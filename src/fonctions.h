@@ -2,6 +2,7 @@
 #include <vector>
 class Carte;
 class Joueur;
+class Controleur;
 
 namespace fonctions {
 
@@ -37,4 +38,12 @@ namespace fonctions {
 
     void screenInit();
     void screenStop();
+
+    unsigned int lancementDes(Joueur* currentJoueur);
+
+    vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);
+
+    void interpretation(unsigned int& desResult);
+
+    void buyingManager(Joueur* currentJoueur);
 }

@@ -115,19 +115,27 @@ void Controleur::afficherJeu() {
 
 int Controleur::runTour(Joueur* currentJoueur){
 
-    /*Un tour (dans JeuClassique) c'est :
+    /*
+     * Un tour (dans JeuClassique) c'est :
      * Vérifier les monuments du joueur et savoir comment les activer
      * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
      * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
-         Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
+        Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
      * Interpreter le resultat des des et faire les changements par activation des effets
-     * (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
+        (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
      * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
      * Enregistrer les achats et faire les modifications
      * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
      */
     afficherJeu();
-
+    unsigned int desResult=fonctions::lancementDes(currentJoueur);
+    fonctions::interpretation(desResult);
+    jeu->afficherPlateau();
+    fonctions::buyingManager(currentJoueur);
+    if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())
+    { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true
+        termine=true;
+    }
     return 0;
 }
 
