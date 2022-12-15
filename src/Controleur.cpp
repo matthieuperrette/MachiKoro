@@ -114,12 +114,7 @@ void Controleur::afficherJeu() {
 
 
 int Controleur::runTour(Joueur* currentJoueur){
-    afficherJeu();
-    cout << "C'est au tour de " << currentJoueur->getPseudo() << endl;
-    return 0;
 
-
-    //GERER L'EFFet de centre commercial dans les runEffect par Matthieu
     /*Un tour (dans JeuClassique) c'est :
      * Vérifier les monuments du joueur et savoir comment les activer
      * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
@@ -131,7 +126,9 @@ int Controleur::runTour(Joueur* currentJoueur){
      * Enregistrer les achats et faire les modifications
      * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
      */
+    afficherJeu();
 
+    return 0;
 }
 
 //methodes publiques//
