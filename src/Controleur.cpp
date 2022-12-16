@@ -95,13 +95,14 @@ Controleur::Handler Controleur::handler = Handler();
 
 int Controleur::runPartie(){
     bool termine=false;
-    /*
+    jeu->getJoueur(0).changerDes(2);
+    string carte="Tour radio";
+    Carte* test=jeu->retirerCartePlateau(carte);
+    jeu->getJoueur(0).ajouterCarte(test);
     while (!termine)
     {
-
-    }*/
-    for (int i=0; i<jeu->getNbJoueurs();i++)
-        runTour(&jeu->getJoueur(i), termine);
+        runTour(&jeu->getJoueur(0), termine); //ATTENTION IL FAUT CHANGER LE 0 ICI
+    }
     return 0;
 }
 
@@ -128,11 +129,11 @@ int Controleur::runTour(Joueur* currentJoueur,bool& termine){
      * Enregistrer les achats et faire les modifications
      * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
      */
-    afficherJeu();
+    //afficherJeu();
     unsigned int desResult=fonctions::lancementDes(currentJoueur);
     fonctions::interpretation(desResult);
-    jeu->afficherPlateau();
-    fonctions::buyingManager(currentJoueur);
+    //jeu->afficherPlateau();
+    //fonctions::buyingManager(currentJoueur);
     if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())
     { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true
         termine=true;

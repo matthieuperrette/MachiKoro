@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "Controleur.h"
 class Carte;
 class Joueur;
 
@@ -42,9 +41,11 @@ namespace fonctions {
 
     unsigned int lancementDes(Joueur* currentJoueur);
 
+
     vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);
 
     void interpretation(unsigned int& desResult);
 
-    void buyingManager(Joueur* currentJoueur);
+    //void buyingManager(Joueur* currentJoueur);
+
 }

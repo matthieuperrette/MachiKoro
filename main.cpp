@@ -755,9 +755,9 @@ int main() {
 	*/
 
 	fonctions::screenInit();
-	int back_value = Controleur::getControleur().runPartie();
+	Controleur::getControleur().runPartie();
 	fonctions::screenStop();
-	return back_value;
+	return 0;
 }
 
 

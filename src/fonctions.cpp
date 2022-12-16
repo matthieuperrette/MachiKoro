@@ -8,6 +8,8 @@
 #include "fonctions.h"
 #include <vector>
 #include "EffetGreenValley.h"
+#include "unistd.h"
+#include "Controleur.h"
 
 vector<Carte*> fonctions::cartesEditionClassique() {
     vector<int> v = {  };
@@ -371,34 +373,34 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
     //Lancer le nombre de des choisi
     //Mettre un peu de suspense et d'attente
     //Additionner
-    //Si le joueur a la carte parc d'attraction alors afficher l'addition et proposer de relancer 1 fois
+    //Si le joueur a la carte tour radio alors afficher l'addition et proposer de relancer 1 fois
     //Sinon afficher l'addition simplement
     //retourner l'addition
     unsigned int addition=0;
-    if (!currentJoueur) throw ControleurException("Aucun joueur n'est saisi pour le lancement de des");
+    if (!currentJoueur) throw ControleurException("La carte a retirer n'existe pas !");
     string carte="Gare";
+    string choix;
+    int choix2=0;
     if (currentJoueur->getDes()==1) //Si le joueur n'a pas la carte Gare
     {
         cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
-        string choix;
         while (!(cin >> choix) || choix!="L") {
             cout << "Entrez L puis ENTREE pour lancer le des...\n";
             cin.clear();
             cin.ignore(255, '\n');
         }
+        srand((unsigned)time(NULL));
         addition=Controleur::getControleur().getJeu()->lancerDe();
     }
     else //Si le joueur a la carte gare (ou toute autre carte qui lui a permis d'augmenter son nombre de des), on lui propose de lancer 1 ou 2 ou getDes des
     {
         cout << "\n\n" << "Combien de des desirez vous lancer ? Vous en avez "<< currentJoueur->getDes()<<" :\n";
-        int choix2=0;
         while (!(cin >> choix2) || choix2<1 || choix2>currentJoueur->getDes()) {
             cout << "Erreur ! Votre choix doit etre compris entre 1 et "<<currentJoueur->getDes();
             cin.clear();
             cin.ignore(255, '\n');
         }
         cout << "\n\n" << "Entrez L puis ENTREE pour lancer le(s) des...\n";
-        string choix;
         while (!(cin >> choix) || choix!="L") {
             cout << "Entrez L puis ENTREE pour lancer le des...\n";
             cin.clear();
@@ -410,12 +412,60 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
             addition+=Controleur::getControleur().getJeu()->lancerDe();
         }
     }
-
-    //ETAPE D'AJOUT DE SUSPENSE
+    sleep(3);
+    cout << "SCORE OBTENU : " << addition;
+    carte="Tour radio";
+    string choix3;
+    if (currentJoueur->getPaquet().is_In(carte)) //Si le joueur a la tour radio alors on lui propose de rejouer, sinon on arrête et on renvoie le score
+    {
+        cout << "\n\n" << "Voulez vous relancer le(s) des ? (Oui/Non)\n";
+        while (!(cin >> choix3) || (choix3!="Oui" && choix3!="Non")) {
+            cout << "Erreur ! Votre choix doit etre 'Oui' ou 'Non' !\n";
+            cin.clear();
+            cin.ignore(255, '\n');
+        }
+        if (choix3=="Oui")
+        {
+            addition=0;
+            cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
+            while (!(cin >> choix) || choix!="L") {
+                cout << "Entrez L puis ENTREE pour lancer le des...\n";
+                cin.clear();
+                cin.ignore(255, '\n');
+            }
+            if (currentJoueur->getDes()==1)
+            {
+                srand((unsigned)time(NULL));
+                addition=Controleur::getControleur().getJeu()->lancerDe();
+            }
+            else
+            {
+                for (int j=0; j!=choix2; j++) //On lance le nombre de des choisi
+                {
+                    srand((unsigned)time(NULL));
+                    addition+=Controleur::getControleur().getJeu()->lancerDe();
+                }
+            }
+            sleep(3);
+            cout << "SCORE OBTENU : " << addition;
+        }
+    }
+    return addition;
 }
+
 
 vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult){
     //retourne toutes les cartes activables avec desResult
+    vector<Carte*> result;
+    vector<Carte*>::iterator it;
+    for (it=vecteur.begin();it!=vecteur.end();it++) //Pour chaque carte dans le vecteur donne, on regarde si la carte est activable avec desResult
+    {
+        if(find(it.operator*()->getActivation().begin(),it.operator*()->getActivation().end(),desResult)!=it.operator*()->getActivation().end())
+        {
+            result.push_back(*it); //Si la carte est activable, on la push
+        }
+    }
+    return result;
 }
 
 void fonctions::interpretation(unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
@@ -426,8 +476,13 @@ void fonctions::interpretation(unsigned int& desResult){ //interprete le resulta
     //recuperer les cartes violettes dans getCartesActivables et les activer
 }
 
+
+
+/*
 void fonctions::buyingManager(Joueur* currentJoueur){
     //Avec le budget du joueur, buyingManager gere les entrees sorties permettant l'achat des etablissements
     //Il se charge ensuite d'effectuer le transfert des cartes depuis le plateau vers le paquet du joueur (faire attention aux editions hasardeuses : des transferts dans l'autre sens sont possibles)
     //ATTENTION QUAND ON ACHETE GARE ON AUGMENTE SIMPLEMENT LE GETDES DU JOUEUR
 }
+
+ */
