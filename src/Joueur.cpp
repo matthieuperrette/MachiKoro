@@ -126,7 +126,7 @@ bool Joueur::isFermer(string& nom) {
         return *itferme;
     }
     else
-        throw JoueurException("Erreur la carte rechercher n'est pas dans la paquet");
+        throw JoueurException("Erreur la carte recherchee n'est pas dans la paquet");
 }
 
 bool Joueur::isFermer(Carte* carte) {
@@ -142,7 +142,7 @@ bool Joueur::isFermer(Carte* carte) {
             return *itferme;
         }
         else
-            throw JoueurException("Erreur la carte rechercher n'est pas dans la paquet");
+            throw JoueurException("Erreur la carte recherchee n'est pas dans la paquet");
     }
     else
         throw JoueurException("La carte a retirer n'existe pas !");
