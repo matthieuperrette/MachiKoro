@@ -60,6 +60,7 @@ public :
     int runPartie();
     void afficherJeu();
     int runTour(Joueur* currentJoueur, bool& termine);
+    bool getSens() const {return sens;}
     //methodes publiques//
 };
 

@@ -131,7 +131,7 @@ int Controleur::runTour(Joueur* currentJoueur,bool& termine){
      */
     //afficherJeu();
     unsigned int desResult=fonctions::lancementDes(currentJoueur);
-    fonctions::interpretation(desResult);
+    fonctions::interpretation(currentJoueur, desResult);
     //jeu->afficherPlateau();
     //fonctions::buyingManager(currentJoueur);
     if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())

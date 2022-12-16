@@ -468,12 +468,75 @@ vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned 
     return result;
 }
 
-void fonctions::interpretation(unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
-    //faire un vecteur de carte avec l'appel à getCartesActivables
-    //recuperer les cartes rouges dans getCartesActivables et les activer dans le sens inverse du jeu
-    //recuperer les cartes bleus dans getCartesActivables et les activer
-    //recuperer les cartes vertes dans getCartesActivables et les activer
-    //recuperer les cartes violettes dans getCartesActivables et les activer
+void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
+    //pour les cartes rouges : faire le tour des joueurs dans le sens inverse de ordre et pour chaque joueur, on prendre ses cartes rouges activables et on les active
+    //pour les cartes bleues : faire le tour des joueurs dans le sens ordre courant et pour chaque joueur, on recupere ses cartes bleues activables et on les active
+    //pour les cartes vertes : le joueur courant subit une recherche de cartesActivables sur ses cartes de couleur verte et les cartes activables sont activees
+    //pour les cartes violettes : le joueur courant subit une recherche de cartesActivables sur ses cartes de couleur violette et les cartes activables sont activees
+
+    vector<Joueur*>::iterator it;
+    it=find(Controleur::getControleur().getJeu()->getJoueursList().begin(), Controleur::getControleur().getJeu()->getJoueursList().end(),currentJoueur);
+    int place=-1;
+    if (it==Controleur::getControleur().getJeu()->getJoueursList().end())
+    {
+        throw ControleurException("Joueur impossible a indexer !");
+    }
+    else //On récupère sa place relative
+    {
+        place=it-Controleur::getControleur().getJeu()->getJoueursList().begin();
+    }
+    int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
+    bool sens=Controleur::getControleur().getSens();
+
+
+
+
+
+
+    //cartes rouges
+    if (sens) //Si on est dans le sens horaire, on part dans le sens antihoraire à partir du joueur en cours
+    {
+        int i=place-1;
+        if(i<0) i+=nbJoueurs;
+        while (i!=place)
+        {
+            //operations sur les cartes rouges du joueur i
+            vector<Carte*> beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            {
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
+            }
+            i--;
+            if(i<0) i+=nbJoueurs;
+        }
+    }
+    else //Sinon l'inverse
+    {
+        int i=place+1;
+        if(i>nbJoueurs-1) i-=nbJoueurs;
+        while (i!=place)
+        {
+            //operations sur les cartes rouges du joueur i
+            vector<Carte*> beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            {
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
+            }
+            i++;
+            if(i>nbJoueurs-1) i-=nbJoueurs;
+        }
+    }
+
+
+    //cartes bleues
+
+
+
+    //cartes vertes
+
+
+
+    //cartes violettes
 }
 
 

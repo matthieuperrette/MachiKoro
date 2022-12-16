@@ -44,7 +44,7 @@ namespace fonctions {
 
     vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);
 
-    void interpretation(unsigned int& desResult);
+    void interpretation(Joueur* currentJoueur, unsigned int& desResult);
 
     //void buyingManager(Joueur* currentJoueur);
 
