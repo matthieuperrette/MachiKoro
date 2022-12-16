@@ -94,13 +94,14 @@ void Controleur::libererControleur() {
 Controleur::Handler Controleur::handler = Handler();
 
 int Controleur::runPartie(){
-    /*bool termine=false;
+    bool termine=false;
+    /*
     while (!termine)
     {
 
     }*/
     for (int i=0; i<jeu->getNbJoueurs();i++)
-        runTour(&jeu->getJoueur(i));
+        runTour(&jeu->getJoueur(i), termine);
     return 0;
 }
 
@@ -113,12 +114,12 @@ void Controleur::afficherJeu() {
 
 
 
-int Controleur::runTour(Joueur* currentJoueur){
+int Controleur::runTour(Joueur* currentJoueur,bool& termine){
 
     /*
      * Un tour (dans JeuClassique) c'est :
      * Vérifier les monuments du joueur et savoir comment les activer
-     * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
+     * Lancer les des selon la configuration qui est possible
      * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
         Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
      * Interpreter le resultat des des et faire les changements par activation des effets

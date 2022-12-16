@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+#include "Controleur.h"
 class Carte;
 class Joueur;
-class Controleur;
+
 
 namespace fonctions {
 

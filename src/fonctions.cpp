@@ -374,6 +374,44 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
     //Si le joueur a la carte parc d'attraction alors afficher l'addition et proposer de relancer 1 fois
     //Sinon afficher l'addition simplement
     //retourner l'addition
+    unsigned int addition=0;
+    if (!currentJoueur) throw ControleurException("Aucun joueur n'est saisi pour le lancement de des");
+    string carte="Gare";
+    if (currentJoueur->getDes()==1) //Si le joueur n'a pas la carte Gare
+    {
+        cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
+        string choix;
+        while (!(cin >> choix) || choix!="L") {
+            cout << "Entrez L puis ENTREE pour lancer le des...\n";
+            cin.clear();
+            cin.ignore(255, '\n');
+        }
+        addition=Controleur::getControleur().getJeu()->lancerDe();
+    }
+    else //Si le joueur a la carte gare (ou toute autre carte qui lui a permis d'augmenter son nombre de des), on lui propose de lancer 1 ou 2 ou getDes des
+    {
+        cout << "\n\n" << "Combien de des desirez vous lancer ? Vous en avez "<< currentJoueur->getDes()<<" :\n";
+        int choix2=0;
+        while (!(cin >> choix2) || choix2<1 || choix2>currentJoueur->getDes()) {
+            cout << "Erreur ! Votre choix doit etre compris entre 1 et "<<currentJoueur->getDes();
+            cin.clear();
+            cin.ignore(255, '\n');
+        }
+        cout << "\n\n" << "Entrez L puis ENTREE pour lancer le(s) des...\n";
+        string choix;
+        while (!(cin >> choix) || choix!="L") {
+            cout << "Entrez L puis ENTREE pour lancer le des...\n";
+            cin.clear();
+            cin.ignore(255, '\n');
+        }
+        for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
+        {
+            srand((unsigned)time(NULL));
+            addition+=Controleur::getControleur().getJeu()->lancerDe();
+        }
+    }
+
+    //ETAPE D'AJOUT DE SUSPENSE
 }
 
 vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult){
@@ -391,4 +429,5 @@ void fonctions::interpretation(unsigned int& desResult){ //interprete le resulta
 void fonctions::buyingManager(Joueur* currentJoueur){
     //Avec le budget du joueur, buyingManager gere les entrees sorties permettant l'achat des etablissements
     //Il se charge ensuite d'effectuer le transfert des cartes depuis le plateau vers le paquet du joueur (faire attention aux editions hasardeuses : des transferts dans l'autre sens sont possibles)
+    //ATTENTION QUAND ON ACHETE GARE ON AUGMENTE SIMPLEMENT LE GETDES DU JOUEUR
 }

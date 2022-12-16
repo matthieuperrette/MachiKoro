@@ -59,7 +59,7 @@ public :
     Jeu* getJeu() const {return jeu;}
     int runPartie();
     void afficherJeu();
-    int runTour(Joueur* currentJoueur);
+    int runTour(Joueur* currentJoueur, bool& termine);
     //methodes publiques//
 };
 
