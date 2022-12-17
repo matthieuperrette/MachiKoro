@@ -404,7 +404,7 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
     {
         cout << "\n\n" << "Combien de des desirez vous lancer ? Vous en avez "<< currentJoueur->getDes()<<" :\n";
         while (!(cin >> choix2) || choix2<1 || choix2>currentJoueur->getDes()) {
-            cout << "Erreur ! Votre choix doit etre compris entre 1 et "<<currentJoueur->getDes();
+            cout << "Erreur ! Votre choix doit etre compris entre 1 et "<<currentJoueur->getDes()<<"\n";
             cin.clear();
             cin.ignore(255, '\n');
         }
@@ -636,13 +636,84 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     }
 }
 
+vector<Carte*> fonctions::affichageCartesAchetables(Joueur* currentJoueur){
+    vector<Carte*> result;
+    int cpt=1;
+    cout << "\n//********AFFICHAGE CARTES ACHETABLES********//\n";
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    unsigned int budget=currentJoueur->getMoney();
+    for (auto p:Controleur::getControleur().getJeu()->getPaquetsNonVidesPlateau())
+    {
+        Carte* current=&(p->getCarte(0));
+        string currentName=current->getNom();
+        if(current->getPrix()<=budget && !((current->getCouleur()==Couleur::monument || current->getCouleur()==Couleur::violet)&&(currentJoueur->getPaquet().is_In(currentName))))
+        {
+                result.push_back(current);
+                cout <<"| "<<cpt<<" | NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
+                cout << "Activation : ";
+                if (current->getCouleur()!=Couleur::monument)
+                {
+                    for (auto i : current->getActivation())
+                        cout << i<<" ";
+                }
+                cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
+                cpt++;
+
+        }
+    }
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    cout << "\n";
 
 
-/*
+    return result;
+}
+
+int fonctions::transfert(Joueur* currentJoueur){
+
+}
+
+
 void fonctions::buyingManager(Joueur* currentJoueur){
     //Avec le budget du joueur, buyingManager gere les entrees sorties permettant l'achat des etablissements
     //Il se charge ensuite d'effectuer le transfert des cartes depuis le plateau vers le paquet du joueur (faire attention aux editions hasardeuses : des transferts dans l'autre sens sont possibles)
     //ATTENTION QUAND ON ACHETE GARE ON AUGMENTE SIMPLEMENT LE GETDES DU JOUEUR
+
+
+    //Affichage des cartes achetables par le joueur et numerotation de celles ci
+    //Entree de la carte a acheter
+    //Transfert : attention, si le joueur achete une carte dont le nom est Gare alors on incremente le nombre de des du joueur
+    //Affichage d'un récapitualif de l'achat
+
+
+    //AFFICHAGE
+    vector<Carte*> cartesAchetables=affichageCartesAchetables(currentJoueur);
+
+    if (!cartesAchetables.empty())
+    {
+        //ENTREE DE LA CARTE A ACHETER
+        cout << "\n\n" << "Veuillez entrer le numero de la carte que vous desirez acheter dans la liste ci dessus (POUR PASSER VOTRE TOUR ENTREZ 0) :\n";
+        int choix;
+        while (!(cin >> choix) || choix<0 || choix>cartesAchetables.size()) {
+            cout << "Veuillez entrer une valeur entre 0 et "<<cartesAchetables.size() <<"!\n";
+            cin.clear();
+            cin.ignore(255, '\n');
+        }
+        if (choix!=0)
+        {
+            string carteSelected=cartesAchetables[choix-1]->getNom();
+            if (carteSelected=="Gare")
+                currentJoueur->changerDes(2);
+            //TRANSFERT
+            Carte* carteTransfered=Controleur::getControleur().getJeu()->retirerCartePlateau(carteSelected);
+            currentJoueur->ajouterCarte(carteTransfered);
+            currentJoueur->changerMoney(currentJoueur->getMoney()-carteTransfered->getPrix());
+
+            //RECAP TRANSFERT
+            cout << "RECAPITULATIF : " << currentJoueur->getPseudo()<<" vient d'acheter "<<carteSelected << endl;
+        }
+    }
+    else
+        cout << "\nLe joueur ne peut acheter aucune carte !\n";
+
 }
 
- */

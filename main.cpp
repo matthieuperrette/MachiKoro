@@ -753,12 +753,17 @@ int main() {
 	}
 	*/
 
-    srand((unsigned)time(NULL));
+    try {
+        srand((unsigned)time(NULL));
 
-    fonctions::screenInit();
-	Controleur::getControleur().runPartie();
-	fonctions::screenStop();
-	return 0;
+        fonctions::screenInit();
+        Controleur::getControleur().runPartie();
+        fonctions::screenStop();
+        return 0;
+    }
+    catch (PaquetException& e) {
+        cout << e.getInfo() << "\n";
+    }
 }
 
 
