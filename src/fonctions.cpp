@@ -367,7 +367,7 @@ void fonctions::screenStop() {
 
 
 
-unsigned int fonctions::lancementDes(Joueur* currentJoueur){
+unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
     //Verifier si carte gare alors proposer 1 ou 2 dès
     //Sinon proposer de lancer juste
     //Lancer le nombre de des choisi
@@ -378,9 +378,18 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
     //retourner l'addition
     unsigned int addition=0;
     if (!currentJoueur) throw ControleurException("La carte a retirer n'existe pas !");
-    string carte="Gare";
+    string carte;
+    string carte2="Parc d'attractions";
+    bool aParcAttractions=currentJoueur->getPaquet().is_In(carte2);
     string choix;
     int choix2=0;
+    vector<unsigned int> historique;
+    vector<unsigned int>::iterator finder;
+
+
+
+
+
     if (currentJoueur->getDes()==1) //Si le joueur n'a pas la carte Gare
     {
         cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
@@ -406,14 +415,21 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
             cin.clear();
             cin.ignore(255, '\n');
         }
+        srand((unsigned)time(NULL));
         for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
         {
             srand((unsigned)time(NULL));
-            addition+=Controleur::getControleur().getJeu()->lancerDe();
+            unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
+            finder= find(historique.begin(),historique.end(),result);
+            if (finder!=historique.end() && aParcAttractions)
+                doubleDes=true;
+            historique.push_back(result);
+            addition+=result;
         }
     }
     sleep(3);
-    cout << "SCORE OBTENU : " << addition;
+    cout << "SCORE OBTENU : " << addition <<endl;
+    cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n":"");
     carte="Tour radio";
     string choix3;
     if (currentJoueur->getPaquet().is_In(carte)) //Si le joueur a la tour radio alors on lui propose de rejouer, sinon on arrête et on renvoie le score
@@ -440,18 +456,26 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur){
             }
             else
             {
-                for (int j=0; j!=choix2; j++) //On lance le nombre de des choisi
+                srand((unsigned)time(NULL));
+                for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
                 {
-                    srand((unsigned)time(NULL));
-                    addition+=Controleur::getControleur().getJeu()->lancerDe();
+                    unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
+                    finder= find(historique.begin(),historique.end(),result);
+                    if (finder!=historique.end() && aParcAttractions)
+                        doubleDes=true;
+                    historique.push_back(result);
+                    addition+=result;
                 }
             }
             sleep(3);
             cout << "SCORE OBTENU : " << addition;
+            cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n":"");
         }
     }
     return addition;
 }
+
+
 
 
 vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult){
@@ -460,7 +484,7 @@ vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned 
     vector<Carte*>::iterator it;
     for (it=vecteur.begin();it!=vecteur.end();it++) //Pour chaque carte dans le vecteur donne, on regarde si la carte est activable avec desResult
     {
-        if(find(it.operator*()->getActivation().begin(),it.operator*()->getActivation().end(),desResult)!=it.operator*()->getActivation().end())
+        if(it.operator*()->isActivable(desResult))
         {
             result.push_back(*it); //Si la carte est activable, on la push
         }
@@ -500,17 +524,20 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
 
 
 
+
     //cartes rouges
     if (sens) //Si on est dans le sens horaire, on part dans le sens antihoraire à partir du joueur en cours
     {
         i=place-1;
         if(i<0) i+=nbJoueurs;
+        //On ne run que pour les autres joueurs et non le courant
         while (i!=place)
         {
             //operations sur les cartes rouges du joueur i
             beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
+                cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
             }
             i--;
@@ -521,12 +548,14 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     {
         i=place+1;
         if(i>nbJoueurs-1) i-=nbJoueurs;
+        //On ne run que pour les autres joueurs et non le courant
         while (i!=place)
         {
             //operations sur les cartes rouges du joueur i
             beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
+                cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
             }
             i++;
@@ -542,32 +571,50 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     {
         i=place+1;
         if(i>nbJoueurs-1) i-=nbJoueurs;
+        //On run pour tous les autres joueurs
         while (i!=place)
         {
             //operations sur les cartes bleues du joueur i
             beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
+                cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
             }
             i++;
             if(i>nbJoueurs-1) i-=nbJoueurs;
+        }
+        //On run aussi pour notre joueur courant
+        beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+        for (auto j : getCartesActivables(beforeFiltre,desResult))
+        {
+            cout << j->getNom() << "\n";
+            j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
         }
     }
     else
     {
         i=place-1;
         if(i<0) i+=nbJoueurs;
+        //On run pour tous les autres joueurs
         while (i!=place)
         {
             //operations sur les cartes bleues du joueur i
             beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
+                cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
             }
             i--;
             if(i<0) i+=nbJoueurs;
+        }
+        //On run aussi pour notre joueur courant
+        beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+        for (auto j : getCartesActivables(beforeFiltre,desResult))
+        {
+            cout << j->getNom() << "\n";
+            j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
         }
     }
 
@@ -579,6 +626,7 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::vert);
     for (auto j : getCartesActivables(beforeFiltre,desResult))
     {
+        cout << j->getNom() << "\n";
         j->runEffect(currentJoueur);
     }
 
@@ -587,6 +635,7 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::violet);
     for (auto j : getCartesActivables(beforeFiltre,desResult))
     {
+        cout << j->getNom() << "\n";
         j->runEffect(currentJoueur, Controleur::getControleur().getJeu()->getJoueursList());
     }
 }

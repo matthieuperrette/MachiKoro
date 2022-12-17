@@ -95,13 +95,19 @@ Controleur::Handler Controleur::handler = Handler();
 
 int Controleur::runPartie(){
     bool termine=false;
-    jeu->getJoueur(0).changerDes(2);
-    string carte="Tour radio";
-    Carte* test=jeu->retirerCartePlateau(carte);
+    bool doubleDes;
+    string nomCarte="Parc d'attractions";
+    Carte* test=jeu->retirerCartePlateau(nomCarte);
     jeu->getJoueur(0).ajouterCarte(test);
+    jeu->getJoueur(0).changerDes(2);
     while (!termine)
     {
-        runTour(&jeu->getJoueur(0), termine); //ATTENTION IL FAUT CHANGER LE 0 ICI
+        doubleDes= true;
+        while (doubleDes)
+        {
+            doubleDes= false;
+            runTour(&jeu->getJoueur(0), termine, doubleDes); //ATTENTION IL FAUT CHANGER LE 0 ICI
+        }
     }
     return 0;
 }
@@ -115,7 +121,7 @@ void Controleur::afficherJeu() {
 
 
 
-int Controleur::runTour(Joueur* currentJoueur,bool& termine){
+int Controleur::runTour(Joueur* currentJoueur,bool& termine, bool& doubleDes){
 
     /*
      * Un tour (dans JeuClassique) c'est :
@@ -126,13 +132,15 @@ int Controleur::runTour(Joueur* currentJoueur,bool& termine){
      * Interpreter le resultat des des et faire les changements par activation des effets
         (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
      * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
-     * Enregistrer les achats et faire les modifications
+     * Enregistrer les achats et faire les modifications (QUAND ON ACHETE DES MONUMENTS : FAIRE LES VERIFS ET MODIFICATIONS : notamment pour l'augmentation des dès)
      * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
      */
-    //afficherJeu();
-    unsigned int desResult=fonctions::lancementDes(currentJoueur);
+    cout << "//***********************************************//"<< endl;
+    cout << "//************C'EST AU TOUR DE "<< currentJoueur->getPseudo()<< "************//" << endl;
+    unsigned int desResult=fonctions::lancementDes(currentJoueur, doubleDes);
+    cout << endl;
     fonctions::interpretation(currentJoueur, desResult);
-    //jeu->afficherPlateau();
+    afficherJeu();
     //fonctions::buyingManager(currentJoueur);
     if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())
     { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true

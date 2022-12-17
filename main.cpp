@@ -754,7 +754,9 @@ int main() {
 	}
 	*/
 
-	fonctions::screenInit();
+    srand((unsigned)time(NULL));
+
+    fonctions::screenInit();
 	Controleur::getControleur().runPartie();
 	fonctions::screenStop();
 	return 0;

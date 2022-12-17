@@ -39,7 +39,7 @@ namespace fonctions {
     void screenInit();
     void screenStop();
 
-    unsigned int lancementDes(Joueur* currentJoueur);
+    unsigned int lancementDes(Joueur* currentJoueur,bool& doubleDes);
 
 
     vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);

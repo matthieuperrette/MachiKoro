@@ -69,6 +69,17 @@ ostream& operator<<(ostream& f, const Carte& c) {
     return f;
 }
 
+
+bool Carte::isActivable(int checkValue) const{
+    auto it=find(activation.begin(),activation.end(),checkValue);
+    if (it!=activation.end())
+        return true;
+    else
+        return false;
+}
+
+
+
 int Carte::runEffect(Joueur* j1) {
     int retour;
     string centre = "Centre commercial";
