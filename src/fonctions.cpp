@@ -468,11 +468,18 @@ vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned 
     return result;
 }
 
+
+
+
+
 void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
     //pour les cartes rouges : faire le tour des joueurs dans le sens inverse de ordre et pour chaque joueur, on prendre ses cartes rouges activables et on les active
     //pour les cartes bleues : faire le tour des joueurs dans le sens ordre courant et pour chaque joueur, on recupere ses cartes bleues activables et on les active
     //pour les cartes vertes : le joueur courant subit une recherche de cartesActivables sur ses cartes de couleur verte et les cartes activables sont activees
     //pour les cartes violettes : le joueur courant subit une recherche de cartesActivables sur ses cartes de couleur violette et les cartes activables sont activees
+
+
+
 
     vector<Joueur*>::iterator it;
     it=find(Controleur::getControleur().getJeu()->getJoueursList().begin(), Controleur::getControleur().getJeu()->getJoueursList().end(),currentJoueur);
@@ -487,8 +494,8 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     }
     int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
     bool sens=Controleur::getControleur().getSens();
-
-
+    vector<Carte*> beforeFiltre;
+    int i;
 
 
 
@@ -496,12 +503,12 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     //cartes rouges
     if (sens) //Si on est dans le sens horaire, on part dans le sens antihoraire à partir du joueur en cours
     {
-        int i=place-1;
+        i=place-1;
         if(i<0) i+=nbJoueurs;
         while (i!=place)
         {
             //operations sur les cartes rouges du joueur i
-            vector<Carte*> beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
@@ -512,12 +519,12 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     }
     else //Sinon l'inverse
     {
-        int i=place+1;
+        i=place+1;
         if(i>nbJoueurs-1) i-=nbJoueurs;
         while (i!=place)
         {
             //operations sur les cartes rouges du joueur i
-            vector<Carte*> beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
             for (auto j : getCartesActivables(beforeFiltre,desResult))
             {
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
@@ -528,15 +535,60 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     }
 
 
+
+
     //cartes bleues
+    if (sens)
+    {
+        i=place+1;
+        if(i>nbJoueurs-1) i-=nbJoueurs;
+        while (i!=place)
+        {
+            //operations sur les cartes bleues du joueur i
+            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            {
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
+            }
+            i++;
+            if(i>nbJoueurs-1) i-=nbJoueurs;
+        }
+    }
+    else
+    {
+        i=place-1;
+        if(i<0) i+=nbJoueurs;
+        while (i!=place)
+        {
+            //operations sur les cartes bleues du joueur i
+            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            {
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
+            }
+            i--;
+            if(i<0) i+=nbJoueurs;
+        }
+    }
+
+
 
 
 
     //cartes vertes
-
+    beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::vert);
+    for (auto j : getCartesActivables(beforeFiltre,desResult))
+    {
+        j->runEffect(currentJoueur);
+    }
 
 
     //cartes violettes
+    beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::violet);
+    for (auto j : getCartesActivables(beforeFiltre,desResult))
+    {
+        j->runEffect(currentJoueur, Controleur::getControleur().getJeu()->getJoueursList());
+    }
 }
 
 
