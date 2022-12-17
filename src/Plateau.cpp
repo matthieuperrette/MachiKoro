@@ -244,15 +244,18 @@ void Plateau::afficherPlateau() const {
     cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
     for (auto p : cartes)
     {
-        Carte* current=&(p->getCarte(0));
-        cout <<"| NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
-        cout << "Activation : ";
-        if (current->getCouleur()!=Couleur::monument)
+        if (!p->getContener().empty())
         {
-            for (auto i : current->getActivation())
-                cout << i<<" ";
+            Carte* current=&(p->getCarte(0));
+            cout <<"| NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
+            cout << "Activation : ";
+            if (current->getCouleur()!=Couleur::monument)
+            {
+                for (auto i : current->getActivation())
+                    cout << i<<" ";
+            }
+            cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
         }
-        cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
     }
     cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 

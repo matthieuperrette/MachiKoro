@@ -46,6 +46,10 @@ namespace fonctions {
 
     void interpretation(Joueur* currentJoueur, unsigned int& desResult);
 
-    //void buyingManager(Joueur* currentJoueur);
+    vector<Carte*> affichageCartesAchetables(Joueur* currentJoueur);
+
+    int transfert(Joueur* currentJoueur);
+
+    void buyingManager(Joueur* currentJoueur);
 
 }
