@@ -15,7 +15,6 @@
 using namespace std;
 
 int main() {
-	srand((unsigned)time(NULL));
 	/*
 	//srand((unsigned)time(NULL));
 	//test de vecteurs
