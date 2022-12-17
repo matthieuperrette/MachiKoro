@@ -398,7 +398,6 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
             cin.clear();
             cin.ignore(255, '\n');
         }
-        srand((unsigned)time(NULL));
         addition=Controleur::getControleur().getJeu()->lancerDe();
     }
     else //Si le joueur a la carte gare (ou toute autre carte qui lui a permis d'augmenter son nombre de des), on lui propose de lancer 1 ou 2 ou getDes des
@@ -415,10 +414,8 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
             cin.clear();
             cin.ignore(255, '\n');
         }
-        srand((unsigned)time(NULL));
         for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
         {
-            srand((unsigned)time(NULL));
             unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
             finder= find(historique.begin(),historique.end(),result);
             if (finder!=historique.end() && aParcAttractions)
@@ -451,12 +448,10 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
             }
             if (currentJoueur->getDes()==1)
             {
-                srand((unsigned)time(NULL));
                 addition=Controleur::getControleur().getJeu()->lancerDe();
             }
             else
             {
-                srand((unsigned)time(NULL));
                 for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
                 {
                     unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
@@ -506,15 +501,16 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
 
 
     vector<Joueur*>::iterator it;
-    it=find(Controleur::getControleur().getJeu()->getJoueursList().begin(), Controleur::getControleur().getJeu()->getJoueursList().end(),currentJoueur);
+    vector<Joueur*> joueursList=Controleur::getControleur().getJeu()->getJoueursList();
+    it=find(joueursList.begin(), joueursList.end(),currentJoueur);
     int place=-1;
-    if (it==Controleur::getControleur().getJeu()->getJoueursList().end())
+    if (it==joueursList.end())
     {
         throw ControleurException("Joueur impossible a indexer !");
     }
     else //On récupère sa place relative
     {
-        place=it-Controleur::getControleur().getJeu()->getJoueursList().begin();
+        place=it-joueursList.begin();
     }
     int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
     bool sens=Controleur::getControleur().getSens();

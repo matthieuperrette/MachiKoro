@@ -96,17 +96,26 @@ Controleur::Handler Controleur::handler = Handler();
 int Controleur::runPartie(){
     bool termine=false;
     bool doubleDes;
-    string nomCarte="Parc d'attractions";
-    Carte* test=jeu->retirerCartePlateau(nomCarte);
-    jeu->getJoueur(0).ajouterCarte(test);
-    jeu->getJoueur(0).changerDes(2);
+    int i=0;
+    bool sensUtile=Controleur::getControleur().getSens();
+    int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
     while (!termine)
     {
         doubleDes= true;
         while (doubleDes)
         {
             doubleDes= false;
-            runTour(&jeu->getJoueur(0), termine, doubleDes); //ATTENTION IL FAUT CHANGER LE 0 ICI
+            runTour(&jeu->getJoueur(i), termine, doubleDes);
+        }
+        if (sensUtile) //Si horaire
+        {
+            i++;
+            if (i==nbJoueurs) i-=nbJoueurs;
+        }
+        else //Si anti horaire
+        {
+            i--;
+            if (i<0) i+=nbJoueurs;
         }
     }
     return 0;
