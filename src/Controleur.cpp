@@ -94,13 +94,21 @@ void Controleur::libererControleur() {
 Controleur::Handler Controleur::handler = Handler();
 
 int Controleur::runPartie(){
-    /*bool termine=false;
+    bool termine=false;
+    bool doubleDes;
+    string nomCarte="Parc d'attractions";
+    Carte* test=jeu->retirerCartePlateau(nomCarte);
+    jeu->getJoueur(0).ajouterCarte(test);
+    jeu->getJoueur(0).changerDes(2);
     while (!termine)
     {
-
-    }*/
-    for (int i=0; i<jeu->getNbJoueurs();i++)
-        runTour(&jeu->getJoueur(i));
+        doubleDes= true;
+        while (doubleDes)
+        {
+            doubleDes= false;
+            runTour(&jeu->getJoueur(0), termine, doubleDes); //ATTENTION IL FAUT CHANGER LE 0 ICI
+        }
+    }
     return 0;
 }
 
@@ -113,25 +121,32 @@ void Controleur::afficherJeu() {
 
 
 
-int Controleur::runTour(Joueur* currentJoueur){
-    afficherJeu();
-    cout << "C'est au tour de " << currentJoueur->getPseudo() << endl;
-    return 0;
+int Controleur::runTour(Joueur* currentJoueur,bool& termine, bool& doubleDes){
 
-
-    //GERER L'EFFet de centre commercial dans les runEffect par Matthieu
-    /*Un tour (dans JeuClassique) c'est :
+    /*
+     * Un tour (dans JeuClassique) c'est :
      * Vérifier les monuments du joueur et savoir comment les activer
-     * Lancer les des selon la configuration qui est possible (si Gare dans paquet joueur alors on propose de lancer deux des)
+     * Lancer les des selon la configuration qui est possible
      * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
-         Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
+        Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
      * Interpreter le resultat des des et faire les changements par activation des effets
-     * (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
+        (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
      * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
-     * Enregistrer les achats et faire les modifications
+     * Enregistrer les achats et faire les modifications (QUAND ON ACHETE DES MONUMENTS : FAIRE LES VERIFS ET MODIFICATIONS : notamment pour l'augmentation des dès)
      * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
      */
-
+    cout << "//***********************************************//"<< endl;
+    cout << "//************C'EST AU TOUR DE "<< currentJoueur->getPseudo()<< "************//" << endl;
+    unsigned int desResult=fonctions::lancementDes(currentJoueur, doubleDes);
+    cout << endl;
+    fonctions::interpretation(currentJoueur, desResult);
+    afficherJeu();
+    //fonctions::buyingManager(currentJoueur);
+    if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())
+    { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true
+        termine=true;
+    }
+    return 0;
 }
 
 //methodes publiques//

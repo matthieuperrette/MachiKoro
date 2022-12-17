@@ -754,10 +754,12 @@ int main() {
 	}
 	*/
 
-	fonctions::screenInit();
-	int back_value = Controleur::getControleur().runPartie();
+    srand((unsigned)time(NULL));
+
+    fonctions::screenInit();
+	Controleur::getControleur().runPartie();
 	fonctions::screenStop();
-	return back_value;
+	return 0;
 }
 
 

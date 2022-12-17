@@ -3,6 +3,7 @@
 class Carte;
 class Joueur;
 
+
 namespace fonctions {
 
 	//fonction qui renvoie un vecteur avec un pointeur sur chaque carte de l'edition classique
@@ -37,4 +38,14 @@ namespace fonctions {
 
     void screenInit();
     void screenStop();
+
+    unsigned int lancementDes(Joueur* currentJoueur,bool& doubleDes);
+
+
+    vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);
+
+    void interpretation(Joueur* currentJoueur, unsigned int& desResult);
+
+    //void buyingManager(Joueur* currentJoueur);
+
 }

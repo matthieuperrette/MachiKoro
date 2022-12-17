@@ -69,6 +69,7 @@ public:
 	vector<int> getActivation() const { return activation; }
 	string getNom() const { return nom; }
 	Type getType() const { return type; }
+    bool isActivable(int checkValue) const;
 
 	int runEffect(Joueur* j1);
 	int runEffect(Joueur* j1, Joueur* j2);
