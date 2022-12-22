@@ -13,13 +13,13 @@
 //Structures et classes necessaires a la classe principale//
 class ControleurException {
 public:
-    ControleurException(const string& i) :info(i) {}
-    string getInfo() const { return info; }
+    ControleurException(const std::string& i) :info(i) {}
+    std::string getInfo() const { return info; }
 private:
-    string info;
+    std::string info;
 };
 
-enum class Edition {Classique, Marina, GreenValley, Deluxe};
+enum class Edition { Classique, Marina, GreenValley, Deluxe };
 //Structures et classes necessaires a la classe principale//
 
 
@@ -27,40 +27,44 @@ enum class Edition {Classique, Marina, GreenValley, Deluxe};
 
 
 class Controleur {
-private :
+private:
     //attributs//
     bool sens; //Si sens horaire -> =true sinon =false
     Edition edition;
-    Jeu* jeu; //à voir si on garde ça sous cette forme
+    Jeu* jeu; //a voir si on garde ca sous cette forme
     //attributs//
 
     //constructeurs et destructeurs//
     Controleur();
     ~Controleur();
-    Controleur(const Controleur& controleur)=delete;
-    const Controleur& operator=(const Controleur& controleur)=delete;
+    Controleur(const Controleur& controleur) = delete;
+    const Controleur& operator=(const Controleur& controleur) = delete;
     //constructeurs et destructeurs//
 
     //gestion singleton
-    struct Handler{
+    struct Handler {
         Controleur* controleur;
-        Handler() : controleur(nullptr){}
+        Handler() : controleur(nullptr) {}
         ~Handler() { libererControleur(); }
     };
     static Handler handler;
     //gestion singleton
 
-public :
+public:
     //methodes publiques//
     static Controleur& getControleur();
     static void libererControleur();
 
 
-    Jeu* getJeu() const {return jeu;}
+    Jeu* getJeu() const { return jeu; }
     int runPartie();
     void afficherJeu();
     int runTour(Joueur* currentJoueur, bool& termine, bool& doubleDes);
+<<<<<<< HEAD
     bool getSens() const {return sens;}
+=======
+    bool getSens() const { return sens; }
+>>>>>>> c816a9e (plus d'accent et de namespace std)
     //methodes publiques//
 };
 

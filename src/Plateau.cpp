@@ -15,7 +15,7 @@
 
 
 //**************Structure***************//
-Plateau::Plateau(vector<Carte*> cartesJeu, unsigned int nbJoueurs) {
+Plateau::Plateau(std::vector<Carte*> cartesJeu, unsigned int nbJoueurs) {
     if (cartesJeu.empty())
     {
         throw PlateauException("Creation de Plateau impossible, aucune carte n'est fournie");
@@ -53,7 +53,7 @@ Plateau::Plateau(vector<Carte*> cartesJeu, unsigned int nbJoueurs) {
 }
 
 
-Plateau::Plateau(vector<Carte*>& cartesJeu, Pioche& p, unsigned int nbJoueurs) : pioche(p) {
+Plateau::Plateau(std::vector<Carte*>& cartesJeu, Pioche& p, unsigned int nbJoueurs) : pioche(p) {
     if (cartesJeu.empty())
     {
         throw PlateauException("Creation de Plateau impossible, aucune carte n'est fournie");
@@ -90,7 +90,7 @@ Plateau::~Plateau() {
 
 
 //Espace de definition des get et autres methodes d'utilisation//
-Paquet& Plateau::getPaquetByNom(string& nom) const {
+Paquet& Plateau::getPaquetByNom(std::string& nom) const {
     for (auto p : cartes)
         if (p->getNbCartes() != 0 && p->getCarte(0).getNom() == nom) //Si la premiere carte du paquet a le nom "nom"
         {
@@ -98,12 +98,12 @@ Paquet& Plateau::getPaquetByNom(string& nom) const {
         }
 }
 
-vector<Paquet*> Plateau::getAllPaquets() const {
+std::vector<Paquet*> Plateau::getAllPaquets() const {
     return cartes;
 }
 
-vector<Paquet*> Plateau::getPaquetsNonVides() const {
-    vector<Paquet*> result;
+std::vector<Paquet*> Plateau::getPaquetsNonVides() const {
+    std::vector<Paquet*> result;
     for (auto p : cartes)
         if (p->getNbCartes() != 0)
         {
@@ -119,7 +119,7 @@ unsigned int Plateau::getNbPaquets() const {
 void Plateau::ajouterCarte(Carte* carte) {
 
     //cas ou l'on ajoute un monument 
-    // on souhaite l'ajouter au paquet avec les même monument ou s'il y en a pas on l'ajoute a un paquet vide
+    // on souhaite l'ajouter au paquet avec les meme monument ou s'il y en a pas on l'ajoute a un paquet vide
     if (carte->getCouleur() == Couleur::monument)
     {
         bool ajouter = false;
@@ -131,7 +131,7 @@ void Plateau::ajouterCarte(Carte* carte) {
             {
                 (*it)->ajouterCarte(carte);
                 ajouter = true;
-                cout << *(*it);
+                std::cout << *(*it);
             }
             if ((*it)->getNbCartes() == 0)
             {
@@ -149,7 +149,7 @@ void Plateau::ajouterCarte(Carte* carte) {
 
 
     }
-    //cas ou on ajoute une autre carte on souhaite l'ajouter dans le paquet avec la même carte ou rajouter un paquet s'il n'y a pas de paquet avec cette carte
+    //cas ou on ajoute une autre carte on souhaite l'ajouter dans le paquet avec la meme carte ou rajouter un paquet s'il n'y a pas de paquet avec cette carte
     else
     {
         bool ajouter = false;
@@ -176,7 +176,7 @@ void Plateau::ajouterCarte(Carte* carte) {
 }
 
 
-Carte* Plateau::retirerCarte(string& nom) { //le but est de parvenir a retirer des cartes par nom
+Carte* Plateau::retirerCarte(std::string& nom) { //le but est de parvenir a retirer des cartes par nom
     //Si l'utilisateur choisit de recuperer une carte depuis le paquet nomme
     //Alors on enleve la carte (method retirerCarte())
     //Si le paquet dans lequel on pioche devient vide -> on le supprime puis :
@@ -197,7 +197,7 @@ Carte* Plateau::retirerCarte(string& nom) { //le but est de parvenir a retirer d
 
     //Dans le cas ou c'est un monument qui est retire on souhaite garder le paquet vide pour eviter de remplir le plateau
     if (paquet->getNbCartes() == 0 && couleur != Couleur::monument) {
-        vector<Paquet*>::iterator it;
+        std::vector<Paquet*>::iterator it;
         it = find(cartes.begin(), cartes.end(), paquet);
         if (it != cartes.end())
             cartes.erase(it); //On enleve le paquet vide de notre plateau
@@ -240,12 +240,13 @@ void Plateau::remplirPlateau(bool firstCall) { //Cette fonction est appelee lors
 
 
 void Plateau::afficherPlateau() const {
-    cout << "\n";
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    std::cout << "\n";
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
     for (auto p : cartes)
     {
         if (!p->getContener().empty())
         {
+<<<<<<< HEAD
             Carte* current=&(p->getCarte(0));
             cout <<"| NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
             cout << "Activation : ";
@@ -255,11 +256,22 @@ void Plateau::afficherPlateau() const {
                     cout << i<<" ";
             }
             cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
+=======
+            Carte* current = &(p->getCarte(0));
+            std::cout << "| NOMBRE RESTANT : " << p->getNbCartes() << " | Nom : " << current->getNom() << " | Couleur : " << current->getCouleur() << " | ";
+            std::cout << "Activation : ";
+            if (current->getCouleur() != Couleur::monument)
+            {
+                for (auto i : current->getActivation())
+                    std::cout << i << " ";
+            }
+            std::cout << "| Type : " << current->getType() << " | Prix : " << current->getPrix() << " |" << std::endl;
+>>>>>>> c816a9e (plus d'accent et de namespace std)
         }
     }
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
 
-    cout << "\n";
+    std::cout << "\n";
 }
 
 //Espace de definition des get et autres methodes d'utilisation//
@@ -272,7 +284,7 @@ void Plateau::afficherPlateau() const {
 //****************class Plateau*******************//
 
 
-ostream& operator<<(ostream& f, const Plateau& p) {
+std::ostream& operator<<(std::ostream& f, const Plateau& p) {
     p.afficherPlateau();
     return f;
 }

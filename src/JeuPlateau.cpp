@@ -7,13 +7,13 @@
 
 //------------Classe JeuPlateau----------//
 //Constructeur et Destructeur//
-void JeuPlateau::init(vector<Carte*>& cartes) {
+void JeuPlateau::init(std::vector<Carte*>& cartes) {
     // CREATION DU PLATEAU
     plateau = new Plateau(cartes, nbJoueurs);
     if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }
 }
 
-void JeuPlateau::init(vector<Carte*>& cartes, Pioche& pioche) {
+void JeuPlateau::init(std::vector<Carte*>& cartes,Pioche& pioche) {
     // CREATION DU PLATEAU
     plateau = new Plateau(cartes, pioche, nbJoueurs);
     if (!plateau) { throw JeuException("Attention ! allocation de plateau echouee"); }

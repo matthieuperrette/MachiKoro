@@ -16,7 +16,7 @@
 //------------Classe JeuDeluxe----------//
 class JeuDeluxe : public JeuPioche {
 private:
-    vector<Carte*> cartes;
+    std::vector<Carte*> cartes;
 
     //Contructeur et Destructeur//
     JeuDeluxe();
@@ -43,8 +43,8 @@ public:
     static JeuDeluxe& getJeu();
     static void libererJeu();
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
-    vector<Carte*> getCartes() const override { return cartes; }
+    //Methodes agissant sur les cartes a l'echelle du jeu
+    std::vector<Carte*> getCartes() const override { return cartes; }
 };
 //------------Classe JeuDeluxe----------//
 

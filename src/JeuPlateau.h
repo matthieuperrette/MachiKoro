@@ -26,6 +26,7 @@ public:
     JeuPlateau() { plateau = nullptr; }
     ~JeuPlateau();
 
+<<<<<<< HEAD
     //imp�ratif d'initialise plateau
     void init(vector<Carte*>& cartes);
     void init(vector<Carte*>& cartes, Pioche& pioche);
@@ -34,12 +35,27 @@ public:
     //Methodes agissant sur le plateau � l'echelle du jeu
     Paquet& getPaquetByNomPlateau(string& nom) const override { return plateau->getPaquetByNom(nom); }
     vector<Paquet*> getAllPaquetsPlateau() const override { return plateau->getAllPaquets(); }
+=======
+    //imperatif d'initialise plateau
+    void init(std::vector<Carte*>& cartes);
+    void init(std::vector<Carte*>& cartes, Pioche& pioche);
+
+
+    //Methodes agissant sur le plateau a l'echelle du jeu
+    Paquet& getPaquetByNomPlateau(std::string& nom) const override { return plateau->getPaquetByNom(nom); }
+    std::vector<Paquet*> getAllPaquetsPlateau() const override { return plateau->getAllPaquets(); }
+>>>>>>> c816a9e (plus d'accent et de namespace std)
     unsigned int getNbPaquetsPlateau() const override { return plateau->getNbPaquets(); }
-    vector<Paquet*> getPaquetsNonVidesPlateau() const override { return plateau->getPaquetsNonVides(); }
-    Carte* retirerCartePlateau(string& nom) override { return plateau->retirerCarte(nom); }
+    std::vector<Paquet*> getPaquetsNonVidesPlateau() const override { return plateau->getPaquetsNonVides(); }
+    Carte* retirerCartePlateau(std::string& nom) override { return plateau->retirerCarte(nom); }
     void afficherPlateau() const  override { plateau->afficherPlateau(); }
     void ajouterCartePlateau(Carte* carte) const  override { plateau->ajouterCarte(carte); }
+<<<<<<< HEAD
     unsigned int getNbMonuments() const override {return plateau->getNbMonuments();}
+=======
+    unsigned int getNbMonuments() const override { return plateau->getNbMonuments(); }
+
+>>>>>>> c816a9e (plus d'accent et de namespace std)
 };
 //------------Classe JeuPlateau----------//
 
