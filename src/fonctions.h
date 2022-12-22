@@ -36,25 +36,6 @@ namespace fonctions {
 
     std::vector<Carte*> cartesEditionMarina();
 
-<<<<<<< HEAD
-    void screenInit();
-    void screenStop();
-
-    unsigned int lancementDes(Joueur* currentJoueur,bool& doubleDes);
-
-
-    vector<Carte*> getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult);
-
-    void interpretation(Joueur* currentJoueur, unsigned int& desResult);
-
-    vector<Carte*> affichageCartesAchetables(Joueur* currentJoueur);
-
-    int transfert(Joueur* currentJoueur);
-
-    void buyingManager(Joueur* currentJoueur);
-
-}
-=======
 	void screenInit();
 	void screenStop();
 
@@ -72,4 +53,3 @@ namespace fonctions {
 	void buyingManager(Joueur* currentJoueur);
 
 }
->>>>>>> c816a9e (plus d'accent et de namespace std)

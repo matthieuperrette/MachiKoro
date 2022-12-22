@@ -93,20 +93,6 @@ void Controleur::libererControleur() {
 
 Controleur::Handler Controleur::handler = Handler();
 
-<<<<<<< HEAD
-int Controleur::runPartie(){
-    bool termine=false;
-    bool doubleDes;
-    int i=0;
-    bool sensUtile=Controleur::getControleur().getSens();
-    int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
-    while (!termine)
-    {
-        doubleDes= true;
-        while (doubleDes)
-        {
-            doubleDes= false;
-=======
 int Controleur::runPartie() {
     bool termine = false;
     bool doubleDes;
@@ -119,26 +105,17 @@ int Controleur::runPartie() {
         while (doubleDes)
         {
             doubleDes = false;
->>>>>>> c816a9e (plus d'accent et de namespace std)
             runTour(&jeu->getJoueur(i), termine, doubleDes);
         }
         if (sensUtile) //Si horaire
         {
             i++;
-<<<<<<< HEAD
-            if (i==nbJoueurs) i-=nbJoueurs;
-=======
             if (i == nbJoueurs) i -= nbJoueurs;
->>>>>>> c816a9e (plus d'accent et de namespace std)
         }
         else //Si anti horaire
         {
             i--;
-<<<<<<< HEAD
-            if (i<0) i+=nbJoueurs;
-=======
             if (i < 0) i += nbJoueurs;
->>>>>>> c816a9e (plus d'accent et de namespace std)
         }
     }
     return 0;
@@ -147,43 +124,13 @@ int Controleur::runPartie() {
 
 
 void Controleur::afficherJeu() {
-<<<<<<< HEAD
-    cout << "\n//********AFFICHAGE PLATEAU ET JOUEURS********//\n";
-=======
     std::cout << "\n//********AFFICHAGE PLATEAU ET JOUEURS********//\n";
->>>>>>> c816a9e (plus d'accent et de namespace std)
     jeu->afficherJeu();
     jeu->afficherPlateau();
 }
 
 
 
-<<<<<<< HEAD
-int Controleur::runTour(Joueur* currentJoueur,bool& termine, bool& doubleDes){
-
-    /*
-     * Un tour (dans JeuClassique) c'est :
-     * Vérifier les monuments du joueur et savoir comment les activer
-     * Lancer les des selon la configuration qui est possible
-     * Recuperer la somme des des et faire choix si joueur a la tour radio (garder ou non la combinaison du 1ER LANCER)
-        Si on fait un double aussi : attention à vérifier la présence de la carte parc d'attractions dans le paquet du joueur et dans ce cas lui octroyer un tour en +
-     * Interpreter le resultat des des et faire les changements par activation des effets
-        (On fait d'abord rouge bleu verte puis violette + application des rouges dans le sens inverse de la partie (en fonction de ordre) )
-     * Afficher le plateau et proposer au joueur les achats possibles en les differenciant des impossibles (un seul achat possible)
-     * Enregistrer les achats et faire les modifications (QUAND ON ACHETE DES MONUMENTS : FAIRE LES VERIFS ET MODIFICATIONS : notamment pour l'augmentation des dès)
-     * Verifier le score du joueur courant (tous les monuments sont achetés ?) : a faire dans le runPartie et a considerer en tant que condition d'arret
-     */
-    afficherJeu();
-    cout << "//***********************************************//"<< endl;
-    cout << "//************C'EST AU TOUR DE "<< currentJoueur->getPseudo()<< "************//" << endl;
-    unsigned int desResult=fonctions::lancementDes(currentJoueur, doubleDes);
-    cout << endl;
-    fonctions::interpretation(currentJoueur, desResult);
-    fonctions::buyingManager(currentJoueur);
-    if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size()==jeu->getNbMonuments())
-    { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true
-        termine=true;
-=======
 int Controleur::runTour(Joueur* currentJoueur, bool& termine, bool& doubleDes) {
 
     /*
@@ -208,7 +155,6 @@ int Controleur::runTour(Joueur* currentJoueur, bool& termine, bool& doubleDes) {
     if (currentJoueur->getPaquet().getCarteCouleur(Couleur::monument).size() == jeu->getNbMonuments())
     { //Si le joueur a nb_monuments (attribut de plateau dans Jeu) monuments alors on met termine a true
         termine = true;
->>>>>>> c816a9e (plus d'accent et de namespace std)
     }
     return 0;
 }

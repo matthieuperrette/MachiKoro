@@ -42,14 +42,8 @@ public:
     Paquet& getPaquetByNom(std::string& nom) const;
     std::vector<Paquet*> getAllPaquets() const;
     unsigned int getNbPaquets() const;
-<<<<<<< HEAD
-    unsigned int getNbMonuments() const {return nb_monuments;}
-    vector<Paquet*> getPaquetsNonVides() const;
-    Carte* retirerCarte(string& nom);
-=======
     std::vector<Paquet*> getPaquetsNonVides() const;
     Carte* retirerCarte(std::string& nom);
->>>>>>> c816a9e (plus d'accent et de namespace std)
     void ajouterCarte(Carte* carte);
     void remplirPlateau(bool firstCall);
     void afficherPlateau() const;

@@ -79,11 +79,7 @@ public:
     virtual Carte* retirerCartePlateau(std::string& nom) = 0;
     virtual void afficherPlateau() const = 0;
     virtual void ajouterCartePlateau(Carte* carte) const = 0;
-<<<<<<< HEAD
-    virtual unsigned int getNbMonuments() const =0;
-=======
     virtual unsigned int getNbMonuments() const = 0;
->>>>>>> c816a9e (plus d'accent et de namespace std)
     //Methodes supplementaires
     void afficherJeu();
 };

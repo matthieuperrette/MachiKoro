@@ -70,15 +70,9 @@ std::ostream& operator<<(std::ostream& f, const Carte& c) {
 }
 
 
-<<<<<<< HEAD
-bool Carte::isActivable(int checkValue) const{
-    auto it=find(activation.begin(),activation.end(),checkValue);
-    if (it!=activation.end())
-=======
 bool Carte::isActivable(int checkValue) const {
     auto it = find(activation.begin(), activation.end(), checkValue);
     if (it != activation.end())
->>>>>>> c816a9e (plus d'accent et de namespace std)
         return true;
     else
         return false;

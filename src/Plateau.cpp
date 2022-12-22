@@ -246,17 +246,6 @@ void Plateau::afficherPlateau() const {
     {
         if (!p->getContener().empty())
         {
-<<<<<<< HEAD
-            Carte* current=&(p->getCarte(0));
-            cout <<"| NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
-            cout << "Activation : ";
-            if (current->getCouleur()!=Couleur::monument)
-            {
-                for (auto i : current->getActivation())
-                    cout << i<<" ";
-            }
-            cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
-=======
             Carte* current = &(p->getCarte(0));
             std::cout << "| NOMBRE RESTANT : " << p->getNbCartes() << " | Nom : " << current->getNom() << " | Couleur : " << current->getCouleur() << " | ";
             std::cout << "Activation : ";
@@ -266,7 +255,6 @@ void Plateau::afficherPlateau() const {
                     std::cout << i << " ";
             }
             std::cout << "| Type : " << current->getType() << " | Prix : " << current->getPrix() << " |" << std::endl;
->>>>>>> c816a9e (plus d'accent et de namespace std)
         }
     }
     std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;

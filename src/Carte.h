@@ -70,11 +70,7 @@ public:
     std::vector<int> getActivation() const { return activation; }
     std::string getNom() const { return nom; }
 	Type getType() const { return type; }
-<<<<<<< HEAD
-    bool isActivable(int checkValue) const;
-=======
 	bool isActivable(int checkValue) const;
->>>>>>> c816a9e (plus d'accent et de namespace std)
 
 	int runEffect(Joueur* j1);
 	int runEffect(Joueur* j1, Joueur* j2);

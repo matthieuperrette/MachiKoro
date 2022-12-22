@@ -754,19 +754,6 @@ int main() {
 	}
 	*/
 
-<<<<<<< HEAD
-    try {
-        srand((unsigned)time(NULL));
-
-        fonctions::screenInit();
-        Controleur::getControleur().runPartie();
-        fonctions::screenStop();
-        return 0;
-    }
-    catch (PaquetException& e) {
-        cout << e.getInfo() << "\n";
-    }
-=======
 	try {
 		srand((unsigned)time(NULL));
 
@@ -778,7 +765,6 @@ int main() {
 	catch (PaquetException& e) {
         std::cout << e.getInfo() << "\n";
 	}
->>>>>>> c816a9e (plus d'accent et de namespace std)
 }
 
 

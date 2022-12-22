@@ -60,11 +60,7 @@ public:
     int runPartie();
     void afficherJeu();
     int runTour(Joueur* currentJoueur, bool& termine, bool& doubleDes);
-<<<<<<< HEAD
-    bool getSens() const {return sens;}
-=======
     bool getSens() const { return sens; }
->>>>>>> c816a9e (plus d'accent et de namespace std)
     //methodes publiques//
 };
 
