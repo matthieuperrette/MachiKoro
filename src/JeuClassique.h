@@ -18,7 +18,7 @@
 //------------Classe JeuClassique----------//
 class JeuClassique : public JeuPlateau {
 private:
-    vector<Carte*> cartes;
+    std::vector<Carte*> cartes;
 
     //Constructeur et Destructeur//
     JeuClassique();
@@ -43,7 +43,7 @@ public:
     static void libererJeu();
 
     //Methodes agissant sur les cartes a l'echelle du jeu
-    vector<Carte*> getCartes() const override { return cartes; }
+    std::vector<Carte*> getCartes() const override { return cartes; }
 
     //Methodes agissant sur le plateau a l'echelle du jeu
     Plateau* getPlateau() const { return plateau; }

@@ -7,16 +7,15 @@
 
 void Effet::ajouterPieces(Joueur* j, int nbPieces) {
 	j->changerMoney(j->getMoney() + nbPieces);
-	cout << j->getPseudo() << " a gagne " << nbPieces << " piece(s)" << "\n";
+    std::cout << j->getPseudo() << " a gagne " << nbPieces << " piece(s)" << "\n";
 }
 
 void Effet::enleverPieces(Joueur* j, int nbPieces) {
 	if (j->getMoney() >= nbPieces) {
 		j->changerMoney(j->getMoney() - nbPieces);
-		cout << j->getPseudo() << " a perdu " << nbPieces << " piece(s)" << "\n";
-	}
-	else
-		cout << j->getPseudo() << " a perdu 0 piece(s)" << "\n";
+        std::cout << j->getPseudo() << " a perdu " << nbPieces << " piece(s)" << "\n";
+	}else 
+        std::cout << j->getPseudo() << " a perdu 0 piece(s)" << "\n";
 }
 
 void Effet::volerPieces(Joueur* j1, Joueur* j2, unsigned int pieces) {
@@ -33,12 +32,12 @@ void Effet::volerPieces(Joueur* j1, Joueur* j2, unsigned int pieces) {
 		j1->changerMoney(j1->getMoney() + piecesPrises);
 		j2->changerMoney(0);
 	}
-	cout << j1->getPseudo() << " a pris " << piecesPrises << " piece(s) a " << j2->getPseudo() << "\n";
+    std::cout << j1->getPseudo() << " a pris " << piecesPrises << " piece(s) a " << j2->getPseudo() << "\n";
 }
 
-void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
+void Effet::echangerCarte(Joueur* j1, std::vector<Joueur*> vectJoueur) {
 	if (j1->getPaquet().getCarteType(Type::tour).size() != j1->getPaquet().getContener().size()) {
-		cout << "Vous pouvez echanger une carte" << "\n";
+        std::cout << "Vous pouvez echanger une carte" << "\n";
 		bool terminer = false;
 		int position = fonctions::recupPositionJoueur(j1, vectJoueur);
 		int cpt = 1;
@@ -46,7 +45,7 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 
 		for (auto n : vectJoueur)
 			if (j1 != n) {
-				cout << "Joueur n " << cpt << *n << "\n";
+                std::cout << "Joueur n " << cpt << *n << "\n";
 				cpt++;
 			}
 		Joueur* jChoisi = nullptr;
@@ -55,16 +54,16 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 			if (jChoisi->getPaquet().getCarteType(Type::tour).size() != jChoisi->getPaquet().getContener().size())
 				terminer = true;
 			else
-				cout << "Erreur " << jChoisi->getPseudo() << " n'a pas de carte a echanger";
+                std::cout << "Erreur " << jChoisi->getPseudo() << " n'a pas de carte a echanger";
 		}
 
 
 		Paquet paquetJChoisi = jChoisi->getPaquet();
 		Paquet paquetJ1 = j1->getPaquet();
 
-		cout << "\n" << paquetJChoisi << "\n";
-		cout << "Attention vous ne pouvez pas choisir une carte de type Tour" << "\n";
-		cout << "Choisissez la carte que vous souhaitez prendre" << "\n";
+        std::cout << "\n" << paquetJChoisi << "\n";
+        std::cout << "Attention vous ne pouvez pas choisir une carte de type Tour" << "\n";
+        std::cout << "Choisissez la carte que vous souhaitez prendre" << "\n";
 		Carte* cJChoisi = nullptr;
 		terminer = false;
 		while (!terminer) {
@@ -72,12 +71,12 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 			if (cJChoisi->getType() != Type::tour)
 				terminer = true;
 			else
-				cout << "Erreur la carte choisi est de type tour" << "\n";
+                std::cout << "Erreur la carte choisi est de type tour" << "\n";
 		}
 
-		cout << "\n" << paquetJ1 << "\n";
-		cout << "Attention vous ne pouvez pas choisir une carte de type Tour" << "\n";
-		cout << "Choisissez la carte que vous souhaitez donner" << "\n";
+        std::cout << "\n" << paquetJ1 << "\n";
+        std::cout << "Attention vous ne pouvez pas choisir une carte de type Tour" << "\n";
+        std::cout << "Choisissez la carte que vous souhaitez donner" << "\n";
 		Carte* cJ1 = nullptr;
 		terminer = false;
 		while (!terminer) {
@@ -85,7 +84,7 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 			if (cJ1->getType() != Type::tour)
 				terminer = true;
 			else
-				cout << "Erreur la carte choisi est de type tour" << "\n";
+                std::cout << "Erreur la carte choisi est de type tour" << "\n";
 		}
 
 		jChoisi->retirerCarte(cJChoisi);
@@ -94,15 +93,15 @@ void Effet::echangerCarte(Joueur* j1, vector<Joueur*> vectJoueur) {
 		j1->retirerCarte(cJ1);
 
 		//cout << "\n" << "----------resume-------------" << "\n";
-		cout << j1->getPseudo() << " a pris la carte " << cJChoisi->getNom()
+        std::cout << j1->getPseudo() << " a pris la carte " << cJChoisi->getNom()
 			<< " a " << jChoisi->getPseudo() << " et lui a donner " << cJ1->getNom() << "\n\n";
 	}
 	else
-		cout << "Activation de l'effet impossible " << j1->getPseudo() << " n'a pas de carte a echanger" << "\n";
+        std::cout << "Activation de l'effet impossible " << j1->getPseudo() << " n'a pas de carte a echanger" << "\n";
 }
 
 int Effet::getNbmonumentSaufHotelDeVille(Joueur* j) {
-	vector <Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
+    std::vector <Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
 	for (auto monument : monuments) {
 		if (monument->getNom() == "Hotel de Ville")
 			return monuments.size() - 1;
@@ -113,7 +112,7 @@ int Effet::getNbmonumentSaufHotelDeVille(Joueur* j) {
 
 
 
-int Effet::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
+int Effet::runEffect(Joueur* j1, std::vector<Joueur*> vectJoueur) {
 	//violet
 	//retour = 0 effet effectuer, retour = 1 aucun effet fait et on ne veut pas en faire, retour = -1 pas d'effet trouver
 	if (volePiecesChaqueJoueur) {
@@ -137,7 +136,7 @@ int Effet::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 		int cpt = 1;
 		for (auto n : vectJoueur)
 			if (j1 != n) {
-				cout << "Joueur n " << cpt << *n << "\n";
+                std::cout << "Joueur n " << cpt << *n << "\n";
 				cpt++;
 			}
 		Joueur* jChoisi;
@@ -182,8 +181,8 @@ int Effet::runEffect(Joueur* j1) {
 
 //****************class EffetClassique*******************//*
 
-int EffetClassique::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
-	int retour = Effet::runEffect(j1, vectJoueur);
+int EffetClassique::runEffect(Joueur* j1, std::vector<Joueur*> vectJoueur) {
+	int retour= Effet::runEffect(j1, vectJoueur);
 	return retour;
 }
 
@@ -203,7 +202,7 @@ int EffetClassique::runEffect(Joueur* j1) {
 //****************class EffetClassique*******************//
 
 //********************Fonctions supplementaires**************************//
-ostream& operator<<(ostream& f, const Effet& e) {
+std::ostream& operator<<(std::ostream& f, const Effet& e) {
 	f << e.getDescription();
 	return f;
 }

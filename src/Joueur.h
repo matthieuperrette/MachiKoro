@@ -10,10 +10,10 @@
 //********************Structures et variables necessaires*****************//
 class JoueurException {
 public:
-    JoueurException(const string& i) :info(i) {}
-    string getInfo() const { return info; }
+    JoueurException(const std::string& i) :info(i) {}
+    std::string getInfo() const { return info; }
 private:
-    string info;
+    std::string info;
 };
 //********************Structures et variables necessaires*****************//
 
@@ -21,17 +21,17 @@ private:
 //****************class Joueur*******************//
 class Joueur {
 private:
-    string pseudo;
+    std::string pseudo;
     bool ia;
     Paquet cartes;
-    vector<bool> ferme;
+    std::vector<bool> ferme;
     unsigned int money;
     unsigned int des;
     unsigned int investissement;
 public:
     //Constructeurs et destructeurs//
     Joueur() = delete;
-    Joueur(string pseudo, bool ia, Paquet& c, unsigned int argent, unsigned int des, unsigned int investissement = 0) :
+    Joueur(std::string pseudo, bool ia, Paquet& c, unsigned int argent, unsigned int des, unsigned int investissement = 0) :
         pseudo(pseudo), ia(ia), cartes(c), money(argent), des(des), investissement(investissement) {
         for (auto carte : c.getContener()) {
             ferme.push_back(false);
@@ -46,21 +46,21 @@ public:
 
 
     //Methods de service//
-    string getPseudo() const { return pseudo; }
+    std::string getPseudo() const { return pseudo; }
     bool getIa() const { return ia; }
     const Paquet& getPaquet() const { return cartes; }
     unsigned int getMoney() const { return money; }
     unsigned int getDes() const { return des; }
     int getInvestissement() const { return investissement; }
-    vector<bool> getToutFerme() const { return ferme; }
+    std::vector<bool> getToutFerme() const{ return ferme; }
     bool isFermer(Carte* c);
-    bool isFermer(string& nom);
+    bool isFermer(std::string& nom);
 
     void ajouterCarte(Carte* carte); //Ajoute une carte dans le paquet du joueur
     Carte* retirerCarte(Carte* c); //Retire une carte dans le paquet du joueur et la retourne sous forme de pointeur
-    Carte* retirerCarte(string& nom);
+    Carte* retirerCarte(std::string& nom);
     void fermerOuvrirEtablissement(Carte* c, bool fermer);
-    void fermerOuvrirEtablissement(string& nom, bool fermer);
+    void fermerOuvrirEtablissement(std::string& nom, bool fermer);
     int fermerOuvrirEtablissement(Type type, bool fermer);
 
     void afficherCartes();
@@ -75,7 +75,7 @@ public:
 
     void affichageTemp() {
         for (auto fer : ferme) {
-            cout << fer << "\n";
+            std::cout << fer << "\n";
         }
 
     }
@@ -84,7 +84,7 @@ public:
 
 
 //********************Fonctions supplementaires**************************//
-ostream& operator<<(ostream& f, const Joueur& joueur);
+std::ostream& operator<<(std::ostream& f, const Joueur& joueur);
 //********************Fonctions supplementaires**************************//
 
 

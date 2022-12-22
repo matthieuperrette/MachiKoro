@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Effet.h"
 #include "Carte.h"
-using namespace std;
+//using namespace std;
 class Joueur;
 
 
@@ -18,8 +18,8 @@ protected:
 
 
 public:
-	EffetMarina(string description, unsigned int piecesEnJeu = 0, bool recevoirAvecPort = false,
-		bool recevoirPieceChaqueChampDeFleurs = false, bool volerAvecPort = false,
+    EffetMarina(std::string description, unsigned int piecesEnJeu = 0, bool recevoirAvecPort = false,
+		 bool recevoirPieceChaqueChampDeFleurs = false, bool volerAvecPort = false,
 		bool maisonEdition = false, bool tax = false, bool recevoirPieces = false,
 		bool volePieces = false, bool echangeCarte = false, bool volePiecesChaqueJoueur = false,
 		bool recevoirPiecesNbEtablissement = false, bool choixJoueur = false, Type typeConcerne = Type::champ,
@@ -30,8 +30,8 @@ public:
 	~EffetMarina() = default;
 
 
-
-	int runEffect(Joueur* j1, vector<Joueur*> vectJoueur) override;
+	
+    int runEffect (Joueur* j1, std::vector<Joueur*> vectJoueur) override;
 	int runEffect(Joueur* j1) override;
 	int runEffect(Joueur* j1, Joueur* j2) override;
 
@@ -40,7 +40,7 @@ public:
 //****************class Effet*******************//
 
 //********************Fonctions supplementaires**************************//
-ostream& operator<<(ostream& f, const Effet& e);
+std::ostream& operator<<(std::ostream& f, const Effet& e);
 //********************Fonctions supplementaires**************************//
 
 

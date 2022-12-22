@@ -6,10 +6,10 @@
 //********************Structures et variables necessaires*****************//
 class PaquetException {
 private:
-    string info;
+    std::string info;
 public:
-    PaquetException(const string& i) :info(i) {}
-    string getInfo() const { return info; }
+    PaquetException(const std::string& i) :info(i) {}
+    std::string getInfo() const { return info; }
 };
 //********************Structures et variables necessaires*****************//
 
@@ -18,7 +18,7 @@ public:
 //****************class Paquet*******************//
 class Paquet {
 private:
-    vector<Carte*> cartes;
+    std::vector<Carte*> cartes;
 public:
     Paquet() = default;
     virtual ~Paquet() = default;
@@ -27,25 +27,25 @@ public:
 
     unsigned int getNbCartes() const { return cartes.size(); }
     bool is_In(Carte*);
-    bool is_In(string& nom) const;
+    bool is_In(std::string& nom) const;
     void ajouterCarte(Carte* c) { cartes.push_back(c); }
     //int getNb
-    Carte* retirerCarte(string& nom);
+    Carte* retirerCarte(std::string& nom);
     Carte* retirerCarte(Carte* c); //retirer la carte passe en parametre
     Carte* retirerCarte(); //retirer la derniere carte (sur le paquet)
     Carte& getCarte(size_t i) const { if (!cartes.empty())return *(cartes[i]); else throw PaquetException("Aucune carte contenue dans ce paquet"); } //a voir si on garde/change
-    vector<Carte*> getContener() const { return cartes; } //retourne le conteneur entier de cartes
-    vector<Carte*> getCarteCouleur(Couleur couleur) const;
-    vector<Carte*> getCarteType(Type type) const;
-    vector<Carte*> getCarteActive(int activateur) const;
-    vector<Carte*> getCarteNom(string& nom) const;
+    std::vector<Carte*> getContener() const { return cartes; } //retourne le conteneur entier de cartes
+    std::vector<Carte*> getCarteCouleur(Couleur couleur) const;
+    std::vector<Carte*> getCarteType(Type type) const;
+    std::vector<Carte*> getCarteActive(int activateur) const;
+    std::vector<Carte*> getCarteNom(std::string& nom) const;
 };
 //****************class Paquet*******************//
 
 
 
 //****************Fonctions supplementaires******************//
-ostream& operator<<(ostream& f, const Paquet& p); //Fonction d'affichage d'un paquet
+std::ostream& operator<<(std::ostream& f, const Paquet& p); //Fonction d'affichage d'un paquet
 //****************Fonctions supplementaires******************//
 
 #endif //MINIVILLES_PAQUET_H

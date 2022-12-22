@@ -5,10 +5,10 @@
 //********************Structures et variables necessaires*****************//
 class DeException {
 private:
-    string info;
+    std::string info;
 public:
-    DeException(const string& i) :info(i) {}
-    string getInfo() const { return info; }
+    DeException(const std::string& i) :info(i) {}
+    std::string getInfo() const { return info; }
 };
 //********************Structures et variables necessaires*****************//
 
@@ -26,5 +26,5 @@ public:
 //****************class De*******************//
 
 //****************Fonctions supplementaires******************//
-ostream& operator<<(ostream& f, const De& d);
+std::ostream& operator<<(std::ostream& f, const De& d);
 //****************Fonctions supplementaires******************//

@@ -16,7 +16,7 @@
 //------------Classe JeuMarina----------//
 class JeuMarina : public JeuPioche {
 private:
-    vector<Carte*> cartes;
+    std::vector<Carte*> cartes;
 
     //Constructeur et Destructeur//
     JeuMarina();
@@ -40,7 +40,7 @@ public:
     static void libererJeu();
 
     //Methodes agissant sur les cartes a l'echelle du jeu
-    vector<Carte*> getCartes() const override { return cartes; }
+    std::vector<Carte*> getCartes() const override { return cartes; }
 };
 //------------Classe JeuMarina----------//
 

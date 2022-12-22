@@ -25,7 +25,7 @@ void Joueur::ajouterCarte(Carte* carte) {
         throw JoueurException("La carte a ajouter n'existe pas !");
 }
 Carte* Joueur::retirerCarte(Carte* carte) {
-    vector<Carte*> Cartes = cartes.getContener();
+    std::vector<Carte*> Cartes = cartes.getContener();
     if (carte != nullptr) {
         //cartes.retirerCarte(carte);
         auto itferme = ferme.begin();
@@ -39,14 +39,14 @@ Carte* Joueur::retirerCarte(Carte* carte) {
             ferme.erase(itferme);
         }
     }
-
+        
     else
         throw JoueurException("La carte a retirer n'existe pas !");
     return carte;
 }
 
-Carte* Joueur::retirerCarte(string& nom) {
-    vector<Carte*> Cartes = cartes.getContener();
+Carte* Joueur::retirerCarte(std::string& nom) {
+    std::vector<Carte*> Cartes = cartes.getContener();
     auto itferme = ferme.begin();
     auto it = Cartes.begin();
     Carte* result = nullptr;
@@ -63,17 +63,17 @@ Carte* Joueur::retirerCarte(string& nom) {
 
 }
 
-void Joueur::fermerOuvrirEtablissement(string& nom, bool fermer) {
-    vector<Carte*> Cartes = cartes.getContener();
+void Joueur::fermerOuvrirEtablissement(std::string& nom, bool fermer) {
+    std::vector<Carte*> Cartes = cartes.getContener();
     auto itferme = ferme.begin();
     auto it = Cartes.begin();
     bool terminer = false;
     Carte* result = nullptr;
-    while (it != Cartes.end() && terminer == false) {
+    while (it != Cartes.end() && terminer==false) {
         if ((*it)->getNom() == nom && (*itferme) != fermer) {
             (*itferme) = fermer;
             terminer = true;
-        }
+        }      
         it++;
         itferme++;
     }
@@ -81,20 +81,20 @@ void Joueur::fermerOuvrirEtablissement(string& nom, bool fermer) {
 
 void Joueur::fermerOuvrirEtablissement(Carte* carte, bool fermer) {
     if (carte != nullptr) {
-        vector<Carte*> Cartes = cartes.getContener();
+        std::vector<Carte*> Cartes = cartes.getContener();
         auto itferme = ferme.begin();
-
+        
         auto it = Cartes.begin();
-
+        
         while (it != Cartes.end() && *it != carte) {
             it++;
-            itferme++;
+           itferme++;
         }
-
+        
         if (it != Cartes.end()) {
             (*itferme) = fermer;
         }
-
+        
     }
     else
         throw JoueurException("La carte a retirer n'existe pas !");
@@ -103,7 +103,7 @@ void Joueur::fermerOuvrirEtablissement(Carte* carte, bool fermer) {
 int Joueur::fermerOuvrirEtablissement(Type type, bool fermer) {
     int nbFerme = 0;
     auto itferme = ferme.begin();
-    vector<Carte*> Cartes = cartes.getContener();
+    std::vector<Carte*> Cartes = cartes.getContener();
     for (auto carte : Cartes) {
         if (carte->getType() == type && *itferme != fermer) {
             *itferme = fermer;
@@ -113,8 +113,8 @@ int Joueur::fermerOuvrirEtablissement(Type type, bool fermer) {
     return nbFerme;
 }
 
-bool Joueur::isFermer(string& nom) {
-    vector<Carte*> Cartes = cartes.getContener();
+bool Joueur::isFermer(std::string& nom) {
+    std::vector<Carte*> Cartes = cartes.getContener();
     auto itferme = ferme.begin();
     auto it = Cartes.begin();
     Carte* result = nullptr;
@@ -130,7 +130,7 @@ bool Joueur::isFermer(string& nom) {
 }
 
 bool Joueur::isFermer(Carte* carte) {
-    vector<Carte*> Cartes = cartes.getContener();
+    std::vector<Carte*> Cartes = cartes.getContener();
     if (carte != nullptr) {
         auto itferme = ferme.begin();
         auto it = Cartes.begin();
@@ -151,21 +151,21 @@ bool Joueur::isFermer(Carte* carte) {
 
 
 void Joueur::afficherCartes() {
-    cout << "/**********Affichage Paquet**********/\n";
+    std::cout << "/**********Affichage Paquet**********/\n";
     int i = 1;
     auto it = ferme.begin();
     for (auto carte : cartes.getContener()) {
-        cout << "Carte n." << i;
-        cout << *carte;
+        std::cout << "Carte n." << i;
+        std::cout << *carte;
         i++;
         if (*it)
-            cout << "Ferme\n";
+            std::cout << "Ferme\n";
         else
-            cout << "Ouvert\n";
-        cout << "\n";
+            std::cout << "Ouvert\n";
+        std::cout << "\n";
         it++;
     }
-    cout << "/**********Paquet Affiche**********/\n";
+    std::cout << "/**********Paquet Affiche**********/\n";
 
 
 
@@ -180,7 +180,7 @@ void Joueur::afficherCartes() {
 
 
 //********************Fonctions supplementaires**************************//
-ostream& operator<<(ostream& f, const Joueur& joueur) {
+std::ostream& operator<<(std::ostream& f, const Joueur& joueur) {
     f << "**-> PSEUDONYME : " << joueur.getPseudo() << "\n";
     f << "**-> IA         : " << ((joueur.getIa()) ? ("OUI") : ("NON")) << "\n";
     f << "**-> PAQUET     : " << joueur.getPaquet().getNbCartes() << " CARTE(S)\n";

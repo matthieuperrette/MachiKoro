@@ -12,7 +12,7 @@ Carte* Pioche::piocher() {
 
 }
 
-Pioche::Pioche(vector<Carte*> cartes, int nb_joueurs) {
+Pioche::Pioche(std::vector<Carte*> cartes, int nb_joueurs) {
 	Paquet();
 	for (auto c : cartes) {
 		if (c->getCouleur() == Couleur::violet)
@@ -29,11 +29,11 @@ Pioche::Pioche(vector<Carte*> cartes, int nb_joueurs) {
 
 //****************Fonctions supplementaires******************//
 
-ostream& operator<<(ostream& f, const Pioche& p)
+std::ostream& operator<<(std::ostream& f, const Pioche& p)
 {
 	f << "/**********Affichage Pioche**********/\n";
 	int i = 1;
-	vector<Carte*>cartes = p.getContener();
+    std::vector<Carte*>cartes = p.getContener();
 	for (auto c : cartes)
 	{
 		f << "Carte n." << i;

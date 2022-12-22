@@ -1,109 +1,109 @@
-#include "./src/Carte.h"
-#include "./src/Paquet.h"
-#include "./src/Plateau.h"
-#include "./src/Joueur.h"
-#include "./src/Jeu.h"
-#include "./src/Effet.h"
-#include "./src/EffetMarina.h"
-#include "./src/EffetGreenValley.h"
-#include "./src/JeuClassique.h"
-#include "./src/fonctions.h"
-#include "./src/Controleur.h"
-#include "./src/JeuPlateau.h"
+#include "Carte.h"
+#include "Paquet.h"
+#include "Plateau.h"
+#include "Joueur.h"
+#include "Jeu.h"
+#include "Effet.h"
+#include "EffetMarina.h"
+#include "EffetGreenValley.h"
+#include "JeuClassique.h"
+#include "fonctions.h"
+#include "JeuGreenValley.h"
+#include "Controleur.h"
+#include "JeuPlateau.h"
 
 
-using namespace std;
+//using namespace std;
 
 int main() {
-	srand((unsigned)time(NULL));
 	/*
 	//srand((unsigned)time(NULL));
 	//test de vecteurs
-	//vector<int> vect = { 1, 3 };
-	//cout << vect[1] << "\n";
+    //std::vector<int> vect = { 1, 3 };
+    //std::cout << vect[1] << "\n";
 
-	cout << "test des types d'enum" << "\n";
+    std::cout << "test des types d'enum" << "\n";
 	//test des types d'enumeration
 	try {
 		printCouleurs();
 		printTypes();
 	}
 	catch (CarteException& e) {
-		cout << e.getInfo() << "\n";
+        std::cout << e.getInfo() << "\n";
 	}
 
-	cout << "test des cartes" << "\n";
+    std::cout << "test des cartes" << "\n";
 	//test des cartes
 	//Effet effet;
-	//cout << effet.getDescription() << "\n";
+    //std::cout << effet.getDescription() << "\n";
 	//Carte c1(effet, Couleur::bleu, 2, vect, "Champ de ble", Type::champ);
-	//cout << c1;
+    //std::cout << c1;
 
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
+    std::vector<Carte*> cartes = fonctions::cartesEditionClassique();
 	for (auto n : cartes) {
-		cout << *n << "\n";
+        std::cout << *n << "\n";
 	}
 
-	cout << "test des paquets" << "\n";
+    std::cout << "test des paquets" << "\n";
 	//test des paquets
 	Paquet paquet;
 	for (auto n : cartes) {
 		paquet.ajouterCarte(n);
 	}
 
-	vector<Carte*> cartas;
+    std::vector<Carte*> cartas;
 	try {
 		cartas = paquet.getCarteActive(9);
 	}
 	catch (PaquetException& e) {
-		cout << e.getInfo() << "\n";
+        std::cout << e.getInfo() << "\n";
 	}
 	for (auto n : cartas) {
-		cout << *n << "\n";
+        std::cout << *n << "\n";
 	}
 
 
-	cout << "test de de" << "\n";
+    std::cout << "test de de" << "\n";
 	//test du de
 	//seed permettant de faire des resultats vraiment aleatoire (on peut pas le mettre dans lancerDe() j'ai tester)
 
 
 	De de(1, 6);
-	cout << de;
+    std::cout << de;
 	int random;
 	for (size_t i = 0; i < 6; i++) {
 		random = de.lancerDe();
-		cout << random << "\n";
+        std::cout << random << "\n";
 	}
 
-	cout << "test de Pioche" << "\n";
+    std::cout << "test de Pioche" << "\n";
 	int nb_joueurs = 4;
 	Pioche pioche(cartes, nb_joueurs);
-	cout << "affichage pioche debut" << "\n";
-	cout << pioche << "\n";
+    std::cout << "affichage pioche debut" << "\n";
+    std::cout << pioche << "\n";
 	Carte* c1 = pioche.piocher();
-	cout << "c1 :" << *c1 << "\n";
-	cout << "affichage pioche apres avoir piocher" << "\n";
-	cout << pioche << "\n";
+    std::cout << "c1 :" << *c1 << "\n";
+    std::cout << "affichage pioche apres avoir piocher" << "\n";
+    std::cout << pioche << "\n";
 
 	Pioche pioche2(cartes, 4);
 	try {
 		Plateau plateau(cartes);
 		plateau.afficherPlateau();
-		string str = "Antoine";
+        std::string str = "Antoine";
 		Paquet paquettest;
 		Joueur player(str, 0, paquettest, 0, 1);
 		player.ajouterCarte(cartes[9]);
-		cout << "\n" << player << "\n";
-		cout << player.getPaquet();
+        std::cout << "\n" << player << "\n";
+        std::cout << player.getPaquet();
 
-		string str1 = "Fromagerie";
-		cout << *(player.retirerCarte(str1));
-		cout << "\n" << player << "\n";
-		cout << player.getPaquet();
+        std::string str1 = "Fromagerie";
+        std::cout << *(player.retirerCarte(str1));
+        std::cout << "\n" << player << "\n";
+        std::cout << player.getPaquet();
 	}
 	catch (PaquetException& e) {
-		cout << e.getInfo() << "\n";
+        std::cout << e.getInfo() << "\n";
 	}
 	//test des Effets Classique
 	Paquet paquetAntoine;
@@ -125,144 +125,144 @@ int main() {
 	Joueur player2("Matthieu", 0, paquetMatthieu, 2, 1);
 	Joueur player3("Harry", 0, paquetHarry, 10, 1);
 	Joueur player4("Mathieu", 0, paquetMathieu, 0, 1);
-	vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
-	string chaine = "test";
+    std::vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
+    std::string chaine = "test";
 
-	cout << "___________test Recevoir____________" << "\n";
+    std::cout << "___________test Recevoir____________" << "\n";
 	//recevoir fonctionne
 	Effet* effetRecevoir = new Effet(chaine, 2, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 	effetRecevoir->runEffect(&player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
 
-	cout << "___________test voler____________" << "\n";
+    std::cout << "___________test voler____________" << "\n";
 	//voler
 	Effet* effetvoler = new Effet(chaine, 3, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
 	effetvoler->runEffect(&player1, &player2);
 	effetvoler->runEffect(&player2, &player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
 
-	cout << "___________test voler tout le monde____________" << "\n";
+    std::cout << "___________test voler tout le monde____________" << "\n";
 	//voler
 	Effet* effetvolertout = new Effet(chaine, 2, false, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
 	effetvolertout->runEffect(&player1, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
 	int pos = fonctions::recupPosition(&player4, joueurs);
-	cout << "position de joueur :" << pos << "\n";
+    std::cout << "position de joueur :" << pos << "\n";
 
 	//Test de choisir carte
 	int cpt = 1;
 	for (auto n : cartes) {
-		cout << "Carte n" << cpt << ":" << *n << "\n";
+        std::cout << "Carte n" << cpt << ":" << *n << "\n";
 		cpt++;
 	}
 	Carte* c2 = fonctions::choisirCarte(cartes);
-	cout << *c2;*/
+    std::cout << *c2;*/
 
 	/*
 	//echanger test fonctionne
-	cout << "___________test echnager carte____________" << "\n";
+    std::cout << "___________test echnager carte____________" << "\n";
 	Effet* effetEchanger = new Effet(chaine, 5, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player1.getPaquet() << "\n\n";
-	cout << player2 << "\n";
-	cout << player2.getPaquet() << "\n\n";
-	cout << player3 << "\n";
-	cout << player3.getPaquet() << "\n\n";
-	cout << player4 << "\n";
-	cout << player4.getPaquet() << "\n\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player1.getPaquet() << "\n\n";
+    std::cout << player2 << "\n";
+    std::cout << player2.getPaquet() << "\n\n";
+    std::cout << player3 << "\n";
+    std::cout << player3.getPaquet() << "\n\n";
+    std::cout << player4 << "\n";
+    std::cout << player4.getPaquet() << "\n\n";
 
 	effetEchanger->runEffect(&player1, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player1.getPaquet() << "\n\n";
-	cout << player2 << "\n";
-	cout << player2.getPaquet() << "\n\n";
-	cout << player3 << "\n";
-	cout << player3.getPaquet() << "\n\n";
-	cout << player4 << "\n";
-	cout << player4.getPaquet() << "\n\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player1.getPaquet() << "\n\n";
+    std::cout << player2 << "\n";
+    std::cout << player2.getPaquet() << "\n\n";
+    std::cout << player3 << "\n";
+    std::cout << player3.getPaquet() << "\n\n";
+    std::cout << player4 << "\n";
+    std::cout << player4.getPaquet() << "\n\n";
 	*/
 
 	/*
-	cout << "___________voler avec choix____________" << "\n";
+    std::cout << "___________voler avec choix____________" << "\n";
 	//voler avec choix
 	Effet* effetvolerChoix = new Effet(chaine, 5, false, true, false, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
 	effetvolerChoix->runEffect(&player1, joueurs);
 
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
-	cout << "___________recevoir en fonction d'un type____________" << "\n";
+    std::cout << "___________recevoir en fonction d'un type____________" << "\n";
 	//recevoir en fct d un type
 	Effet* recevoirType = new Effet(chaine, 2, false, false, false, false, true, false, Type::champ);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
 	recevoirType->runEffect(&player1);
-	cout << recevoirType;
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player2 << "\n";
-	cout << player3 << "\n";
-	cout << player4 << "\n";
+    std::cout << recevoirType;
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player2 << "\n";
+    std::cout << player3 << "\n";
+    std::cout << player4 << "\n";
 
-	cout << "___________Active gare____________" << "\n";
+    std::cout << "___________Active gare____________" << "\n";
 	//mettre deux des a quelqun
 	Effet* gare = new EffetClassique(chaine, 0, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 
 	gare->runEffect(&player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
 	*/
 
 	/*
 	* //test des effets de EffetMarina
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
-	vector<int> v={};
-	string porto = "Port";
+    std::vector<Carte*> cartes = fonctions::cartesEditionClassique();
+    std::vector<int> v={};
+    std::string porto = "Port";
 	Carte* port = new Carte(new Effet("C'est le port"), Couleur::monument, 0, v, porto, Type::tour);
-	string chmp = "Champ de fleurs";
+    std::string chmp = "Champ de fleurs";
 	Carte* ChampDeFleurs = new Carte(new Effet("C'est le champ de fleurs"), Couleur::bleu, 0, v, chmp, Type::champ);
 	int cpt = 0;
 	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
+        std::cout << "Carte " << cpt << "\n";
+        std::cout << *carte << "\n";
 		cpt++;
 	}
 
@@ -288,75 +288,75 @@ int main() {
 	Joueur player2("Matthieu", 0, paquetMatthieu, 2, 1);
 	Joueur player3("Harry", 0, paquetHarry, 10, 1);
 	Joueur player4("Mathieu", 0, paquetMathieu, 0, 1);
-	vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
-	string chaine = "test";
+    std::vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
+    std::string chaine = "test";
 
-	cout << "___________test Recevoir avec port____________" << "\n";
+    std::cout << "___________test Recevoir avec port____________" << "\n";
 	//recevoir fonctionne
 	Effet* effetRecevoir = new EffetMarina(chaine, 1, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetRecevoir->runEffect(&player1);
 	effetRecevoir->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
 
-	cout << "___________test Recevoir pour chaque champ de fleur____________" << "\n";
+    std::cout << "___________test Recevoir pour chaque champ de fleur____________" << "\n";
 	//recevoir fonctionne
 	Effet* effetRecevoirChamp = new EffetMarina(chaine, 1, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetRecevoirChamp->runEffect(&player1);
 	effetRecevoirChamp->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
-	cout << "___________test voler avec port____________" << "\n";
+    std::cout << "___________test voler avec port____________" << "\n";
 	//recevoir fonctionne
 	Effet* effetVoler = new EffetMarina(chaine, 5, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetVoler->runEffect(&player1, &player3);
 	effetVoler->runEffect(&player3, &player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
-	cout << "___________test maison edition____________" << "\n";
+    std::cout << "___________test maison edition____________" << "\n";
 	//recevoir fonctionne
 	Effet* effetMaison = new EffetMarina(chaine, 5, false, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetMaison->runEffect(&player1, joueurs);
 	effetMaison->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	*/
 
 	/*
 	//test des Effets de GreenValley
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
-	vector<int> v = {};
-	string vignobl = "Vignoble";
+    std::vector<Carte*> cartes = fonctions::cartesEditionClassique();
+    std::vector<int> v = {};
+    std::string vignobl = "Vignoble";
 	Carte* vignoble = new Carte(new Effet("C'est le vignoble"), Couleur::bleu, 0, v, vignobl, Type::champ);
-	string cava = "Cave a vin";
+    std::string cava = "Cave a vin";
 	Carte* CaveAVin = new Carte(new Effet("C'est la cave"), Couleur::vert, 0, v, cava, Type::magasin);
-	string hdv = "Hotel de Ville";
+    std::string hdv = "Hotel de Ville";
 	Carte* HotelDeVille = new Carte(new Effet("C'est l'hdv"), Couleur::monument, 0, v, hdv, Type::tour);
-	string sei = "Salle d'exposition internationale";
+    std::string sei = "Salle d'exposition internationale";
 	Carte* SalleDExpo = new Carte(new Effet("C'est la salle"), Couleur::violet, 0, v, sei, Type::tour);
 	int cpt = 0;
 	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
+        std::cout << "Carte " << cpt << "\n";
+        std::cout << *carte << "\n";
 		cpt++;
 	}
 
@@ -393,155 +393,155 @@ int main() {
 	Joueur player2("Matthieu", 0, paquetMatthieu, 2, 1);
 	Joueur player3("Harry", 0, paquetHarry, 10, 1);
 	Joueur player4("Mathieu", 0, paquetMathieu, 0, 1);
-	vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
-	string chaine = "test";
+    std::vector <Joueur*> joueurs = { &player1, &player2 , &player3 ,&player4 };
+    std::string chaine = "test";
 
-	cout << "___________test Recevoir avec moins de 2 monuments____________" << "\n";
+    std::cout << "___________test Recevoir avec moins de 2 monuments____________" << "\n";
 	Effet* effetRecevoir = new EffetGreenValley(chaine, 2,true,false,false,2);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetRecevoir->runEffect(&player1);
 	effetRecevoir->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	/*
-	cout << "___________test donner carte et recevoir____________" << "\n";
+    std::cout << "___________test donner carte et recevoir____________" << "\n";
 	Effet* effetDonner= new EffetGreenValley(chaine, 2, false, false, false, 0, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetDonner->runEffect(&player1);
 	effetDonner->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	*/
 	/*
-	cout << "___________test payer piece____________" << "\n";
+    std::cout << "___________test payer piece____________" << "\n";
 	Effet* effetPayer = new EffetGreenValley(chaine, 2, false, false, false, 0, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetPayer->runEffect(&player1);
 	effetPayer->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
-	cout << "___________test recevoir pou chaque vignoble puis fermer cave a vin____________" << "\n";
+    std::cout << "___________test recevoir pou chaque vignoble puis fermer cave a vin____________" << "\n";
 	Effet* effetVignoble = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	player3.afficherCartes();
 	effetVignoble->runEffect(&player1);
 	effetVignoble->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	player3.afficherCartes();
 	*/
 	/*
-	cout << "___________Demolir monument puis recevoir____________" << "\n";
+    std::cout << "___________Demolir monument puis recevoir____________" << "\n";
 	Effet* effetDemo = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	player3.afficherCartes();
 	effetDemo->runEffect(&player1);
 	effetDemo->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	player3.afficherCartes();
 	*/
 	/*
-	cout << "___________test pour chaque type de carte detenu par tous les joueurs recevoir pieces____________" << "\n";
+    std::cout << "___________test pour chaque type de carte detenu par tous les joueurs recevoir pieces____________" << "\n";
 	Effet* effetPour = new EffetGreenValley(chaine, 2, false, false, false, 0, false, false, false, false,true,false,false,false,false,false,false,false,false,false,false,Type::champ);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetPour->runEffect(&player1);
 	effetPour->runEffect(&player3);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	*/
 	/*
-	cout << "___________voler avec plus de 2 monuments____________" << "\n";
+    std::cout << "___________voler avec plus de 2 monuments____________" << "\n";
 	Effet* effetVoler = new EffetGreenValley(chaine, 2, false, true, false, 2);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	effetVoler->runEffect(&player1, &player3);
 	effetVoler->runEffect(&player3, &player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
 
 
-	cout << "___________voler tout plus de 3 monuments____________" << "\n";
+    std::cout << "___________voler tout plus de 3 monuments____________" << "\n";
 	Effet* effetTout = new EffetGreenValley(chaine, 2, false, false, true, 3);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	effetTout->runEffect(&player1, &player3);
 	effetTout->runEffect(&player3, &player1);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
 
 	Controleur::getControleur().getJeu()->afficherPlateau();
 
-	cout << "___________activer autre batiment____________" << "\n";
+    std::cout << "___________activer autre batiment____________" << "\n";
 	Effet* effetAutre = new EffetGreenValley(chaine, 0, false, false, false, 0,false,false,false,false,false,false,false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	effetAutre->runEffect(&player1, joueurs);
 	effetAutre->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
 	player1.afficherCartes();
-	cout << player3 << "\n";
+    std::cout << player3 << "\n";
 	Controleur::getControleur().getJeu()->afficherPlateau();
 
 
 	player1.ajouterInvestissement(5);
-	cout << "___________test de Investissemenbt____________" << "\n";
+    std::cout << "___________test de Investissemenbt____________" << "\n";
 	Effet* effetInvest = new EffetGreenValley(chaine, 1, false,false,false,0,false,false,false,false,false,false,false,true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetInvest->runEffect(&player1, joueurs);
 	effetInvest->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 
 	player1.ajouterInvestissement(5);
-	cout << "___________test de equilibrer____________" << "\n";
+    std::cout << "___________test de equilibrer____________" << "\n";
 	Effet* effetEquilibre = new EffetGreenValley(chaine, 0, false, false, false, 0, false, false, false, false, false, true);
-	cout << "___________Joueur avant effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur avant effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	effetEquilibre->runEffect(&player1, joueurs);
 	player1.changerMoney(5);
 	effetEquilibre->runEffect(&player3, joueurs);
-	cout << "___________Joueur apres effet____________" << "\n";
-	cout << player1 << "\n";
-	cout << player3 << "\n";
+    std::cout << "___________Joueur apres effet____________" << "\n";
+    std::cout << player1 << "\n";
+    std::cout << player3 << "\n";
 	*/
 
 
@@ -549,93 +549,93 @@ int main() {
 	//test des effets des cartes avec le jeu
 	int cpt = 0;
 	for (auto carte : cartes) {
-		cout << "Carte " << cpt<< "\n";
-		cout << *carte << "\n";
+        std::cout << "Carte " << cpt<< "\n";
+        std::cout << *carte << "\n";
 		cpt++;
 	}
 
 	JeuClassique::getJeu().changerMoneyJoueur(1, 100);
-	vector<Joueur*> joueurs= JeuClassique::getJeu().getJoueursList();
+    std::vector<Joueur*> joueurs= JeuClassique::getJeu().getJoueursList();
 	//+1 piece j1 a 3
 	cartes[0]->runEffect(joueurs[0]);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
-	cout << JeuClassique::getJeu().getJoueur(1);
-	cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
 
 	//echanger une carte donner deux champs a j1 donc deux boulangerie a j2
 	cartes[7]->runEffect(joueurs[0],joueurs);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
-	cout << JeuClassique::getJeu().getJoueur(1);
-	cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(1).getPaquet();
 
 	//+2 pour chaque ferme piece j1 a 7
 	cartes[14]->runEffect(joueurs[0]);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(1);
 
 	//+1 vole donc j2 99 et j1 8
 	cartes[3]->runEffect(joueurs[0], joueurs[1]);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(1);
 
 	//+2 de chaque joueur donc j2 97 et j1 10
 	cartes[6]->runEffect(joueurs[0],joueurs);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(1);
 
 	//+5 vole en choisissant le joueur joueur donc j2 92 et j1 15
 	cartes[8]->runEffect(joueurs[0],joueurs);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().getJoueur(1);
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().getJoueur(1);
 
 	*/
 
 	//test de ajouterCarte de Plateau
 	/*
-	vector<Carte*> cartes = fonctions::cartesEditionClassique();
+    std::vector<Carte*> cartes = fonctions::cartesEditionClassique();
 	int cpt = 0;
 	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
+        std::cout << "Carte " << cpt << "\n";
+        std::cout << *carte << "\n";
 		cpt++;
 	}
 	Pioche pioche2(cartes, 4);
 	try {
 		Plateau plateau(cartes,pioche2);
-		cout << "------------plateau initial------------ " << "\n";
+        std::cout << "------------plateau initial------------ " << "\n";
 		plateau.afficherPlateau();
-		string str = "Antoine";
+        std::string str = "Antoine";
 		Paquet paquettest;
 		Joueur player(str, 0, paquettest, 0, 1);
 		player.ajouterCarte(cartes[9]);
-		string gare = "Gare";
+        std::string gare = "Gare";
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
 		//plateau.retirerCarte(gare);
-		cout << "------------plateau apres suppression de 3 gare------------ " << "\n";
+        std::cout << "------------plateau apres suppression de 3 gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.ajouterCarte(cartes[15]);
-		cout << "------------plateau apres rajout de gare------------ " << "\n";
+        std::cout << "------------plateau apres rajout de gare------------ " << "\n";
 		plateau.afficherPlateau();
 		plateau.retirerCarte(gare);
 		plateau.retirerCarte(gare);
-		cout << "------------plateau sans gare------------ " << "\n";
+        std::cout << "------------plateau sans gare------------ " << "\n";
 		plateau.afficherPlateau();
-		cout << "------------plateau ajout d'une gare------------ " << "\n";
+        std::cout << "------------plateau ajout d'une gare------------ " << "\n";
 		plateau.ajouterCarte(cartes[15]);
 		plateau.afficherPlateau();
-		cout << "------------plateau ajout d'une autre carte------------ " << "\n";
+        std::cout << "------------plateau ajout d'une autre carte------------ " << "\n";
 
-		vector<int> v;
-		string name = "Test";
+        std::vector<int> v;
+        std::string name = "Test";
 		plateau.ajouterCarte(new Carte(new Effet("test"),Couleur::violet,1,v,name,Type::tour));
 		plateau.afficherPlateau();
 	}
 	catch (PaquetException& e) {
-		cout << e.getInfo() << "\n";
+        std::cout << e.getInfo() << "\n";
 	}
 	*/
 
@@ -643,15 +643,15 @@ int main() {
 	//test de l'implementation des etablissements ferme
 
 
-	vector<int> v = {};
-	string porto = "Port";
+    std::vector<int> v = {};
+    std::string porto = "Port";
 	Carte* port = new Carte(new Effet("C'est le port"), Couleur::monument, 0, v, porto, Type::tour);
-	string chmp = "Champ de fleurs";
+    std::string chmp = "Champ de fleurs";
 	Carte* ChampDeFleurs = new Carte(new Effet("C'est le champ de fleurs"), Couleur::bleu, 0, v, chmp, Type::champ);
 	int cpt = 0;
 	for (auto carte : cartes) {
-		cout << "Carte " << cpt << "\n";
-		cout << *carte << "\n";
+        std::cout << "Carte " << cpt << "\n";
+        std::cout << *carte << "\n";
 		cpt++;
 	}
 
@@ -673,30 +673,30 @@ int main() {
 	player1.afficherCartes();
 	player1.affichageTemp();
 
-	cout << "\n\n";
-	cout << player1.isFermer(cartes[0]) << "\n";
-	cout << player1.isFermer(chmp) << "\n";
+    std::cout << "\n\n";
+    std::cout << player1.isFermer(cartes[0]) << "\n";
+    std::cout << player1.isFermer(chmp) << "\n";
 
 	player1.retirerCarte(cartes[2]);
 	player1.afficherCartes();
 	player1.affichageTemp();
-	cout << "\n\n";
-	cout << player1.getInvestissement() << "\n";
+    std::cout << "\n\n";
+    std::cout << player1.getInvestissement() << "\n";
 	player1.ajouterInvestissement(2);
-	cout << player1.getInvestissement() << "\n";
+    std::cout << player1.getInvestissement() << "\n";
 
 	*/
 	/*
 	//test de jeuClassique
 	//srand((unsigned)time(NULL));
 	JeuClassique::getJeu().afficherJeu();
-	cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuClassique::getJeu().getJoueur(0).getPaquet();
 	JeuClassique::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuClassique::getJeu().getJoueur(0);
-	cout << JeuClassique::getJeu().lancerDe();
+    std::cout << JeuClassique::getJeu().getJoueur(0);
+    std::cout << JeuClassique::getJeu().lancerDe();
 	JeuClassique::getJeu().afficherPlateau();
-	vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
-	for (auto carte : cartes) cout << *carte << "\n";
+    std::vector<Carte*> cartes = JeuClassique::getJeu().getCartes();
+    for (auto carte : cartes) std::cout << *carte << "\n";
 	JeuClassique::libererJeu();
 	*/
 
@@ -704,46 +704,46 @@ int main() {
 
 	/*
 	for (auto type : Types)
-		cout << type << "\n";
-	cout << fonctions::choisirType();
+        std::cout << type << "\n";
+    std::cout << fonctions::choisirType();
 	*/
 	/*
 	//test de jeuMarina
 	//srand((unsignedMarinatime(NULL));
 	JeuMarina::getJeu().afficherJeu();
-	cout << JeuMarina::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuMarina::getJeu().getJoueur(0).getPaquet();
 	JeuMarina::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuMarina::getJeu().getJoueur(0);
-	cout << JeuMarina::getJeu().lancerDe();
-	vector<Carte*> cartes2 = JeuMarina::getJeu().getCartes();
-	for (auto carte : cartes2) cout << *carte << "\n";
+    std::cout << JeuMarina::getJeu().getJoueur(0);
+    std::cout << JeuMarina::getJeu().lancerDe();
+    std::vector<Carte*> cartes2 = JeuMarina::getJeu().getCartes();
+    for (auto carte : cartes2) std::cout << *carte << "\n";
 	JeuMarina::libererJeu();
 	*/
 	/*
 	//test de jeuGreenValley
 	//srand((unsigned)time(NULL));
 	JeuGreenValley::getJeu().afficherJeu();
-	cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuGreenValley::getJeu().getJoueur(0).getPaquet();
 	JeuGreenValley::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuGreenValley::getJeu().getJoueur(0);
-	//cout << JeuGreenValley::getJeu().lancerDe();
-	cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
+    std::cout << JeuGreenValley::getJeu().getJoueur(0);
+    //std::cout << JeuGreenValley::getJeu().lancerDe();
+    std::cout << JeuGreenValley::getJeu().getPseudoJoueur(0);
 	JeuGreenValley::getJeu().afficherPlateau();
-	vector<Carte*> cartes3 = JeuGreenValley::getJeu().getCartes();
-	for (auto carte : cartes3) cout << *carte << "\n";
+    std::vector<Carte*> cartes3 = JeuGreenValley::getJeu().getCartes();
+    for (auto carte : cartes3) std::cout << *carte << "\n";
 	JeuGreenValley::libererJeu();
 	*/
 	/*
 	JeuDeluxe::getJeu().afficherJeu();
-	cout << JeuDeluxe::getJeu().getJoueur(0).getPaquet();
+    std::cout << JeuDeluxe::getJeu().getJoueur(0).getPaquet();
 	JeuDeluxe::getJeu().changerMoneyJoueur(0, 2);
-	cout << JeuDeluxe::getJeu().getJoueur(0);
-	//cout << JeuGreenValley::getJeu().lancerDe();
-	cout << JeuDeluxe::getJeu().getPseudoJoueur(0);
+    std::cout << JeuDeluxe::getJeu().getJoueur(0);
+    //std::cout << JeuGreenValley::getJeu().lancerDe();
+    std::cout << JeuDeluxe::getJeu().getPseudoJoueur(0);
 	JeuDeluxe::getJeu().afficherPlateau();
-	vector<Carte*> cartes3 = JeuDeluxe::getJeu().getCartes();
+    std::vector<Carte*> cartes3 = JeuDeluxe::getJeu().getCartes();
 	int i = 0;
-	for (auto carte : cartes3) cout <<"Carte n" << i << "\n" << *carte << "\n";
+    for (auto carte : cartes3) std::cout <<"Carte n" << i << "\n" << *carte << "\n";
 	JeuDeluxe::libererJeu();
 	*/
 
@@ -754,11 +754,19 @@ int main() {
 	}
 	*/
 
-	fonctions::screenInit();
-	int back_value = Controleur::getControleur().runPartie();
-	fonctions::screenStop();
-	return back_value;
+	try {
+		srand((unsigned)time(NULL));
+
+		fonctions::screenInit();
+		Controleur::getControleur().runPartie();
+		fonctions::screenStop();
+		return 0;
+	}
+	catch (PaquetException& e) {
+        std::cout << e.getInfo() << "\n";
+	}
 }
+
 
 
 

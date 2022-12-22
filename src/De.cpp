@@ -1,5 +1,5 @@
 #include "De.h"
-using namespace std;
+//using namespace std;
 
 
 //****************class De*******************//
@@ -12,7 +12,7 @@ unsigned int De::lancerDe() const {
 
 
 //****************Fonctions supplementaires******************//
-ostream& operator<<(ostream& f, const De& d) {
+std::ostream& operator<<(std::ostream& f, const De& d) {
 	f << "De allant de " << d.getMin() << " a " << d.getMax() << "\n";
 	return f;
 }
