@@ -5,7 +5,8 @@
 #include <cstdlib>
 //#include "Effet.h"
 #include <vector>
-using namespace std;
+#include <algorithm>
+//using namespace std;
 
 class Effet;
 class Joueur;
@@ -14,10 +15,10 @@ class Joueur;
 
 class CarteException {
 public:
-	CarteException(const string& i) :info(i) {}
-	string getInfo() const { return info; }
+    CarteException(const std::string& i) :info(i) {}
+    std::string getInfo() const { return info; }
 private:
-	string info;
+    std::string info;
 };
 
 //*---------------------Classe pour les exceptions---------------------*//
@@ -29,20 +30,20 @@ enum class Couleur { bleu, vert, rouge, violet, monument };
 enum class Type { champ, ferme, cafe, magasin, tour, industrie, ressource, marche, bateau, entreprise };
 
 // conversion en string
-string toString(Couleur c);
-string toString(Type t);
+std::string toString(Couleur c);
+std::string toString(Type t);
 
 // ecriture d'une caracteristique sur un flux ostream
-ostream& operator<<(ostream& f, Couleur c);
-ostream& operator<<(ostream& f, Type t);
+std::ostream& operator<<(std::ostream& f, Couleur c);
+std::ostream& operator<<(std::ostream& f, Type t);
 
 // listes contenant les valeurs possibles pour chacune des caracteristiques
 extern std::initializer_list<Couleur> Couleurs;
 extern std::initializer_list<Type> Types;
 
 // affichage des valeurs possibles pour chaque caracteristiques
-void printCouleurs(std::ostream& f = cout);
-void printTypes(std::ostream& f = cout);
+void printCouleurs(std::ostream& f = std::cout);
+void printTypes(std::ostream& f = std::cout);
 //*---------------------Enumerations de Type et Couleur---------------------*//
 
 
@@ -54,28 +55,27 @@ private:
 	Effet* effet;
 	Couleur couleur;
 	unsigned int prix;
-	vector<int> activation;
-	string nom;
+    std::vector<int> activation;
+    std::string nom;
 	Type type;
 	Carte(const Carte&) = delete;
 	Carte operator=(const Carte&) = delete;
 public:
-	Carte(Effet* effet, Couleur couleur, unsigned int prix, vector<int> activation, string nom, Type type) : effet(effet),
+    Carte(Effet* effet, Couleur couleur, unsigned int prix, std::vector<int> activation, std::string nom, Type type) : effet(effet),
 		couleur(couleur), prix(prix), activation(activation), nom(nom), type(type) {}
-	~Carte()=default;
+	~Carte() = default;
 	Couleur getCouleur() const { return couleur; }
 	Effet* getEffet() const;
 	unsigned int getPrix() const { return prix; }
-	vector<int> getActivation() const { return activation; }
-	string getNom() const { return nom; }
+    std::vector<int> getActivation() const { return activation; }
+    std::string getNom() const { return nom; }
 	Type getType() const { return type; }
-    bool isActivable(int checkValue) const;
+	bool isActivable(int checkValue) const;
 
 	int runEffect(Joueur* j1);
 	int runEffect(Joueur* j1, Joueur* j2);
-	int runEffect(Joueur* j1, vector<Joueur*> vectJoueur);
+    int runEffect(Joueur* j1, std::vector<Joueur*> vectJoueur);
 };
-ostream& operator<<(ostream& f, const Carte& c);
+std::ostream& operator<<(std::ostream& f, const Carte& c);
 
 //*---------------------Classe Carte---------------------*//
-

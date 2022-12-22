@@ -5,7 +5,7 @@
 #include "Jeu.h"
 #include <iostream>
 #include <cmath>
-using namespace std;
+//using namespace std;
 
 
 
@@ -15,18 +15,18 @@ Jeu::Jeu() {
 
     //-----------On demande a l'utilisateur combien de joueurs
     unsigned int nb = 0;
-    cout << "Veuillez entrer le nombre de joueurs pour cette partie :\n";
-    while (!(cin >> nb) || nb < 2) {
-        cout << "Erreur ! Nombre invalide.\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    std::cout << "Veuillez entrer le nombre de joueurs pour cette partie :\n";
+    while (!(std::cin >> nb) || nb < 2) {
+        std::cout << "Erreur ! Nombre invalide.\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     nbJoueurs = nb;
 
     //-----------Variable permettant d'initialiser les joueurs de jeu
-    string p;
+    std::string p;
     bool Ia;
-    string art;
+    std::string art;
     unsigned int money = 3;
     unsigned int des = 1;
 
@@ -35,12 +35,12 @@ Jeu::Jeu() {
     //---------------L'utilisateur rentre les infos des joueurs
     for (unsigned int i = 0; i < nb; i++) {
 
-        cout << "\n\n";
-        cout << "Pseudo du " << (i + 1) << ((i == 0) ? "er joueur :" : "eme joueur : \n");
-        cin >> p;
+        std::cout << "\n\n";
+        std::cout << "Pseudo du " << (i + 1) << ((i == 0) ? "er joueur :" : "eme joueur : \n");
+        std::cin >> p;
 
-        cout << "\nEst ce une IA? (Oui/Non)\n";
-        cin >> art;
+        std::cout << "\nEst ce une IA? (Oui/Non)\n";
+        std::cin >> art;
 
         Ia = (art == "Oui" || art == "oui");
 
@@ -52,19 +52,19 @@ Jeu::Jeu() {
     unsigned int min;
     unsigned int max;
 
-    cout << "Valeur minimale du de?\n";
-    while (!(cin >> min) || min < 1) {
-        cout << "Erreur ! Valeur invalide.\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    std::cout << "Valeur minimale du de?\n";
+    while (!(std::cin >> min) || min < 1) {
+        std::cout << "Erreur ! Valeur invalide.\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
 
 
-    cout << "Valeur maximale du de?\n";
-    while (!(cin >> max) || max < 1 || max < min) {
-        cout << "Erreur ! Valeur invalide.\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    std::cout << "Valeur maximale du de?\n";
+    while (!(std::cin >> max) || max < 1 || max < min) {
+        std::cout << "Erreur ! Valeur invalide.\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     de = new De(min, max);
 
@@ -76,7 +76,7 @@ Jeu::~Jeu() {
         delete j;
     }
     delete de;
-}
+} 
 //**-----------------------Constructeur et destructeur-----------------------**//
 
 
@@ -94,7 +94,7 @@ Carte* Jeu::retirerCarteJoueur(size_t i, Carte* c) {
     if (i > nbJoueurs) throw JeuException("Le joueur n'existe pas");
     return joueurs[i]->retirerCarte(c);
 }
-Carte* Jeu::retirerCarteJoueur(size_t i, string& nom) {
+Carte* Jeu::retirerCarteJoueur(size_t i, std::string& nom) {
     if (i > nbJoueurs) throw JeuException("Le joueur n'existe pas");
     return joueurs[i]->retirerCarte(nom);
 }
@@ -109,16 +109,16 @@ void Jeu::changerDesJoueur(size_t i, int n) {
 }
 
 void Jeu::afficherJeu() {
-    cout << "\n";
+    std::cout << "\n";
     if (joueurs.size() == 0) throw JeuException("Aucun joueur, rien a afficher");
-    vector<Joueur*>::iterator it;
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+    std::vector<Joueur*>::iterator it;
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
     for (it = joueurs.begin(); it != joueurs.end(); it++)
     {
-        cout << "| Pseudo : "<<it.operator*()->getPseudo()<< " | IA : "<< ((it.operator*()->getIa()) ? "Oui":"Non") << " | Nombre de cartes : "<< it.operator*()->getPaquet().getNbCartes() << " | Porte-monnaie : "<< it.operator*()->getMoney() << "| Nombre de des : "<<it.operator*()->getDes() << " |" << endl;
+        std::cout << "| Pseudo : " << it.operator*()->getPseudo() << " | IA : " << ((it.operator*()->getIa()) ? "Oui" : "Non") << " | Nombre de cartes : " << it.operator*()->getPaquet().getNbCartes() << " | Porte-monnaie : " << it.operator*()->getMoney() << "| Nombre de des : " << it.operator*()->getDes() << " |" << std::endl;
     }
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
-    cout << "\n";
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
+    std::cout << "\n";
 }
 
 

@@ -1,24 +1,24 @@
 #include "Paquet.h"
-
+#include <vector>
 //****************class Paquet*******************//
 
 bool Paquet::is_In(Carte* c) {
     return (find(cartes.begin(), cartes.end(), c) != cartes.end());
 }
 
-bool Paquet::is_In(string& nom) const {
+bool Paquet::is_In(std::string& nom) const {
     return (find_if(cartes.begin(), cartes.end(), [&nom](Carte* c) {return c->getNom() == nom; }) != cartes.end());
 }
 
 
 
-Carte* Paquet::retirerCarte(string& nom) {
+Carte* Paquet::retirerCarte(std::string& nom) {
     if (cartes.empty())
     {
         throw PaquetException("Ce paquet ne contient aucune carte");
     }
     else {
-        vector<Carte*>::iterator it;
+        std::vector<Carte*>::iterator it;
         //On retrouve la carte dont le nom est "nom"
         it = find_if(cartes.begin(), cartes.end(), [&nom](Carte* c) {return c->getNom() == nom; });
 
@@ -43,7 +43,7 @@ Carte* Paquet::retirerCarte(Carte* c) {
         throw PaquetException("Ce paquet ne contient aucune carte");
     }
     else {
-        vector<Carte*>::iterator it; //on creer un iterateur fait pour travailler dans un vecteur de pointeurs de Carte
+        std::vector<Carte*>::iterator it; //on creer un iterateur fait pour travailler dans un vecteur de pointeurs de Carte
         it = find(cartes.begin(), cartes.end(), c); //on lui affecte l'index de la carte
 
         Carte* result = nullptr;
@@ -63,10 +63,10 @@ Carte* Paquet::retirerCarte() {
 }
 
 
-vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
+std::vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
     if (!cartes.empty())
     {
-        vector<Carte*> result;
+        std::vector<Carte*> result;
         for (auto c : cartes)
         {
             if (c->getCouleur() == couleur)
@@ -78,10 +78,10 @@ vector<Carte*> Paquet::getCarteCouleur(Couleur couleur)const {
         throw PaquetException("Ce paquet ne contient aucune carte");
 }
 
-vector<Carte*> Paquet::getCarteType(Type type) const {
+std::vector<Carte*> Paquet::getCarteType(Type type) const {
     if (!cartes.empty())
     {
-        vector<Carte*> result;
+        std::vector<Carte*> result;
         for (auto c : cartes)
         {
             if (c->getType() == type)
@@ -93,7 +93,7 @@ vector<Carte*> Paquet::getCarteType(Type type) const {
         throw PaquetException("Ce paquet ne contient aucune carte");
 }
 
-vector<Carte*> Paquet::getCarteActive(int activateur) const {
+std::vector<Carte*> Paquet::getCarteActive(int activateur) const{
     if (activateur == 0)
     {
         throw PaquetException("Activateur 0 non existant");
@@ -102,7 +102,7 @@ vector<Carte*> Paquet::getCarteActive(int activateur) const {
     {
         if (!cartes.empty())
         {
-            vector<Carte*> result;
+            std::vector<Carte*> result;
             for (auto c : cartes)
                 for (auto a : c->getActivation())
                     if (a == activateur)
@@ -117,10 +117,10 @@ vector<Carte*> Paquet::getCarteActive(int activateur) const {
     }
 }
 
-vector<Carte*> Paquet::getCarteNom(string& nom) const {
+std::vector<Carte*> Paquet::getCarteNom(std::string& nom) const {
     if (!cartes.empty())
     {
-        vector<Carte*> result;
+        std::vector<Carte*> result;
         for (auto c : cartes)
         {
             if (c->getNom() == nom)
@@ -138,10 +138,10 @@ vector<Carte*> Paquet::getCarteNom(string& nom) const {
 
 
 //****************Fonctions supplementaires******************//
-ostream& operator<<(ostream& f, const Paquet& p) {
+std::ostream& operator<<(std::ostream& f, const Paquet& p) {
     f << "/**********Affichage Paquet**********/\n";
     int i = 1;
-    vector<Carte*>cartes = p.getContener();
+    std::vector<Carte*>cartes = p.getContener();
     for (auto c : cartes)
     {
         f << "Carte n." << i;

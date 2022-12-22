@@ -16,7 +16,7 @@
 //------------Classe JeuGreenValley----------//
 class JeuGreenValley : public JeuPioche {
 private:
-    vector<Carte*> cartes;
+    std::vector<Carte*> cartes;
 
     //Constructeur et Destructeur//
     JeuGreenValley();
@@ -43,8 +43,8 @@ public:
     static JeuGreenValley& getJeu();
     static void libererJeu();
 
-    //Methodes agissant sur les cartes à l'echelle du jeu
-    vector<Carte*> getCartes() const { return cartes; }
+    //Methodes agissant sur les cartes a l'echelle du jeu
+    std::vector<Carte*> getCartes() const { return cartes; }
 
 };
 //------------Classe JeuGreenValley----------//

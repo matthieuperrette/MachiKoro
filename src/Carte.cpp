@@ -9,7 +9,7 @@ Couleur::rouge, Couleur::violet, Couleur::monument };
 std::initializer_list<Type> Types = { Type::champ, Type::ferme, Type::cafe, Type::magasin,
 Type::tour, Type::industrie, Type::ressource, Type::marche };
 
-string toString(Couleur c) {
+std::string toString(Couleur c) {
     switch (c) {
     case Couleur::bleu: return "bleu";
     case Couleur::vert: return "vert";
@@ -20,7 +20,7 @@ string toString(Couleur c) {
     }
 }
 
-string toString(Type t) {
+std::string toString(Type t) {
     switch (t) {
     case Type::champ: return "champ";
     case Type::ferme: return "ferme";
@@ -56,7 +56,7 @@ void printTypes(std::ostream& f) {
 
 //*---------------------Classe Carte---------------------*//
 
-ostream& operator<<(ostream& f, const Carte& c) {
+std::ostream& operator<<(std::ostream& f, const Carte& c) {
     f << "\n---------" << c.getNom() << "---------\n"
         "Couleur : " << c.getCouleur() << "\n"
         << "Type : " << c.getType() << "\n"
@@ -70,9 +70,9 @@ ostream& operator<<(ostream& f, const Carte& c) {
 }
 
 
-bool Carte::isActivable(int checkValue) const{
-    auto it=find(activation.begin(),activation.end(),checkValue);
-    if (it!=activation.end())
+bool Carte::isActivable(int checkValue) const {
+    auto it = find(activation.begin(), activation.end(), checkValue);
+    if (it != activation.end())
         return true;
     else
         return false;
@@ -82,7 +82,7 @@ bool Carte::isActivable(int checkValue) const{
 
 int Carte::runEffect(Joueur* j1) {
     int retour;
-    string centre = "Centre commercial";
+    std::string centre = "Centre commercial";
     if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
         effet->ajouterPiecesEnJeu(1);
         retour = effet->runEffect(j1);
@@ -95,7 +95,7 @@ int Carte::runEffect(Joueur* j1) {
 
 int Carte::runEffect(Joueur* j1, Joueur* j2) {
     int retour;
-    string centre = "Centre commercial";
+    std::string centre = "Centre commercial";
     if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
         effet->ajouterPiecesEnJeu(1);
         retour = effet->runEffect(j1, j2);
@@ -106,9 +106,9 @@ int Carte::runEffect(Joueur* j1, Joueur* j2) {
     return retour;
 }
 
-int Carte::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
+int Carte::runEffect(Joueur* j1, std::vector<Joueur*> vectJoueur) {
     int retour;
-    string centre = "Centre commercial";
+    std::string centre = "Centre commercial";
     if ((type == Type::cafe || type == Type::magasin) && j1->getPaquet().getCarteNom(centre).size() != 0) {
         effet->ajouterPiecesEnJeu(1);
         retour = effet->runEffect(j1, vectJoueur);
@@ -122,7 +122,6 @@ int Carte::runEffect(Joueur* j1, vector<Joueur*> vectJoueur) {
 Effet* Carte::getEffet() const { return effet; }
 
 //*---------------------Classe Carte---------------------*//
-
 
 
 

@@ -18,8 +18,8 @@ protected:
 public:
     //Constructeur et Destructeur//
     JeuPioche() = default;
-    ~JeuPioche() { delete pioche; }
-    void init(vector<Carte*> cartes);
+    ~JeuPioche() { delete pioche;}
+    void init(std::vector<Carte*> cartes);
 
 };
 //------------Classe JeuPioche----------//

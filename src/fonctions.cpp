@@ -1,4 +1,4 @@
-#include "Carte.h"
+﻿#include "Carte.h"
 #include "Effet.h"
 #include "Paquet.h"
 #include "De.h"
@@ -8,26 +8,27 @@
 #include "fonctions.h"
 #include <vector>
 #include "EffetGreenValley.h"
-#include "unistd.h"
+//#include "unistd.h"
+#include <windows.h>
 #include "Controleur.h"
 
-vector<Carte*> fonctions::cartesEditionClassique() {
-    vector<int> v = {  };
-    vector<int> v1 = { 1 };
-    vector<int> v2 = { 2 };
-    vector<int> v2_3 = { 2, 3 };
-    vector<int> v3 = { 3 };
-    vector<int> v4 = { 4 };
-    vector<int> v5 = { 5 };
-    vector<int> v6 = { 6 };
-    vector<int> v7 = { 7 };
-    vector<int> v8 = { 8 };
-    vector<int> v9 = { 9 };
-    vector<int> v9_10 = { 9, 10 };
-    vector<int> v10 = { 10 };
-    vector<int> v11_12 = { 11, 12 };
+std::vector<Carte*> fonctions::cartesEditionClassique() {
+    std::vector<int> v = {  };
+    std::vector<int> v1 = { 1 };
+    std::vector<int> v2 = { 2 };
+    std::vector<int> v2_3 = { 2, 3 };
+    std::vector<int> v3 = { 3 };
+    std::vector<int> v4 = { 4 };
+    std::vector<int> v5 = { 5 };
+    std::vector<int> v6 = { 6 };
+    std::vector<int> v7 = { 7 };
+    std::vector<int> v8 = { 8 };
+    std::vector<int> v9 = { 9 };
+    std::vector<int> v9_10 = { 9, 10 };
+    std::vector<int> v10 = { 10 };
+    std::vector<int> v11_12 = { 11, 12 };
 
-    vector<Carte*> vect;
+    std::vector<Carte*> vect;
     vect.push_back(new Carte(new Effet("Recevez 1 pieces de la banque", 1, true),
         Couleur::bleu, 1, v1, "Champs de ble", Type::champ));
 
@@ -88,18 +89,18 @@ vector<Carte*> fonctions::cartesEditionClassique() {
     return vect;
 }
 
-vector<Carte*> fonctions::cartesEditionMarina() {
-    vector<int> v = {  };
-    vector<int> v1 = { 1 };
-    vector<int> v4 = { 4 };
-    vector<int> v6 = { 6 };
-    vector<int> v7 = { 7 };
-    vector<int> v8 = { 8 };
-    vector<int> v8_9 = { 8, 9 };
-    vector<int> v12_13 = { 12, 13 };
-    vector<int> v12_13_14 = { 12, 13, 14 };
+std::vector<Carte*> fonctions::cartesEditionMarina() {
+    std::vector<int> v = {  };
+    std::vector<int> v1 = { 1 };
+    std::vector<int> v4 = { 4 };
+    std::vector<int> v6 = { 6 };
+    std::vector<int> v7 = { 7 };
+    std::vector<int> v8 = { 8 };
+    std::vector<int> v8_9 = { 8, 9 };
+    std::vector<int> v12_13 = { 12, 13 };
+    std::vector<int> v12_13_14 = { 12, 13, 14 };
 
-    vector<Carte*> vect;
+    std::vector<Carte*> vect;
 
     vect.push_back(new Carte(new Effet("Recevez 1 piece de la banque", 1, true),
         Couleur::bleu, 2, v4, "Champ de fleurs", Type::champ));
@@ -143,22 +144,22 @@ vector<Carte*> fonctions::cartesEditionMarina() {
     return vect;
 }
 
-vector<Carte*> fonctions::cartesEditionGreenValley() {
-    vector<int> v2 = { 2 };
-    vector<int> v3_4 = { 3,4 };
-    vector<int> v4 = { 4 };
-    vector<int> v5 = { 5 };
-    vector<int> v5_6 = { 5,6 };
-    vector<int> v7 = { 7 };
-    vector<int> v8 = { 8 };
-    vector<int> v9 = { 9 };
-    vector<int> v9_10 = { 9,10 };
-    vector<int> v10 = { 10 };
-    vector<int> v11 = { 11 };
-    vector<int> v11_12_13 = { 11,12,13 };
-    vector<int> v12_13_14 = { 12,13,14 };
+std::vector<Carte*> fonctions::cartesEditionGreenValley() {
+    std::vector<int> v2 = { 2 };
+    std::vector<int> v3_4 = { 3,4 };
+    std::vector<int> v4 = { 4 };
+    std::vector<int> v5 = { 5 };
+    std::vector<int> v5_6 = { 5,6 };
+    std::vector<int> v7 = { 7 };
+    std::vector<int> v8 = { 8 };
+    std::vector<int> v9 = { 9 };
+    std::vector<int> v9_10 = { 9,10 };
+    std::vector<int> v10 = { 10 };
+    std::vector<int> v11 = { 11 };
+    std::vector<int> v11_12_13 = { 11,12,13 };
+    std::vector<int> v12_13_14 = { 12,13,14 };
 
-    vector<Carte*> vect;
+    std::vector<Carte*> vect;
     vect.push_back(new Carte(new EffetGreenValley("Si vous avez moins de 2 monuments, recevez 1 piece de la banque", 1, true, false, false, 2),
         Couleur::bleu, 2, v3_4, "Champ de mais", Type::champ));
 
@@ -204,7 +205,7 @@ vector<Carte*> fonctions::cartesEditionGreenValley() {
     return vect;
 }
 
-int fonctions::recupPositionJoueur(Joueur* j1, vector<Joueur*> vectJoueur) {
+int fonctions::recupPositionJoueur(Joueur* j1, std::vector<Joueur*> vectJoueur) {
 
     auto it = find(vectJoueur.begin(), vectJoueur.end(), j1);
     if (it != vectJoueur.end())
@@ -213,7 +214,7 @@ int fonctions::recupPositionJoueur(Joueur* j1, vector<Joueur*> vectJoueur) {
         return -1;
 }
 
-int fonctions::recupPositionCarte(string& nom, vector <Carte*> cartes) {
+int fonctions::recupPositionCarte(std::string& nom, std::vector <Carte*> cartes) {
     auto it = cartes.begin();
     while (it != cartes.end()) {
         if ((*it)->getNom() == nom) return it - cartes.begin();
@@ -222,13 +223,13 @@ int fonctions::recupPositionCarte(string& nom, vector <Carte*> cartes) {
     return -1;
 }
 
-Joueur* fonctions::choisirJoueur(Joueur* j, vector<Joueur*> vectJoueur) {
-    cout << "\n" << "Choisissez un joueur de" << " 1 a " << vectJoueur.size() - 1 << "\n";
+Joueur* fonctions::choisirJoueur(Joueur* j, std::vector<Joueur*> vectJoueur) {
+    std::cout << "\n" << "Choisissez un joueur de" << " 1 a " << vectJoueur.size() - 1 << "\n";
     int choix;
-    while (!(cin >> choix) || choix < 1 || choix >(vectJoueur.size() - 1)) {
-        cout << "Erreur veuillez choisir de nouveau" << "\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    while (!(std::cin >> choix) || choix < 1 || choix >(vectJoueur.size() - 1)) {
+        std::cout << "Erreur veuillez choisir de nouveau" << "\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     choix -= 1;
     int position = fonctions::recupPositionJoueur(j, vectJoueur);
@@ -237,14 +238,14 @@ Joueur* fonctions::choisirJoueur(Joueur* j, vector<Joueur*> vectJoueur) {
     return vectJoueur.at(choix);
 }
 
-Carte* fonctions::choisirCarte(vector <Carte*> cartes) {
+Carte* fonctions::choisirCarte(std::vector <Carte*> cartes) {
     bool terminer = false;
     int choix;
-    cout << "Choisissez une carte de" << " 1 a " << cartes.size() << "\n";
-    while (!(cin >> choix) || choix < 1 || choix > cartes.size()) {
-        cout << "Erreur veuillez choisir de nouveau" << "\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    std::cout << "Choisissez une carte de" << " 1 a " << cartes.size() << "\n";
+    while (!(std::cin >> choix) || choix < 1 || choix > cartes.size()) {
+        std::cout << "Erreur veuillez choisir de nouveau" << "\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     return cartes.at(choix - 1);
 }
@@ -252,25 +253,25 @@ Carte* fonctions::choisirCarte(vector <Carte*> cartes) {
 Type fonctions::choisirType() {
     int i = 1;
     int choix;
-    cout << "Choisissez un type de 1 a " << Types.size() << "\n";
-    while (!(cin >> choix) || choix < 1 || choix >Types.size()) {
-        cout << "Erreur veuillez choisir de nouveau" << "\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    std::cout << "Choisissez un type de 1 a " << Types.size() << "\n";
+    while (!(std::cin >> choix) || choix < 1 || choix >Types.size()) {
+        std::cout << "Erreur veuillez choisir de nouveau" << "\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     choix--;
     //auto it = find(Types.begin(), Types.end(), choix);
     return *(Types.begin() + choix);
 }
 
-Carte* fonctions::choisirMonumentSauf(Joueur* j, string& nom) {
-    vector<Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
-    cout << "\n" << "Choisissez un monument de" << " 1 a " << monuments.size() - 1 << "\n";
+Carte* fonctions::choisirMonumentSauf(Joueur* j, std::string& nom) {
+    std::vector<Carte*> monuments = j->getPaquet().getCarteCouleur(Couleur::monument);
+    std::cout << "\n" << "Choisissez un monument de" << " 1 a " << monuments.size() - 1 << "\n";
     int choix;
-    while (!(cin >> choix) || choix < 1 || choix >(monuments.size() - 1)) {
-        cout << "Erreur veuillez choisir de nouveau" << "\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    while (!(std::cin >> choix) || choix < 1 || choix >(monuments.size() - 1)) {
+        std::cout << "Erreur veuillez choisir de nouveau" << "\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     choix -= 1;
 
@@ -280,14 +281,14 @@ Carte* fonctions::choisirMonumentSauf(Joueur* j, string& nom) {
     return monuments.at(choix);
 }
 
-Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
-    vector<Carte*> violettes = j->getPaquet().getCarteCouleur(Couleur::violet);
-    cout << "\n" << "Choisissez une carte violette de" << " 1 a " << violettes.size() - 1 << "\n";
+Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, std::string& nom) {
+    std::vector<Carte*> violettes = j->getPaquet().getCarteCouleur(Couleur::violet);
+    std::cout << "\n" << "Choisissez une carte violette de" << " 1 a " << violettes.size() - 1 << "\n";
     int choix;
-    while (!(cin >> choix) || choix < 1 || choix >(violettes.size() - 1)) {
-        cout << "Erreur veuillez choisir de nouveau" << "\n";
-        cin.clear();
-        cin.ignore(255, '\n');
+    while (!(std::cin >> choix) || choix < 1 || choix >(violettes.size() - 1)) {
+        std::cout << "Erreur veuillez choisir de nouveau" << "\n";
+        std::cin.clear();
+        std::cin.ignore(255, '\n');
     }
     choix -= 1;
 
@@ -299,7 +300,7 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
 
 /*void print_machi_koro()
 {
-    cout << "\n\n\n\n";
+    std::cout << "\n\n\n\n";
     const char* machi_koro_pattern[] =
     {
             "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
@@ -313,14 +314,14 @@ Carte* fonctions::choisirCarteVioletteSauf(Joueur* j, string& nom) {
             "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
     };
     for (int i = 0; i < 9; i++)
-        cout << machi_koro_pattern[i] << endl;
-    cout << "\n          Made with 💙BY Antoine SESINI, Matthieu PERETTE, Harry BROUDEHOUX and Mathieu BOUSQUET";
-    cout << "\n\n\n\n";
+        std::cout << machi_koro_pattern[i] << endl;
+    std::cout << "\n          Made with 💙BY Antoine SESINI, Matthieu PERETTE, Harry BROUDEHOUX and Mathieu BOUSQUET";
+    std::cout << "\n\n\n\n";
 }*/
 
 
-void print_machi_koro(){
-    cout << "\n\n\n\n" << R"(
+void print_machi_koro() {
+    std::cout << "\n\n\n\n" << R"(
  MMMMMMMM               MMMMMMMM               AAA                   CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHHIIIIIIIIII
 M:::::::M             M:::::::M              A:::A                 CCC::::::::::::CH:::::::H     H:::::::HI::::::::I
 M::::::::M           M::::::::M             A:::::A              CC:::::::::::::::CH:::::::H     H:::::::HI::::::::I
@@ -367,8 +368,8 @@ void fonctions::screenStop() {
 
 
 
-unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
-    //Verifier si carte gare alors proposer 1 ou 2 dès
+unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes) {
+    //Verifier si carte gare alors proposer 1 ou 2 des
     //Sinon proposer de lancer juste
     //Lancer le nombre de des choisi
     //Mettre un peu de suspense et d'attente
@@ -376,95 +377,97 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
     //Si le joueur a la carte tour radio alors afficher l'addition et proposer de relancer 1 fois
     //Sinon afficher l'addition simplement
     //retourner l'addition
-    unsigned int addition=0;
+    unsigned int addition = 0;
     if (!currentJoueur) throw ControleurException("La carte a retirer n'existe pas !");
-    string carte;
-    string carte2="Parc d'attractions";
-    bool aParcAttractions=currentJoueur->getPaquet().is_In(carte2);
-    string choix;
-    int choix2=0;
-    vector<unsigned int> historique;
-    vector<unsigned int>::iterator finder;
+    std::string carte;
+    std::string carte2 = "Parc d'attractions";
+    bool aParcAttractions = currentJoueur->getPaquet().is_In(carte2);
+    std::string choix;
+    int choix2 = 0;
+    std::vector<unsigned int> historique;
+    std::vector<unsigned int>::iterator finder;
 
 
 
 
 
-    if (currentJoueur->getDes()==1) //Si le joueur n'a pas la carte Gare
+    if (currentJoueur->getDes() == 1) //Si le joueur n'a pas la carte Gare
     {
-        cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
-        while (!(cin >> choix) || choix!="L") {
-            cout << "Entrez L puis ENTREE pour lancer le des...\n";
-            cin.clear();
-            cin.ignore(255, '\n');
+        std::cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
+        while (!(std::cin >> choix) || choix != "L") {
+            std::cout << "Entrez L puis ENTREE pour lancer le des...\n";
+            std::cin.clear();
+            std::cin.ignore(255, '\n');
         }
-        addition=Controleur::getControleur().getJeu()->lancerDe();
+        addition = Controleur::getControleur().getJeu()->lancerDe();
     }
     else //Si le joueur a la carte gare (ou toute autre carte qui lui a permis d'augmenter son nombre de des), on lui propose de lancer 1 ou 2 ou getDes des
     {
-        cout << "\n\n" << "Combien de des desirez vous lancer ? Vous en avez "<< currentJoueur->getDes()<<" :\n";
-        while (!(cin >> choix2) || choix2<1 || choix2>currentJoueur->getDes()) {
-            cout << "Erreur ! Votre choix doit etre compris entre 1 et "<<currentJoueur->getDes()<<"\n";
-            cin.clear();
-            cin.ignore(255, '\n');
+        std::cout << "\n\n" << "Combien de des desirez vous lancer ? Vous en avez " << currentJoueur->getDes() << " :\n";
+        while (!(std::cin >> choix2) || choix2<1 || choix2>currentJoueur->getDes()) {
+            std::cout << "Erreur ! Votre choix doit etre compris entre 1 et " << currentJoueur->getDes() << "\n";
+            std::cin.clear();
+            std::cin.ignore(255, '\n');
         }
-        cout << "\n\n" << "Entrez L puis ENTREE pour lancer le(s) des...\n";
-        while (!(cin >> choix) || choix!="L") {
-            cout << "Entrez L puis ENTREE pour lancer le des...\n";
-            cin.clear();
-            cin.ignore(255, '\n');
+        std::cout << "\n\n" << "Entrez L puis ENTREE pour lancer le(s) des...\n";
+        while (!(std::cin >> choix) || choix != "L") {
+            std::cout << "Entrez L puis ENTREE pour lancer le des...\n";
+            std::cin.clear();
+            std::cin.ignore(255, '\n');
         }
-        for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
+        for (int i = 0; i != choix2; i++) //On lance le nombre de des choisi
         {
-            unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
-            finder= find(historique.begin(),historique.end(),result);
-            if (finder!=historique.end() && aParcAttractions)
-                doubleDes=true;
+            unsigned int result = Controleur::getControleur().getJeu()->lancerDe();
+            finder = find(historique.begin(), historique.end(), result);
+            if (finder != historique.end() && aParcAttractions)
+                doubleDes = true;
             historique.push_back(result);
-            addition+=result;
+            addition += result;
         }
     }
-    sleep(3);
-    cout << "SCORE OBTENU : " << addition <<endl;
-    cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n":"");
-    carte="Tour radio";
-    string choix3;
-    if (currentJoueur->getPaquet().is_In(carte)) //Si le joueur a la tour radio alors on lui propose de rejouer, sinon on arrête et on renvoie le score
+    //sleep(3);
+    Sleep(3);
+    std::cout << "SCORE OBTENU : " << addition << std::endl;
+    std::cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n" : "");
+    carte = "Tour radio";
+    std::string choix3;
+    if (currentJoueur->getPaquet().is_In(carte)) //Si le joueur a la tour radio alors on lui propose de rejouer, sinon on arrete et on renvoie le score
     {
-        cout << "\n\n" << "Voulez vous relancer le(s) des ? (Oui/Non)\n";
-        while (!(cin >> choix3) || (choix3!="Oui" && choix3!="Non")) {
-            cout << "Erreur ! Votre choix doit etre 'Oui' ou 'Non' !\n";
-            cin.clear();
-            cin.ignore(255, '\n');
+        std::cout << "\n\n" << "Voulez vous relancer le(s) des ? (Oui/Non)\n";
+        while (!(std::cin >> choix3) || (choix3 != "Oui" && choix3 != "Non")) {
+            std::cout << "Erreur ! Votre choix doit etre 'Oui' ou 'Non' !\n";
+            std::cin.clear();
+            std::cin.ignore(255, '\n');
         }
-        if (choix3=="Oui")
+        if (choix3 == "Oui")
         {
-            addition=0;
-            cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
-            while (!(cin >> choix) || choix!="L") {
-                cout << "Entrez L puis ENTREE pour lancer le des...\n";
-                cin.clear();
-                cin.ignore(255, '\n');
+            addition = 0;
+            std::cout << "\n\n" << "Entrez L puis ENTREE pour lancer le des...\n";
+            while (!(std::cin >> choix) || choix != "L") {
+                std::cout << "Entrez L puis ENTREE pour lancer le des...\n";
+                std::cin.clear();
+                std::cin.ignore(255, '\n');
             }
-            if (currentJoueur->getDes()==1)
+            if (currentJoueur->getDes() == 1)
             {
-                addition=Controleur::getControleur().getJeu()->lancerDe();
+                addition = Controleur::getControleur().getJeu()->lancerDe();
             }
             else
             {
-                for (int i=0; i!=choix2; i++) //On lance le nombre de des choisi
+                for (int i = 0; i != choix2; i++) //On lance le nombre de des choisi
                 {
-                    unsigned int result=Controleur::getControleur().getJeu()->lancerDe();
-                    finder= find(historique.begin(),historique.end(),result);
-                    if (finder!=historique.end() && aParcAttractions)
-                        doubleDes=true;
+                    unsigned int result = Controleur::getControleur().getJeu()->lancerDe();
+                    finder = find(historique.begin(), historique.end(), result);
+                    if (finder != historique.end() && aParcAttractions)
+                        doubleDes = true;
                     historique.push_back(result);
-                    addition+=result;
+                    addition += result;
                 }
             }
-            sleep(3);
-            cout << "SCORE OBTENU : " << addition;
-            cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n":"");
+            //sleep(3);
+            Sleep(3);
+            std::cout << "SCORE OBTENU : " << addition;
+            std::cout << ((doubleDes && aParcAttractions) ? "Vous avez fait un double !\n" : "");
         }
     }
     return addition;
@@ -473,13 +476,13 @@ unsigned int fonctions::lancementDes(Joueur* currentJoueur, bool& doubleDes){
 
 
 
-vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned int& desResult){
+std::vector<Carte*> fonctions::getCartesActivables(std::vector<Carte*>& vecteur, unsigned int& desResult) {
     //retourne toutes les cartes activables avec desResult
-    vector<Carte*> result;
-    vector<Carte*>::iterator it;
-    for (it=vecteur.begin();it!=vecteur.end();it++) //Pour chaque carte dans le vecteur donne, on regarde si la carte est activable avec desResult
+    std::vector<Carte*> result;
+    std::vector<Carte*>::iterator it;
+    for (it = vecteur.begin();it != vecteur.end();it++) //Pour chaque carte dans le vecteur donne, on regarde si la carte est activable avec desResult
     {
-        if(it.operator*()->isActivable(desResult))
+        if (it.operator*()->isActivable(desResult))
         {
             result.push_back(*it); //Si la carte est activable, on la push
         }
@@ -491,7 +494,7 @@ vector<Carte*> fonctions::getCartesActivables(vector<Carte*>& vecteur, unsigned 
 
 
 
-void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ //interprete le resultat du de et active les cartes de la bonne maniere
+void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult) { //interprete le resultat du de et active les cartes de la bonne maniere
     //pour les cartes rouges : faire le tour des joueurs dans le sens inverse de ordre et pour chaque joueur, on prendre ses cartes rouges activables et on les active
     //pour les cartes bleues : faire le tour des joueurs dans le sens ordre courant et pour chaque joueur, on recupere ses cartes bleues activables et on les active
     //pour les cartes vertes : le joueur courant subit une recherche de cartesActivables sur ses cartes de couleur verte et les cartes activables sont activees
@@ -500,21 +503,21 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
 
 
 
-    vector<Joueur*>::iterator it;
-    vector<Joueur*> joueursList=Controleur::getControleur().getJeu()->getJoueursList();
-    it=find(joueursList.begin(), joueursList.end(),currentJoueur);
-    int place=-1;
-    if (it==joueursList.end())
+    std::vector<Joueur*>::iterator it;
+    std::vector<Joueur*> joueursList = Controleur::getControleur().getJeu()->getJoueursList();
+    it = find(joueursList.begin(), joueursList.end(), currentJoueur);
+    int place = -1;
+    if (it == joueursList.end())
     {
         throw ControleurException("Joueur impossible a indexer !");
     }
-    else //On récupère sa place relative
+    else //On recupere sa place relative
     {
-        place=it-joueursList.begin();
+        place = it - joueursList.begin();
     }
-    int nbJoueurs=Controleur::getControleur().getJeu()->getNbJoueurs();
-    bool sens=Controleur::getControleur().getSens();
-    vector<Carte*> beforeFiltre;
+    int nbJoueurs = Controleur::getControleur().getJeu()->getNbJoueurs();
+    bool sens = Controleur::getControleur().getSens();
+    std::vector<Carte*> beforeFiltre;
     int i;
 
 
@@ -522,40 +525,40 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
 
 
     //cartes rouges
-    if (sens) //Si on est dans le sens horaire, on part dans le sens antihoraire à partir du joueur en cours
+    if (sens) //Si on est dans le sens horaire, on part dans le sens antihoraire a partir du joueur en cours
     {
-        i=place-1;
-        if(i<0) i+=nbJoueurs;
+        i = place - 1;
+        if (i < 0) i += nbJoueurs;
         //On ne run que pour les autres joueurs et non le courant
-        while (i!=place)
+        while (i != place)
         {
             //operations sur les cartes rouges du joueur i
-            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
-            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            for (auto j : getCartesActivables(beforeFiltre, desResult))
             {
-                cout << j->getNom() << "\n";
-                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
+                std::cout << j->getNom() << "\n";
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)), currentJoueur);
             }
             i--;
-            if(i<0) i+=nbJoueurs;
+            if (i < 0) i += nbJoueurs;
         }
     }
     else //Sinon l'inverse
     {
-        i=place+1;
-        if(i>nbJoueurs-1) i-=nbJoueurs;
+        i = place + 1;
+        if (i > nbJoueurs - 1) i -= nbJoueurs;
         //On ne run que pour les autres joueurs et non le courant
-        while (i!=place)
+        while (i != place)
         {
             //operations sur les cartes rouges du joueur i
-            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
-            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::rouge);
+            for (auto j : getCartesActivables(beforeFiltre, desResult))
             {
-                cout << j->getNom() << "\n";
-                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)),currentJoueur);
+                std::cout << j->getNom() << "\n";
+                j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)), currentJoueur);
             }
             i++;
-            if(i>nbJoueurs-1) i-=nbJoueurs;
+            if (i > nbJoueurs - 1) i -= nbJoueurs;
         }
     }
 
@@ -565,51 +568,51 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
     //cartes bleues
     if (sens)
     {
-        i=place+1;
-        if(i>nbJoueurs-1) i-=nbJoueurs;
+        i = place + 1;
+        if (i > nbJoueurs - 1) i -= nbJoueurs;
         //On run pour tous les autres joueurs
-        while (i!=place)
+        while (i != place)
         {
             //operations sur les cartes bleues du joueur i
-            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
-            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+            for (auto j : getCartesActivables(beforeFiltre, desResult))
             {
-                cout << j->getNom() << "\n";
+                std::cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
             }
             i++;
-            if(i>nbJoueurs-1) i-=nbJoueurs;
+            if (i > nbJoueurs - 1) i -= nbJoueurs;
         }
         //On run aussi pour notre joueur courant
-        beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
-        for (auto j : getCartesActivables(beforeFiltre,desResult))
+        beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+        for (auto j : getCartesActivables(beforeFiltre, desResult))
         {
-            cout << j->getNom() << "\n";
+            std::cout << j->getNom() << "\n";
             j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
         }
     }
     else
     {
-        i=place-1;
-        if(i<0) i+=nbJoueurs;
+        i = place - 1;
+        if (i < 0) i += nbJoueurs;
         //On run pour tous les autres joueurs
-        while (i!=place)
+        while (i != place)
         {
             //operations sur les cartes bleues du joueur i
-            beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
-            for (auto j : getCartesActivables(beforeFiltre,desResult))
+            beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+            for (auto j : getCartesActivables(beforeFiltre, desResult))
             {
-                cout << j->getNom() << "\n";
+                std::cout << j->getNom() << "\n";
                 j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
             }
             i--;
-            if(i<0) i+=nbJoueurs;
+            if (i < 0) i += nbJoueurs;
         }
         //On run aussi pour notre joueur courant
-        beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
-        for (auto j : getCartesActivables(beforeFiltre,desResult))
+        beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(i).getPaquet().getCarteCouleur(Couleur::bleu);
+        for (auto j : getCartesActivables(beforeFiltre, desResult))
         {
-            cout << j->getNom() << "\n";
+            std::cout << j->getNom() << "\n";
             j->runEffect(&(Controleur::getControleur().getJeu()->getJoueur(i)));
         }
     }
@@ -619,61 +622,61 @@ void fonctions::interpretation(Joueur* currentJoueur, unsigned int& desResult){ 
 
 
     //cartes vertes
-    beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::vert);
-    for (auto j : getCartesActivables(beforeFiltre,desResult))
+    beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::vert);
+    for (auto j : getCartesActivables(beforeFiltre, desResult))
     {
-        cout << j->getNom() << "\n";
+        std::cout << j->getNom() << "\n";
         j->runEffect(currentJoueur);
     }
 
 
     //cartes violettes
-    beforeFiltre=Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::violet);
-    for (auto j : getCartesActivables(beforeFiltre,desResult))
+    beforeFiltre = Controleur::getControleur().getJeu()->getJoueur(place).getPaquet().getCarteCouleur(Couleur::violet);
+    for (auto j : getCartesActivables(beforeFiltre, desResult))
     {
-        cout << j->getNom() << "\n";
+        std::cout << j->getNom() << "\n";
         j->runEffect(currentJoueur, Controleur::getControleur().getJeu()->getJoueursList());
     }
 }
 
-vector<Carte*> fonctions::affichageCartesAchetables(Joueur* currentJoueur){
-    vector<Carte*> result;
-    int cpt=1;
-    cout << "\n//********AFFICHAGE CARTES ACHETABLES********//\n";
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
-    unsigned int budget=currentJoueur->getMoney();
-    for (auto p:Controleur::getControleur().getJeu()->getPaquetsNonVidesPlateau())
+std::vector<Carte*> fonctions::affichageCartesAchetables(Joueur* currentJoueur) {
+    std::vector<Carte*> result;
+    int cpt = 1;
+    std::cout << "\n//********AFFICHAGE CARTES ACHETABLES********//\n";
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
+    unsigned int budget = currentJoueur->getMoney();
+    for (auto p : Controleur::getControleur().getJeu()->getPaquetsNonVidesPlateau())
     {
-        Carte* current=&(p->getCarte(0));
-        string currentName=current->getNom();
-        if(current->getPrix()<=budget && !((current->getCouleur()==Couleur::monument || current->getCouleur()==Couleur::violet)&&(currentJoueur->getPaquet().is_In(currentName))))
+        Carte* current = &(p->getCarte(0));
+        std::string currentName = current->getNom();
+        if (current->getPrix() <= budget && !((current->getCouleur() == Couleur::monument || current->getCouleur() == Couleur::violet) && (currentJoueur->getPaquet().is_In(currentName))))
         {
-                result.push_back(current);
-                cout <<"| "<<cpt<<" | NOMBRE RESTANT : "<< p->getNbCartes()<<" | Nom : "<<current->getNom()<<" | Couleur : "<<current->getCouleur()<<" | ";
-                cout << "Activation : ";
-                if (current->getCouleur()!=Couleur::monument)
-                {
-                    for (auto i : current->getActivation())
-                        cout << i<<" ";
-                }
-                cout << "| Type : "<<current->getType()<<" | Prix : "<<current->getPrix()<<" |"<<endl;
-                cpt++;
+            result.push_back(current);
+            std::cout << "| " << cpt << " | NOMBRE RESTANT : " << p->getNbCartes() << " | Nom : " << current->getNom() << " | Couleur : " << current->getCouleur() << " | ";
+            std::cout << "Activation : ";
+            if (current->getCouleur() != Couleur::monument)
+            {
+                for (auto i : current->getActivation())
+                    std::cout << i << " ";
+            }
+            std::cout << "| Type : " << current->getType() << " | Prix : " << current->getPrix() << " |" << std::endl;
+            cpt++;
 
         }
     }
-    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
-    cout << "\n";
+    std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
+    std::cout << "\n";
 
 
     return result;
 }
 
-int fonctions::transfert(Joueur* currentJoueur){
-
+int fonctions::transfert(Joueur* currentJoueur) {
+    return 0;
 }
 
 
-void fonctions::buyingManager(Joueur* currentJoueur){
+void fonctions::buyingManager(Joueur* currentJoueur) {
     //Avec le budget du joueur, buyingManager gere les entrees sorties permettant l'achat des etablissements
     //Il se charge ensuite d'effectuer le transfert des cartes depuis le plateau vers le paquet du joueur (faire attention aux editions hasardeuses : des transferts dans l'autre sens sont possibles)
     //ATTENTION QUAND ON ACHETE GARE ON AUGMENTE SIMPLEMENT LE GETDES DU JOUEUR
@@ -682,38 +685,37 @@ void fonctions::buyingManager(Joueur* currentJoueur){
     //Affichage des cartes achetables par le joueur et numerotation de celles ci
     //Entree de la carte a acheter
     //Transfert : attention, si le joueur achete une carte dont le nom est Gare alors on incremente le nombre de des du joueur
-    //Affichage d'un récapitualif de l'achat
+    //Affichage d'un recapitualif de l'achat
 
 
     //AFFICHAGE
-    vector<Carte*> cartesAchetables=affichageCartesAchetables(currentJoueur);
+    std::vector<Carte*> cartesAchetables = affichageCartesAchetables(currentJoueur);
 
     if (!cartesAchetables.empty())
     {
         //ENTREE DE LA CARTE A ACHETER
-        cout << "\n\n" << "Veuillez entrer le numero de la carte que vous desirez acheter dans la liste ci dessus (POUR PASSER VOTRE TOUR ENTREZ 0) :\n";
+        std::cout << "\n\n" << "Veuillez entrer le numero de la carte que vous desirez acheter dans la liste ci dessus (POUR PASSER VOTRE TOUR ENTREZ 0) :\n";
         int choix;
-        while (!(cin >> choix) || choix<0 || choix>cartesAchetables.size()) {
-            cout << "Veuillez entrer une valeur entre 0 et "<<cartesAchetables.size() <<"!\n";
-            cin.clear();
-            cin.ignore(255, '\n');
+        while (!(std::cin >> choix) || choix<0 || choix>cartesAchetables.size()) {
+            std::cout << "Veuillez entrer une valeur entre 0 et " << cartesAchetables.size() << "!\n";
+            std::cin.clear();
+            std::cin.ignore(255, '\n');
         }
-        if (choix!=0)
+        if (choix != 0)
         {
-            string carteSelected=cartesAchetables[choix-1]->getNom();
-            if (carteSelected=="Gare")
+            std::string carteSelected = cartesAchetables[choix - 1]->getNom();
+            if (carteSelected == "Gare")
                 currentJoueur->changerDes(2);
             //TRANSFERT
-            Carte* carteTransfered=Controleur::getControleur().getJeu()->retirerCartePlateau(carteSelected);
+            Carte* carteTransfered = Controleur::getControleur().getJeu()->retirerCartePlateau(carteSelected);
             currentJoueur->ajouterCarte(carteTransfered);
-            currentJoueur->changerMoney(currentJoueur->getMoney()-carteTransfered->getPrix());
+            currentJoueur->changerMoney(currentJoueur->getMoney() - carteTransfered->getPrix());
 
             //RECAP TRANSFERT
-            cout << "RECAPITULATIF : " << currentJoueur->getPseudo()<<" vient d'acheter "<<carteSelected << endl;
+            std::cout << "RECAPITULATIF : " << currentJoueur->getPseudo() << " vient d'acheter " << carteSelected << std::endl;
         }
     }
     else
-        cout << "\nLe joueur ne peut acheter aucune carte !\n";
+        std::cout << "\nLe joueur ne peut acheter aucune carte !\n";
 
 }
-
