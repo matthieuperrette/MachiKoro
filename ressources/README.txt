@@ -1,1 +1,1 @@
-Ce repertoire contiendra tous les fichiers qui ne sont pas des fichiers sources ou des assets
+Machi koro board game on Windows in C++ using QT Framework for interface
