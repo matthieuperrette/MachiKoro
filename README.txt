@@ -1,1 +1,1 @@
-On est ici a la racine du projet minivilles. Seul le main y est stocke.
+Machi Koro board game in C++ whith QT Fromework for the interface
